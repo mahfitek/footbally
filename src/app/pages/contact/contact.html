@@ -33,29 +33,32 @@
       [(ngModel)]="form.message"
     ></textarea>
 
+    <p class="error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+
     <button
       class="primary-btn"
-      [disabled]="!canSubmit()"
+      [disabled]="!canSubmit() || loading"
       (click)="submit()"
     >
-      Gönder
+      {{ loading ? 'Gönderiliyor…' : 'Gönder' }}
     </button>
 
   </div>
 
   <!-- SUCCESS MODAL -->
   <div class="modal-backdrop" *ngIf="showSuccess">
-  <div class="success-modal">
-    <div class="success-icon">✅</div>
-    <p>
-      Mesajınız başarıyla alındı.  
-      En kısa sürede sizinle iletişime geçeceğiz.
-    </p>
-    <button class="confirm-btn" (click)="showSuccess = false">
-      Tamam
-    </button>
+    <div class="success-modal">
+      <div class="success-icon">✅</div>
+      <p>
+        Mesajınız başarıyla alındı.<br />
+        En kısa sürede sizinle iletişime geçeceğiz.
+      </p>
+      <button class="confirm-btn" (click)="closeModal()">
+        Tamam
+      </button>
+    </div>
   </div>
-</div>
-
 
 </section>
