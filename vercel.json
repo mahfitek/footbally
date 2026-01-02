@@ -1,8 +1,14 @@
-{ 
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/index.html"
-        }
-    ]
+{
+  "builds": [
+    {
+      "src": "dist/footbally-web/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/dist/footbally-web/index.html"
+    }
+  ]
 }
