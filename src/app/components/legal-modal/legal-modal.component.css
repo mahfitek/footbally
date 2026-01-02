@@ -1,0 +1,133 @@
+/* BACKDROP */
+.legal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+}
+
+/* MODAL */
+.legal-modal {
+  position: fixed;
+  inset: 40px;
+  max-width: 900px;
+  margin: auto;
+
+  background: linear-gradient(
+    180deg,
+    #ffffff,
+    #f4f6fb
+  );
+
+  border-radius: 24px;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.4);
+  z-index: 1001;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+.legal-header {
+  padding: 24px 28px;
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.legal-header h2 {
+  font-size: 22px;
+  margin: 0;
+  color: #111;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.close-btn:hover {
+  opacity: 1;
+}
+
+/* CONTENT */
+.legal-content {
+  padding: 28px;
+  overflow-y: auto;
+
+  font-size: 14px;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .legal-modal {
+    inset: 16px;
+  }
+}
+/* =========================
+   LEGAL MODAL PREMIUM CTA
+========================= */
+
+.legal-modal .primary-btn {
+  width: 100%;
+  height: 52px;
+
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+
+  color: #000;
+
+  background: linear-gradient(
+    120deg,
+    #ffd700,
+    #ff8c00,
+    #7f5cff
+  );
+  background-size: 300% 300%;
+  animation: legalPremiumShift 6s ease infinite;
+
+  box-shadow:
+    0 10px 30px rgba(127,92,255,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.35);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+/* hover */
+.legal-modal .primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 40px rgba(127,92,255,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.5);
+}
+
+/* disabled */
+.legal-modal .primary-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+  animation: none;
+}
+
+/* animasyon */
+@keyframes legalPremiumShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

@@ -1,0 +1,65 @@
+<div class="modal-backdrop" (click)="close.emit()">
+
+  <div
+    class="modal-card"
+    (click)="$event.stopPropagation()"
+  >
+
+    <div class="modal-header">
+      <span class="tag">SCOUT ACTION</span>
+      <h3>Oyuncuyla İletişime Geç</h3>
+      <p class="player-name">{{ playerName }}</p>
+    </div>
+
+    <div class="modal-actions">
+
+      <!-- WHATSAPP -->
+      <a
+        class="action-btn whatsapp"
+        [href]="'https://wa.me/' + phone"
+        target="_blank"
+      >
+        <span class="icon">
+          <img
+            src="assets/icons/whatsapp.svg"
+            alt="WhatsApp"
+            width="22"
+            height="22"
+          />
+        </span>
+
+        <span class="text">
+          <strong>WhatsApp</strong>
+          <small>Mesaj gönder</small>
+        </span>
+      </a>
+
+      <!-- CALL -->
+      <a
+        class="action-btn call"
+        [href]="'tel:' + phone"
+      >
+        <span class="icon">
+          <svg
+            viewBox="0 0 24 24"
+            width="22"
+            height="22"
+            fill="currentColor"
+          >
+            <path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1-.24c1.12.37 2.33.57 3.59.57a1 1 0 0 1 1 1v3.5a1 1 0 0 1-1 1C10.07 21 3 13.93 3 5a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.26.2 2.47.57 3.59a1 1 0 0 1-.24 1l-2.2 2.2z"/>
+          </svg>
+        </span>
+
+        <span class="text">
+          <strong>Ara</strong>
+          <small>Doğrudan telefon</small>
+        </span>
+      </a>
+
+    </div>
+
+    <button class="close-btn" (click)="close.emit()">Kapat</button>
+
+  </div>
+
+</div>

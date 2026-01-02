@@ -1,0 +1,55 @@
+/* ===========================
+   APP ROOT – GLOBAL LAYOUT
+   =========================== */
+
+:host {
+  display: block;
+}
+
+/* Angular root */
+app-root {
+  display: block;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header + içerik + footer akışı */
+main {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* Router outlet sonrası gelen component
+   ASLA flex / center OLMAMALI */
+router-outlet + * {
+  display: block;
+  width: 100%;
+}
+
+/* Global reset */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Footer aşağıda kalsın ama layout bozmasın */
+app-footer {
+  display: block;
+  width: 100%;
+}
+/* GLOBAL PAGE HEIGHT FIX */
+html, body {
+  height: auto;
+  min-height: 100%;
+}
+
+main {
+  min-height: calc(100vh - 72px); /* header height */
+}

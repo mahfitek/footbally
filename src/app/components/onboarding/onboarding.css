@@ -1,0 +1,46 @@
+.onboarding-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.onboarding-card {
+  background: white;
+  padding: 40px;
+  border-radius: 24px;
+  width: 420px;
+  text-align: center;
+  animation: scaleIn 0.4s ease;
+}
+
+.onboarding-card h2 {
+  margin-bottom: 16px;
+}
+
+.onboarding-card p {
+  margin-bottom: 24px;
+}
+
+.onboarding-card button {
+  background: #16a34a;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,495 @@
+/* =========================
+   LOGIN PAGE – CLEAN PREMIUM
+========================= */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+
+  background: linear-gradient(180deg, #f6f7fb, #eceff5);
+}
+
+/* =========================
+   LOGIN CARD
+========================= */
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 36px 32px;
+  border-radius: 24px;
+
+  background: linear-gradient(180deg, #ffffff, #f4f6fb);
+  color: #0f172a;
+
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.12),
+    inset 0 0 0 1px rgba(0,0,0,0.04);
+
+  animation: loginEnter 0.4s ease-out;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+
+@keyframes loginEnter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================
+   HEADINGS
+========================= */
+
+.login-card h2 {
+  font-size: 26px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.login-card p {
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 28px;
+  color: #475569;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.login-card input {
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  margin-bottom: 14px;
+
+  border-radius: 14px;
+  border: 1px solid #dcdfea;
+  outline: none;
+
+  background: #fff;
+  color: #0f172a;
+  font-size: 14px;
+}
+
+.login-card input:focus {
+  border-color: #7f5cff;
+  box-shadow: 0 0 0 3px rgba(127,92,255,0.15);
+}
+
+/* =========================
+   PASSWORD
+========================= */
+
+.password-field {
+  position: relative;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: #64748b;
+}
+
+/* =========================
+   LEGAL CHECK ROWS
+========================= */
+
+.check-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 14px;
+  border-radius: 14px;
+  margin-bottom: 12px;
+
+  background: #fefce8;
+  border: 1px solid #fde68a;
+
+  font-size: 13px;
+}
+
+.check-text {
+  flex: 1;
+  margin-right: 12px;
+}
+
+.check-text a {
+  color: #7f5cff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* toggle */
+.check-label input {
+  display: none;
+}
+.toggle-btn {
+  width: 44px;
+  height: 24px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #e5e7eb;
+  position: relative;
+  transition: background 0.25s ease;
+}
+
+.toggle-btn::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.25s ease;
+}
+
+.toggle-btn.active {
+  background: linear-gradient(120deg, #ffd700, #ff8c00, #7f5cff);
+}
+
+.toggle-btn.active::after {
+  transform: translateX(20px);
+}
+
+
+.toggle.active {
+  background: linear-gradient(120deg, #ffd700, #ff8c00, #7f5cff);
+}
+
+.toggle.active::after {
+  transform: translateX(20px);
+}
+
+
+.check-label input:checked + .toggle {
+  background: linear-gradient(120deg, #ffd700, #ff8c00, #7f5cff);
+}
+
+.check-label input:checked + .toggle::after {
+  transform: translateX(20px);
+}
+
+/* =========================
+   PRIMARY BUTTON
+========================= */
+
+.primary-btn {
+  width: 100%;
+  height: 52px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+
+  font-size: 15px;
+  font-weight: 600;
+  color: #000;
+
+  background: linear-gradient(
+    120deg,
+    #ffd700,
+    #ff8c00,
+    #7f5cff
+  );
+
+  box-shadow:
+    0 10px 30px rgba(127,92,255,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.4);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 16px 40px rgba(127,92,255,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.5);
+  filter: brightness(1.05);
+}
+
+.primary-btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 8px 20px rgba(127,92,255,0.35);
+}
+
+.primary-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+
+/* =========================
+   LEGAL MODAL
+========================= */
+
+.legal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.legal-modal {
+  width: 90%;
+  max-width: 720px;
+  max-height: 80vh;
+  background: #fff;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+
+.legal-content {
+  flex: 1;
+  overflow-y: auto;
+  margin: 16px 0;
+}
+/* =========================
+   PREMIUM WELCOME SELECT
+========================= */
+
+.welcome-premium {
+  text-align: center;
+}
+
+.welcome-premium h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #0f172a;
+}
+
+.welcome-premium .subtitle {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 28px;
+}
+
+/* ROLE CARDS */
+.role-cards {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.role-card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 18px 16px;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+
+  background: linear-gradient(180deg, #ffffff, #f8fafc);
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.role-card:hover {
+  transform: translateY(-2px);
+  border-color: #7f5cff;
+  box-shadow:
+    0 12px 30px rgba(127,92,255,0.15),
+    inset 0 0 0 1px rgba(127,92,255,0.25);
+}
+
+/* ICON */
+.role-icon {
+  font-size: 28px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+  background: linear-gradient(
+    120deg,
+    #ffd700,
+    #ff8c00,
+    #7f5cff
+  );
+  color: #000;
+}
+
+/* TEXT */
+.role-text {
+  text-align: left;
+}
+
+.role-text strong {
+  display: block;
+  font-size: 15px;
+  color: #0f172a;
+}
+
+.role-text span {
+  font-size: 12px;
+  color: #64748b;
+}
+
+/* SWITCH AUTH */
+.welcome-premium .switch-auth {
+  font-size: 13px;
+  color: #475569;
+}
+
+.welcome-premium .switch-auth a {
+  color: #7f5cff;
+  text-decoration: underline;
+  cursor: pointer;
+}
+/* =========================
+   TOGGLE CLICK FIX (CRITICAL)
+========================= */
+
+.check-label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.check-label input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.toggle {
+  pointer-events: none;
+}
+/* OPTIONAL CHECK ROW (SMS / MAIL) */
+.check-row.optional {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+/* === TOGGLE FIX (GLOBAL) === */
+.check-label {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.toggle {
+  display: inline-block;      /* 🔥 en kritik satır */
+  min-width: 44px;            /* 🔥 ezilmeyi önler */
+  height: 24px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.25s ease;
+}
+
+/* checked */
+.check-label input:checked + .toggle {
+  background: linear-gradient(120deg, #ffd700, #ff8c00, #7f5cff);
+}
+
+.check-label input:checked + .toggle::after {
+  transform: translateX(20px);
+}
+.forgot-line {
+  margin-top: 14px;
+  text-align: center;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.forgot-line span {
+  margin-left: 6px;
+  color: #7f5cff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+/* =========================
+   CTA LINK (ÜYE OL)
+========================= */
+
+.cta-link {
+  margin-left: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+
+  font-weight: 600;
+  font-size: 13px;
+
+  color: #7f5cff;
+  cursor: pointer;
+
+  background: rgba(127,92,255,0.08);
+  box-shadow: inset 0 0 0 1px rgba(127,92,255,0.25);
+
+  transition:
+    background 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+.cta-link:hover {
+  background: linear-gradient(
+    120deg,
+    #ffd700,
+    #ff8c00,
+    #7f5cff
+  );
+  color: #000;
+
+  box-shadow:
+    0 8px 20px rgba(127,92,255,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.4);
+
+  transform: translateY(-1px);
+}
+
+.cta-link:active {
+  transform: translateY(0);
+}

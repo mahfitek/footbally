@@ -1,0 +1,61 @@
+<section class="contact-page">
+
+  <div class="contact-card">
+
+    <h2>İletişim</h2>
+    <p>Bizimle hızlıca iletişime geçebilirsin.</p>
+
+    <input
+      placeholder="Ad Soyad"
+      [(ngModel)]="form.fullName"
+    />
+
+    <input
+      placeholder="E-posta"
+      type="email"
+      [(ngModel)]="form.email"
+    />
+
+    <input
+      placeholder="Telefon Numarası (opsiyonel)"
+      inputmode="tel"
+      [(ngModel)]="form.phone"
+    />
+
+    <input
+      placeholder="Konu"
+      [(ngModel)]="form.subject"
+    />
+
+    <textarea
+      rows="4"
+      placeholder="Mesajınız"
+      [(ngModel)]="form.message"
+    ></textarea>
+
+    <button
+      class="primary-btn"
+      [disabled]="!canSubmit()"
+      (click)="submit()"
+    >
+      Gönder
+    </button>
+
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div class="modal-backdrop" *ngIf="showSuccess">
+  <div class="success-modal">
+    <div class="success-icon">✅</div>
+    <p>
+      Mesajınız başarıyla alındı.  
+      En kısa sürede sizinle iletişime geçeceğiz.
+    </p>
+    <button class="confirm-btn" (click)="showSuccess = false">
+      Tamam
+    </button>
+  </div>
+</div>
+
+
+</section>

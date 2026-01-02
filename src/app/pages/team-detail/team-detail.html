@@ -1,0 +1,29 @@
+<button
+  *ngIf="!auth.isLoggedIn()"
+  class="btn btn-primary"
+  (click)="showLogin = true"
+>
+  Başvur
+</button>
+
+<button
+  *ngIf="auth.isLoggedIn()"
+  class="btn btn-primary"
+  (click)="apply()"
+>
+  Başvur
+</button>
+
+<!-- LOGIN MODAL -->
+<app-login-modal
+  *ngIf="showLogin"
+  (close)="showLogin = false"
+></app-login-modal>
+
+<button
+  *ngIf="auth.isLoggedIn()"
+  class="btn btn-outline"
+  (click)="toggleFav()"
+>
+  ⭐ Favori
+</button>

@@ -1,0 +1,75 @@
+<section class="player-rating">
+
+  <div class="header">
+    <h3>AI Performance Rating</h3>
+    <span class="overall">{{ overall }} / 100</span>
+  </div>
+
+  <!-- PREMIUM AÇIK -->
+  <div *ngIf="isPremium && stats; else locked">
+
+    <div class="bars">
+      <div class="bar">
+        <span class="label">Hız</span>
+        <div class="track">
+          <div class="fill" [style.width.%]="stats.hiz"></div>
+        </div>
+        <span class="value">{{ stats.hiz }}</span>
+      </div>
+
+      <div class="bar">
+        <span class="label">Şut</span>
+        <div class="track">
+          <div class="fill" [style.width.%]="stats.sut"></div>
+        </div>
+        <span class="value">{{ stats.sut }}</span>
+      </div>
+
+      <div class="bar">
+        <span class="label">Pas</span>
+        <div class="track">
+          <div class="fill" [style.width.%]="stats.pas"></div>
+        </div>
+        <span class="value">{{ stats.pas }}</span>
+      </div>
+
+      <div class="bar">
+        <span class="label">Dripling</span>
+        <div class="track">
+          <div class="fill" [style.width.%]="stats.dripling"></div>
+        </div>
+        <span class="value">{{ stats.dripling }}</span>
+      </div>
+
+      <div class="bar">
+        <span class="label">Defans</span>
+        <div class="track">
+          <div class="fill" [style.width.%]="stats.defans"></div>
+        </div>
+        <span class="value">{{ stats.defans }}</span>
+      </div>
+
+      <div class="bar">
+        <span class="label">Fizik</span>
+        <div class="track">
+          <div class="fill" [style.width.%]="stats.fizik"></div>
+        </div>
+        <span class="value">{{ stats.fizik }}</span>
+      </div>
+    </div>
+
+    <p class="note">
+      Yüklenen maç videolarına dayalı yapay zeka analizi sonuçlarıdır.
+    </p>
+
+  </div>
+
+  <!-- KİLİTLİ -->
+  <ng-template #locked>
+    <div class="locked">
+      <p>AI performans analizi premium üyelikle açılır.</p>
+      <small>Video yükleyerek AI analizini aktif edebilirsin.</small>
+    </div>
+  </ng-template>
+
+</section>

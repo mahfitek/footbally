@@ -1,0 +1,47 @@
+<section class="player-media">
+
+  <div class="header">
+    <h3>Media</h3>
+
+    <span class="limit" *ngIf="!isPremium">
+      Premium ile sınırsız medya
+    </span>
+  </div>
+
+  <!-- GRID -->
+  <div class="grid">
+
+    <div
+      class="media-item"
+      *ngFor="let item of visibleMedia">
+
+      <!-- IMAGE -->
+      <img
+        *ngIf="item.type === 'image'"
+        [src]="item.url"
+        alt="Player media" />
+
+      <!-- VIDEO -->
+      <video
+        *ngIf="item.type === 'video'"
+        [src]="item.url"
+        muted
+        controls>
+      </video>
+
+      <!-- AI BADGE -->
+      <span class="ai-badge" *ngIf="item.aiAnalyzed">
+        AI ANALYZED
+      </span>
+
+    </div>
+
+    <!-- LOCKED SLOT -->
+    <div class="media-item locked" *ngIf="!isPremium">
+      <span>+</span>
+      <small>Premium ile açılır</small>
+    </div>
+
+  </div>
+
+</section>

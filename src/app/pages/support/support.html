@@ -1,0 +1,69 @@
+<section class="support-page">
+
+  <div class="support-card">
+
+    <h2>Destek</h2>
+    <p class="subtitle">
+      Yaşadığın problemi bize anlat, en kısa sürede dönüş yapalım.
+    </p>
+
+    <input
+      placeholder="Ad Soyad"
+      [(ngModel)]="form.fullName"
+    />
+
+    <input
+      placeholder="E-posta"
+      type="email"
+      [(ngModel)]="form.email"
+    />
+
+    <input
+      placeholder="Telefon Numarası"
+      inputmode="tel"
+      [(ngModel)]="form.phone"
+    />
+
+    <input
+      placeholder="Konu"
+      [(ngModel)]="form.subject"
+    />
+
+    <textarea
+      placeholder="Destek almak istediğiniz konuyu detaylı anlatın"
+      rows="5"
+      [(ngModel)]="form.message"
+    ></textarea>
+
+    <button
+      class="primary-btn"
+      [disabled]="!canSubmit()"
+      (click)="submitSupport()"
+    >
+      Gönder
+    </button>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div
+    class="modal-backdrop"
+    *ngIf="showSuccessModal"
+    (click)="closeModal()"
+  ></div>
+
+  <div
+    class="success-modal"
+    *ngIf="showSuccessModal"
+  >
+    <h3>Talep Alındı✅</h3>
+    <p>
+      Destek talebiniz alınmıştır.  
+      En kısa zamanda size geri dönüş yapılacaktır.
+    </p>
+
+    <button class="primary-btn" (click)="closeModal()">
+      Tamam
+    </button>
+  </div>
+
+</section>

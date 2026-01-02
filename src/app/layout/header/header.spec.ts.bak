@@ -1,0 +1,29 @@
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../../services/auth.service';
+
+@Component({
+  selector: 'app-header',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './header.html',
+  styleUrls: ['./header.css']
+})
+export class HeaderComponent implements OnInit {
+
+  @Output() openLogin = new EventEmitter<void>();
+
+  loggedIn = false;
+
+  constructor(private auth: AuthService) {}
+
+  ngOnInit() {
+    this.auth.isLoggedIn().subscribe(v => {
+      this.loggedIn = v;
+    });
+  }
+
+  logout() {
+    this.auth.logout();
+  }
+}

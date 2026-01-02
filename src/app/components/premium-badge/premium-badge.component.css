@@ -1,0 +1,38 @@
+.badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #111;
+}
+
+/* PREMIUM */
+.badge[data-type="premium"] {
+  background: linear-gradient(90deg, #f5d36b, #b48a2f);
+}
+
+/* AI */
+.badge[data-type="ai"] {
+  background: linear-gradient(90deg, #6be3ff, #1e88e5);
+  color: #fff;
+}
+
+/* SCOUT */
+.badge[data-type="scout"] {
+  background: linear-gradient(90deg, #9cff6b, #2e7d32);
+}
+
+/* PRO */
+.badge[data-type="pro"] {
+  background: linear-gradient(90deg, #ff9cff, #7b1fa2);
+  color: #fff;
+}
+
+/* COMING SOON */
+.badge[data-type="coming-soon"] {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1px dashed rgba(255,255,255,0.4);
+}

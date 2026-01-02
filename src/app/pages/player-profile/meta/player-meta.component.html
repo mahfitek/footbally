@@ -1,0 +1,39 @@
+<section class="player-meta">
+
+  <h3>Oyuncu Bilgileri</h3>
+
+  <div class="meta-grid">
+
+    <div class="meta-item" *ngIf="meta.age">
+      <span class="label">Yaş</span>
+      <span class="value">{{ meta.age }}</span>
+    </div>
+
+    <div class="meta-item" *ngIf="meta.heightCm">
+      <span class="label">Boy</span>
+      <span class="value">{{ meta.heightCm }} cm</span>
+    </div>
+
+    <div class="meta-item" *ngIf="meta.weightKg">
+      <span class="label">Kilo</span>
+      <span class="value">{{ meta.weightKg }} kg</span>
+    </div>
+
+    <div class="meta-item" *ngIf="meta.preferredFoot">
+      <span class="label">Ayak</span>
+      <span class="value">{{ meta.preferredFoot }}</span>
+    </div>
+
+    <div class="meta-item" *ngIf="meta.city">
+      <span class="label">Şehir</span>
+      <span class="value">{{ meta.city }}</span>
+    </div>
+
+    <div class="meta-item" *ngIf="meta.country">
+      <span class="label">Ülke</span>
+      <span class="value">{{ meta.country }}</span>
+    </div>
+
+  </div>
+
+</section>

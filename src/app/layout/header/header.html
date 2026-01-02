@@ -1,0 +1,122 @@
+<header class="header">
+
+  <!-- BACKDROP (MOBILE MENU AÇIKKEN) -->
+  <div
+    class="menu-backdrop"
+    *ngIf="isMobileMenuOpen"
+    (click)="toggleMobileMenu()"
+  ></div>
+
+  <div class="header-inner">
+
+    <!-- LEFT -->
+    <div class="header-left">
+
+      <!-- HAMBURGER (MOBILE) -->
+      <button
+        class="hamburger-btn"
+        [class.active]="isMobileMenuOpen"
+        (click)="toggleMobileMenu()"
+        aria-label="Menüyü Aç"
+      >
+        ☰
+      </button>
+
+      <!-- LOGO -->
+      <a
+        routerLink="/"
+        class="logo"
+        aria-label="Footbally Ana Sayfa"
+        (click)="isMobileMenuOpen && toggleMobileMenu()"
+      >
+        Footbally
+        <small class="pro-badge" *ngIf="isPremium">PRO</small>
+      </a>
+    </div>
+
+    <!-- CENTER (DESKTOP NAV) -->
+    <nav class="header-center">
+      <a
+        routerLink="/"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Ana Sayfa
+      </a>
+      <a routerLink="/player" routerLinkActive="active">Oyuncular</a>
+      <a routerLink="/team" routerLinkActive="active">Takımlar</a>
+    </nav>
+
+    <!-- RIGHT (DESKTOP ACTIONS) -->
+    <div class="header-right">
+
+      <!-- PREMIUM -->
+      <a routerLink="/premium" class="header-premium">
+        <span class="premium-badge">Footbally</span>
+        PRO
+      </a>
+
+      <!-- AUTH -->
+      <ng-container *ngIf="!isLoggedIn">
+        <a routerLink="/login" class="login-btn">
+          Giriş Yap / Üye Ol
+        </a>
+      </ng-container>
+
+      <ng-container *ngIf="isLoggedIn">
+        <button class="login-btn" (click)="goToProfile()">
+          Profilim
+        </button>
+        <button class="login-btn logout" (click)="logout()">
+          Çıkış Yap
+        </button>
+      </ng-container>
+
+    </div>
+
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div
+    class="mobile-menu"
+    *ngIf="isMobileMenuOpen"
+    (click)="$event.stopPropagation()"
+  >
+    <a routerLink="/" (click)="toggleMobileMenu()">Ana Sayfa</a>
+    <a routerLink="/player" (click)="toggleMobileMenu()">Oyuncular</a>
+    <a routerLink="/team" (click)="toggleMobileMenu()">Takımlar</a>
+    <a routerLink="/premium" (click)="toggleMobileMenu()">Premium</a>
+
+    <ng-container *ngIf="!isLoggedIn">
+      <a
+        routerLink="/login"
+        class="mobile-login-btn"
+        (click)="toggleMobileMenu()"
+      >
+        Giriş Yap / Üye Ol
+      </a>
+    </ng-container>
+
+    <ng-container *ngIf="isLoggedIn">
+      <button
+        class="mobile-login-btn"
+        (click)="goToProfile(); toggleMobileMenu()"
+      >
+        Profilim
+      </button>
+      <button
+        class="mobile-login-btn logout"
+        (click)="logout(); toggleMobileMenu()"
+      >
+        Çıkış Yap
+      </button>
+    </ng-container>
+
+    <div class="mobile-footer-links">
+      <a href="#" (click)="$event.preventDefault()">Hakkımızda</a>
+      <a href="#" (click)="$event.preventDefault()">Gizlilik Politikası</a>
+      <a href="#" (click)="$event.preventDefault()">KVKK</a>
+    </div>
+  </div>
+
+</header>

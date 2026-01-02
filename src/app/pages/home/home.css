@@ -1,0 +1,940 @@
+/* =========================
+   HERO
+========================= */
+.hero {
+  position: relative;
+  min-height: 90vh;
+
+  display: flex;
+  align-items: center;
+  padding: 0 80px;
+
+  background-image: url('/assets/images/hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Overlay */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+/* Content layer */
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 620px;
+  color: #fff;
+  animation: heroFadeUp 0.9s ease-out both;
+}
+
+/* Entrance animation */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Badge */
+.hero-badge {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(6px);
+  letter-spacing: 0.5px;
+}
+
+/* Title */
+.hero-title {
+  font-size: 56px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+
+.hero-title span {
+  background: linear-gradient(
+    90deg,
+    #ffd700,
+    #ff8c00,
+    #7f5cff
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Description */
+.hero-description {
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0.85;
+  margin-bottom: 28px;
+  max-width: 520px;
+}
+
+/* Highlights */
+.hero-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 36px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.hero-highlights li {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+/* Actions */
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Responsive padding */
+@media (max-width: 900px) {
+  .hero {
+    padding: 0 32px;
+  }
+
+  .hero-title {
+    font-size: 42px;
+  }
+}
+
+/* Premium CTA */
+.premium-btn {
+  position: relative;
+  font-size: 16px;
+  padding: 16px 40px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  color: #000;
+
+  background: linear-gradient(
+    120deg,
+    #ffd700,
+    #ff8c00,
+    #7f5cff,
+    #00d4ff
+  );
+  background-size: 300% 300%;
+  animation: premiumShift 6s ease infinite;
+}
+
+@keyframes premiumShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.hero-note {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+/* =========================
+   HERO STATS
+========================= */
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hero-stat strong {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffd700;
+}
+
+.hero-stat span {
+  font-size: 13px;
+  opacity: 0.75;
+  letter-spacing: 0.3px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .hero-stats {
+    gap: 24px;
+  }
+
+  .hero-stat strong {
+    font-size: 20px;
+  }
+}
+
+
+/* =========================
+   FEATURES (PREMIUM)
+========================= */
+.features-bg {
+  position: relative;
+  min-height: 520px;
+  background-image: url('/assets/images/features.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.features-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.55) 0%,
+    rgba(0,0,0,0.75) 100%
+  );
+  padding: 100px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.features-title {
+  font-size: 42px;
+  margin-bottom: 64px;
+  text-align: center;
+  letter-spacing: -0.5px;
+}
+
+/* CARDS */
+.features-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+/* PREMIUM CARD */
+.feature-card.premium {
+  position: relative;
+  padding: 36px 32px;
+  border-radius: 20px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.10),
+    rgba(255,255,255,0.04)
+  );
+
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.15);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card.premium:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+}
+
+.feature-card.premium h3 {
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+
+.feature-card.premium p {
+  font-size: 15px;
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .features-overlay {
+    padding: 80px 32px;
+  }
+
+  .features-cards {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* =========================
+   CTA
+========================= */
+.cta-video {
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+}
+
+.cta-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cta-overlay {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 40px;
+}
+
+.cta-overlay h2 {
+  font-size: 42px;
+  margin-bottom: 20px;
+}
+
+.cta-overlay p {
+  max-width: 620px;
+  font-size: 18px;
+  margin-bottom: 32px;
+  opacity: 0.85;
+}
+
+.cta-btn {
+  padding: 14px 36px;
+  font-size: 16px;
+  cursor: pointer;
+}
+/* =========================
+   CTA PREMIUM POLISH
+========================= */
+.cta-title {
+  font-size: 48px;
+  margin-bottom: 20px;
+  letter-spacing: -0.6px;
+}
+
+.cta-title span {
+  background: linear-gradient(
+    90deg,
+    #ffd700,
+    #ff8c00,
+    #7f5cff
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cta-description {
+  font-size: 18px;
+  max-width: 640px;
+  opacity: 0.9;
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+
+/* ACTIONS */
+.cta-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+/* SECONDARY CTA */
+.cta-secondary {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.35);
+  color: #fff;
+  padding: 14px 32px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.cta-secondary:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.6);
+}
+
+/* MOBILE */
+@media (max-width: 700px) {
+  .cta-title {
+    font-size: 36px;
+  }
+
+  .cta-actions {
+    flex-direction: column;
+  }
+}
+
+
+/* =========================
+   FAQ
+========================= */
+/* =========================
+   FAQ (PREMIUM)
+========================= */
+.faq-bg {
+  position: relative;
+  background-image: url('/assets/images/faq-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* 🔒 kritik satırlar */
+  background-attachment: fixed;
+}
+
+
+.faq-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.85),
+    rgba(0,0,0,0.95)
+  );
+  padding: 120px 40px;
+  display: flex;
+  justify-content: center;
+}
+
+/* CONTAINER */
+.faq {
+  max-width: 900px;
+  width: 100%;
+}
+
+/* TITLE */
+.faq-title {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 64px;
+  letter-spacing: -0.4px;
+}
+
+/* LIST */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ITEM */
+.faq-item {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.03)
+  );
+  border-radius: 16px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+  transition: background 0.25s ease;
+}
+
+.faq-item[open] {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.14),
+    rgba(255,255,255,0.06)
+  );
+}
+
+/* SUMMARY */
+.faq-item summary {
+  cursor: pointer;
+  padding: 22px 28px;
+  font-size: 18px;
+  font-weight: 500;
+  list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+/* CONTENT */
+.faq-item p {
+  padding: 0 28px 28px;
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .faq-bg {
+    background-attachment: scroll;
+  }
+}
+
+
+/* =========================
+   MINI CTA (WITH IMAGE)
+========================= */
+.mini-cta {
+  position: relative;
+  padding: 100px 40px;
+  display: flex;
+  justify-content: center;
+
+  background-image: url('/assets/images/mini-cta.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Overlay */
+.mini-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.55),
+    rgba(0,0,0,0.75)
+  );
+}
+
+/* Content */
+.mini-cta-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  text-align: center;
+}
+
+/* Text */
+.mini-cta-content h3 {
+  font-size: 32px;
+  margin-bottom: 16px;
+  letter-spacing: -0.4px;
+}
+
+.mini-cta-content p {
+  font-size: 17px;
+  opacity: 0.85;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .mini-cta {
+    padding: 72px 24px;
+  }
+
+  .mini-cta-content h3 {
+    font-size: 26px;
+  }
+}
+/* =========================
+   SECTION TRANSITION LAYERS
+========================= */
+
+/* HERO → FEATURES */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0),
+    rgba(0,0,0,0.9)
+  );
+  pointer-events: none;
+}
+
+/* FEATURES → MINI CTA */
+.features-bg::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0),
+    rgba(0,0,0,0.85)
+  );
+  pointer-events: none;
+}
+
+/* MINI CTA → CTA VIDEO */
+.mini-cta::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 140px;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0),
+    rgba(0,0,0,0.9)
+  );
+  pointer-events: none;
+}
+
+/* CTA VIDEO → FAQ */
+.cta-video::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0),
+    rgba(0,0,0,1)
+  );
+  pointer-events: none;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hero::after,
+  .features-bg::after,
+  .mini-cta::after,
+  .cta-video::after {
+    height: 96px;
+  }
+}
+/* =========================
+   BUTTON MICRO POLISH
+========================= */
+
+/* ORTAK */
+.premium-btn,
+.cta-secondary {
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+/* HOVER – hafif yükselme */
+.premium-btn:hover,
+.cta-secondary:hover {
+  transform: translateY(-2px);
+}
+
+/* ACTIVE – basılma hissi */
+.premium-btn:active,
+.cta-secondary:active {
+  transform: translateY(0);
+}
+
+/* PRIMARY – premium glow */
+.premium-btn:hover {
+  box-shadow:
+    0 10px 30px rgba(255, 215, 0, 0.35),
+    0 0 0 1px rgba(255, 215, 0, 0.4);
+}
+
+/* PRIMARY – click feedback */
+.premium-btn:active {
+  filter: brightness(0.95);
+}
+
+/* SECONDARY – hover’da cam hissi */
+.cta-secondary:hover {
+  background: rgba(255,255,255,0.12);
+  box-shadow:
+    0 6px 20px rgba(0,0,0,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.25);
+}
+
+/* FOCUS (keyboard / accessibility) */
+.premium-btn:focus-visible,
+.cta-secondary:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(255, 215, 0, 0.4);
+}
+/* =========================
+   FEATURE CARD MICRO POLISH
+========================= */
+
+/* Kartlar ilk anda hafif sönük gelsin */
+.feature-card.premium {
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  animation: featureFadeIn 0.6s ease-out forwards;
+}
+
+/* Kartlara sırayla giriş hissi */
+.feature-card.premium:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.feature-card.premium:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.feature-card.premium:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+/* Giriş animasyonu */
+@keyframes featureFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Hover derinliği – premium hissi */
+.feature-card.premium:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow:
+    0 30px 60px rgba(0,0,0,0.55),
+    inset 0 0 0 1px rgba(255,255,255,0.25);
+}
+
+/* Hover sırasında başlık biraz öne çıksın */
+.feature-card.premium:hover h3 {
+  transform: translateY(-2px);
+}
+
+/* Başlık mikro animasyon */
+.feature-card.premium h3 {
+  transition: transform 0.25s ease;
+}
+
+/* Mobile: animasyonları sadeleştir */
+@media (max-width: 768px) {
+  .feature-card.premium {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+/* =========================
+   HERO SCROLL MICRO MOTION
+========================= */
+
+/* Hero içeriği scroll ile yumuşakça geride kalsın */
+.hero-content {
+  will-change: transform;
+  transition: transform 0.3s ease-out;
+}
+
+/* Scroll algısı için hafif fade hissi */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 160px;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0),
+    rgba(0,0,0,0.85)
+  );
+  pointer-events: none;
+}
+
+/* Desktop’ta daha hissedilir */
+@media (min-width: 1024px) {
+  .hero {
+    background-attachment: fixed;
+  }
+}
+
+/* Mobile’da kapat (performans + UX) */
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll;
+  }
+}
+/* =========================
+   FAQ MICRO POLISH
+========================= */
+
+/* Summary hover */
+.faq-item summary {
+  transition: background 0.25s ease, padding-left 0.25s ease;
+}
+
+.faq-item summary:hover {
+  background: rgba(255,255,255,0.04);
+  padding-left: 32px;
+}
+
+/* Açılma animasyonu */
+.faq-item p {
+  max-height: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.35s ease,
+    opacity 0.25s ease;
+  opacity: 0;
+}
+
+/* Açık state */
+.faq-item[open] p {
+  max-height: 200px;
+  opacity: 0.85;
+}
+
+/* Açıkken summary biraz daha net */
+.faq-item[open] summary {
+  background: rgba(255,255,255,0.06);
+}
+/* =========================
+   FAQ ICON MICRO POLISH
+========================= */
+
+/* Summary içine ikon alanı */
+.faq-item summary {
+  position: relative;
+  padding-right: 48px;
+}
+
+/* + ikon */
+.faq-item summary::after {
+  content: '+';
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  font-size: 22px;
+  font-weight: 300;
+  opacity: 0.7;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+/* Açıkken − olur */
+.faq-item[open] summary::after {
+  content: '–';
+  transform: translateY(-50%) rotate(180deg);
+  opacity: 1;
+}
+/* =========================
+   GLOBAL BUTTON STATES
+========================= */
+
+/* Tüm ana sayfa butonları */
+.hero button,
+.mini-cta button,
+.cta-video button {
+  position: relative;
+  transition:
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s ease,
+    filter 0.2s ease,
+    background 0.2s ease;
+}
+
+/* HOVER – canlılık */
+.hero button:hover,
+.mini-cta button:hover,
+.cta-video button:hover {
+  transform: translateY(-2px);
+}
+
+/* ACTIVE – basılma hissi */
+.hero button:active,
+.mini-cta button:active,
+.cta-video button:active {
+  transform: translateY(0);
+  filter: brightness(0.95);
+}
+
+/* FOCUS – erişilebilirlik */
+.hero button:focus-visible,
+.mini-cta button:focus-visible,
+.cta-video button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(255, 215, 0, 0.4);
+}
+/* =========================
+   SECONDARY BUTTON ACTIVE
+========================= */
+
+.cta-secondary {
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Hover */
+.cta-secondary:hover {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.6);
+  transform: translateY(-1px);
+}
+
+/* Active */
+.cta-secondary:active {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(0);
+}
+
+/* Focus */
+.cta-secondary:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px rgba(255,255,255,0.4);
+}
+/* =========================
+   FEATURES – MOBILE FIX
+========================= */
+
+@media (max-width: 768px) {
+
+  .features-overlay {
+    padding: 72px 24px;
+  }
+
+  .features-title {
+    font-size: 28px;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .features-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .feature-card.premium {
+    padding: 24px;
+  }
+
+  .feature-card.premium h3 {
+    font-size: 18px;
+  }
+
+  .feature-card.premium p {
+    font-size: 14px;
+  }
+}

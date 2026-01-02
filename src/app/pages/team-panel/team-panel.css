@@ -1,0 +1,105 @@
+.team-panel {
+  padding: 40px;
+  color: #fff;
+}
+
+.listing {
+  margin-bottom: 40px;
+}
+
+.position {
+  opacity: 0.7;
+  margin-bottom: 16px;
+}
+
+.applicants {
+  display: grid;
+  gap: 20px;
+}
+
+.applicant-card {
+  background: rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-weight: 600;
+}
+
+.status {
+  margin: 12px 0;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.status.pending { color: #facc15; }
+.status.accepted { color: #22c55e; }
+.status.paid { color: #38bdf8; }
+.status.completed { color: #a78bfa; }
+
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+}
+
+.actions button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+/* =========================
+   MOBILE RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+
+  .team-panel {
+    padding: 20px 16px;
+  }
+
+  .listing h2 {
+    font-size: 18px;
+  }
+
+  .applicants {
+    grid-template-columns: 1fr;
+  }
+
+  .applicant-card {
+    padding: 16px;
+  }
+
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .price {
+    font-size: 14px;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+  }
+
+  .actions button {
+    width: 100%;
+  }
+}

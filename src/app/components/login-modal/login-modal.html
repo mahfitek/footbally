@@ -1,0 +1,41 @@
+<div class="modal-backdrop" (click)="close.emit()"></div>
+
+<div class="login-modal">
+  <h2 class="modal-title">Hesabını Oluştur</h2>
+  <p class="modal-subtitle">
+    Sana özel paneli oluşturalım
+  </p>
+
+  <!-- ROLE SELECT -->
+  <div class="role-select">
+    <button
+      class="role-card"
+      [class.active]="selectedRole === 'player'"
+      (click)="selectedRole = 'player'"
+    >
+      🧍 Oyuncuyum
+      <span>Kendi performansını takip et</span>
+    </button>
+
+    <button
+      class="role-card"
+      [class.active]="selectedRole === 'team'"
+      (click)="selectedRole = 'team'"
+    >
+      🏟 Takımım Var
+      <span>Takımını ve oyuncularını yönet</span>
+    </button>
+  </div>
+
+  <button
+    class="login-primary"
+    [disabled]="!selectedRole"
+    (click)="submit()"
+  >
+    Devam Et
+  </button>
+
+  <button class="modal-close" (click)="close.emit()">
+    Vazgeç
+  </button>
+</div>

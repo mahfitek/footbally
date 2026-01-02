@@ -1,0 +1,11 @@
+<span class="badge" [attr.data-type]="type">
+
+  <ng-container [ngSwitch]="type">
+    <span *ngSwitchCase="'premium'">PREMIUM</span>
+    <span *ngSwitchCase="'ai'">AI ANALYZED</span>
+    <span *ngSwitchCase="'scout'">SCOUT READY</span>
+    <span *ngSwitchCase="'pro'">PRO PROFILE</span>
+    <span *ngSwitchCase="'coming-soon'">COMING SOON</span>
+  </ng-container>
+
+</span>

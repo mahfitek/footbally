@@ -1,0 +1,37 @@
+.player-meta {
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+}
+
+.player-meta h3 {
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+.meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.meta-item {
+  background: rgba(0,0,0,0.35);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.meta-item .label {
+  display: block;
+  font-size: 11px;
+  opacity: 0.7;
+  margin-bottom: 4px;
+}
+
+.meta-item .value {
+  font-size: 14px;
+  font-weight: 700;
+}

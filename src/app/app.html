@@ -1,0 +1,12 @@
+<app-header></app-header>
+
+<router-outlet></router-outlet>
+
+<app-footer (openLegal)="openLegalModal($event)"></app-footer>
+
+<app-legal-modal
+  *ngIf="showLegal"
+  [type]="legalType"
+  [title]="legalTitle"
+  (close)="closeLegalModal()"
+></app-legal-modal>

@@ -1,0 +1,74 @@
+.player-rating {
+  margin-top: 18px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header h3 {
+  font-size: 16px;
+  margin: 0;
+}
+.overall {
+  font-weight: 800;
+  opacity: 0.9;
+}
+
+.bars {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: 70px 1fr 34px;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.track {
+  height: 8px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.fill {
+  height: 100%;
+  background: linear-gradient(90deg, #f5d36b, #b48a2f);
+  border-radius: 6px;
+}
+
+.value {
+  text-align: right;
+  font-weight: 700;
+}
+
+.note {
+  margin-top: 10px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.locked {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.35);
+  text-align: center;
+}
+.locked p {
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+.locked small {
+  opacity: 0.7;
+}

@@ -1,0 +1,20 @@
+<div class="onboarding-backdrop">
+  <div class="onboarding-card">
+    <h2>Hoş Geldin 👋</h2>
+
+    <p *ngIf="step === 1">
+      Footbally ile yeteneğini sergileyebilirsin.
+    </p>
+
+    <p *ngIf="step === 2">
+      Takım bulabilir veya oyuncu keşfedebilirsin.
+    </p>
+
+    <p *ngIf="step === 3">
+      Hazırsın. Sahaya çıkma zamanı.
+    </p>
+
+    <button *ngIf="step < 3" (click)="next()">Devam</button>
+    <button *ngIf="step === 3" (click)="complete()">Başla</button>
+  </div>
+</div>

@@ -1,0 +1,70 @@
+<footer class="footer">
+
+  <!-- PREMIUM CTA BAND -->
+  <div class="footer-cta">
+    <div class="footer-cta-content">
+      <div class="cta-text">
+        <h3>Premium ile farkı hisset</h3>
+        <p>
+          Oyuncuları sadece izlemeden öteye geç.  
+          Veriye dayalı analizlerle gerçek potansiyeli keşfet.
+        </p>
+      </div>
+
+      <a routerLink="/premium" class="cta-btn">
+        Premium’a Geç →
+      </a>
+    </div>
+  </div>
+
+  <!-- MAIN FOOTER -->
+  <div class="footer-main">
+
+    <!-- BRAND -->
+    <div class="footer-brand">
+      <h2>Footbally</h2>
+      <p>
+        Futbolu sadece izleme.  
+        Veriye dayalı analizlerle oyunu oku,  
+        oyuncuları gerçek performanslarıyla keşfet.
+      </p>
+
+      <div class="footer-badges">
+        <span class="badge">AI Destekli</span>
+        <span class="badge premium">Premium</span>
+      </div>
+    </div>
+
+    <!-- LINKS -->
+    <div class="footer-links">
+
+      <div class="footer-col">
+        <h4>Ürün</h4>
+        <a routerLink="/">Ana Sayfa</a>
+        <a routerLink="/player">Oyuncular</a>
+        <a routerLink="/team">Takımlar</a>
+        <a routerLink="/premium">Premium</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Kaynaklar</h4>
+
+        <a routerLink="/support">Destek</a>
+        <a routerLink="/contact">İletişim</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Yasal</h4>
+        <a (click)="openLegal.emit('privacy')">Gizlilik Politikası</a>
+        <a (click)="openLegal.emit('terms')">Kullanım Şartları</a> 
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BOTTOM -->
+  <div class="footer-bottom">
+    © 2025 Footbally · Futbolu veriye taşıyoruz
+  </div>
+
+</footer>

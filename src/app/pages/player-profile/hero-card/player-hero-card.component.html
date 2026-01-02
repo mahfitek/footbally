@@ -1,0 +1,78 @@
+<div class="hero-card fifa-card" [attr.data-tier]="cardTier">
+
+  <!-- LEFT TOP -->
+  <div class="card-left-top">
+    <div class="overall">{{ rating }}</div>
+    <div class="position">{{ position }}</div>
+
+    <img
+      class="club-logo"
+      [src]="getClubLogo()"
+      alt="Kulüp Logo"
+    />
+  </div>
+
+  <!-- IMAGE -->
+  <div class="player-image">
+    <div class="image-placeholder"></div>
+  </div>
+
+  <!-- NAME -->
+  <div class="player-name">
+    {{ fullName }}
+  </div>
+
+  <!-- STATS -->
+  <div class="stats" *ngIf="stats; else lockedStats">
+
+    <div class="stat">
+      <span class="value">{{ stats.hiz }}</span>
+      <span class="label">HIZ</span>
+    </div>
+
+    <div class="stat">
+      <span class="value">{{ stats.sut }}</span>
+      <span class="label">ŞUT</span>
+    </div>
+
+    <div class="stat">
+      <span class="value">{{ stats.pas }}</span>
+      <span class="label">PAS</span>
+    </div>
+
+    <div class="stat">
+      <span class="value">{{ stats.dripling }}</span>
+      <span class="label">DRİPLİNG</span>
+    </div>
+
+    <div class="stat">
+      <span class="value">{{ stats.defans }}</span>
+      <span class="label">DEFANS</span>
+    </div>
+
+    <div class="stat">
+      <span class="value">{{ stats.fizik }}</span>
+      <span class="label">FİZİK</span>
+    </div>
+
+  </div>
+
+  <!-- LOCKED -->
+  <ng-template #lockedStats>
+    <div class="stats locked">
+      <span>AI analiz stat’ları premium ile açılır</span>
+    </div>
+  </ng-template>
+
+  <!-- FOOTER -->
+  <div class="card-footer">
+    <span class="tier">{{ cardTier | uppercase }}</span>
+    <span class="premium" *ngIf="isPremium">PREMIUM</span>
+  </div>
+
+  <!-- ROADMAP -->
+  <div class="promo-note" *ngIf="promoComingSoon">
+    Promo kartlar yakında eklenecek
+  </div>
+
+</div>

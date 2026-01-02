@@ -1,0 +1,42 @@
+<div class="payment-wrapper">
+  <div class="payment-card">
+
+    <h1>Ödeme Özeti</h1>
+
+    <div class="row">
+      <span>Oyuncu</span>
+      <strong>{{ playerName }} ({{ position }})</strong>
+    </div>
+
+    <div class="row">
+      <span>Maç</span>
+      <strong>{{ matchTitle }}</strong>
+    </div>
+
+    <hr />
+
+    <div class="row">
+      <span>Oyuncu Ücreti</span>
+      <strong>{{ playerPrice }} ₺</strong>
+    </div>
+
+    <div class="row">
+      <span>Hizmet Bedeli</span>
+      <strong>{{ serviceFee }} ₺</strong>
+    </div>
+
+    <hr />
+
+    <div class="row total">
+      <span>Toplam</span>
+      <strong>{{ total }} ₺</strong>
+    </div>
+
+    <button (click)="pay()">Ödemeyi Tamamla</button>
+
+    <small>
+      Ödeme tamamlandıktan sonra iletişim bilgileri açılacaktır.
+    </small>
+
+  </div>
+</div>

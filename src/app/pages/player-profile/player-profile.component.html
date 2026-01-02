@@ -1,0 +1,55 @@
+<section class="player-profile">
+
+  <!-- ========================= -->
+  <!-- 1️⃣ PLAYER HERO (VİTRİN) -->
+  <!-- ========================= -->
+  <div class="player-showcase">
+
+    <app-player-hero-card
+      [fullName]="profile.fullName"
+      [position]="profile.positions[0]"
+      [rating]="82"
+      cardTier="gold"
+      referencePlayer="Mbappé"
+      [isPremium]="isPremium">
+    </app-player-hero-card>
+
+    <app-player-rating
+      [isPremium]="isPremium">
+    </app-player-rating>
+
+  </div>
+
+  <!-- ========================= -->
+  <!-- 2️⃣ MEDIA (PREMIUM FARKI) -->
+  <!-- ========================= -->
+  <app-player-media
+    [isPremium]="isPremium">
+  </app-player-media>
+  <app-player-meta
+  [meta]="{
+    age: 19,
+    heightCm: 178,
+    weightKg: 72,
+    preferredFoot: 'Sağ',
+    city: 'İstanbul',
+    country: 'Türkiye'
+  }">
+</app-player-meta>
+
+
+  <!-- ========================= -->
+  <!-- 3️⃣ PROFİL ÖZETİ (READ-ONLY) -->
+  <!-- ========================= -->
+  <div class="profile-card">
+
+    <h2>Profil Bilgileri</h2>
+
+    <p><strong>Ad Soyad:</strong> {{ profile.fullName }}</p>
+    <p><strong>Mevki:</strong> {{ profile.positions[0] }}</p>
+    <p><strong>Şehir:</strong> {{ profile.city }}</p>
+    <p><strong>İlçe:</strong> {{ profile.district }}</p>
+
+  </div>
+
+</section>

@@ -1,0 +1,125 @@
+<div class="legal-backdrop" (click)="cancel()"></div>
+
+<div class="legal-modal" (click)="$event.stopPropagation()">
+
+  <div class="legal-header">
+    <h2>{{ title }}</h2>
+    <button class="close-btn" (click)="cancel()">✕</button>
+  </div>
+
+  <div class="legal-content" (scroll)="onScroll($event)">
+
+    <!-- =====================
+         GİZLİLİK POLİTİKASI
+    ====================== -->
+    <ng-container *ngIf="type === 'privacy'">
+
+      <p><strong>Son Güncelleme:</strong> 2025</p>
+
+      <p>
+        Footbally olarak kullanıcılarımızın gizliliğini önemsiyoruz.
+        Bu Gizlilik Politikası, platformumuz üzerinden toplanan kişisel
+        verilerin hangi amaçlarla işlendiğini ve nasıl korunduğunu açıklar.
+      </p>
+
+      <h3>1. Toplanan Veriler</h3>
+      <ul>
+        <li>Ad, soyad</li>
+        <li>E-posta adresi</li>
+        <li>Telefon numarası</li>
+        <li>Kullanıcı rolü (oyuncu / takım)</li>
+        <li>Destek ve iletişim formları üzerinden iletilen bilgiler</li>
+        <li>Platform kullanım verileri</li>
+      </ul>
+
+      <h3>2. Verilerin İşlenme Amaçları</h3>
+      <ul>
+        <li>Hesap oluşturma ve yönetimi</li>
+        <li>Hizmetlerin sunulması ve geliştirilmesi</li>
+        <li>Destek taleplerinin yanıtlanması</li>
+        <li>Yasal yükümlülüklerin yerine getirilmesi</li>
+        <li>Kullanıcı deneyiminin iyileştirilmesi</li>
+      </ul>
+
+      <h3>3. Veri Paylaşımı</h3>
+      <p>
+        Kişisel verileriniz, yasal zorunluluklar haricinde üçüncü kişilerle
+        paylaşılmaz, satılmaz veya ticari amaçla kullanılmaz.
+      </p>
+
+      <h3>4. Veri Güvenliği</h3>
+      <p>
+        Footbally, kişisel verilerin güvenliğini sağlamak amacıyla
+        teknik ve idari önlemler almaktadır.
+      </p>
+
+      <h3>5. KVKK Kapsamındaki Haklarınız</h3>
+      <ul>
+        <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+        <li>Yanlış veya eksik verilerin düzeltilmesini isteme</li>
+        <li>Verilerin silinmesini veya yok edilmesini talep etme</li>
+        <li>İşlemenin hukuka aykırı olması halinde zararların giderilmesini isteme</li>
+      </ul>
+
+      <p>
+        Talepleriniz için bizimle iletişime geçebilirsiniz:
+        <strong>support@footbally.com</strong>
+      </p>
+
+    </ng-container>
+
+    <!-- =====================
+         KVKK / KULLANIM ŞARTLARI
+    ====================== -->
+    <ng-container *ngIf="type === 'terms'">
+
+      <p><strong>Son Güncelleme:</strong> 2025</p>
+
+      <p>
+        Bu metin, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”)
+        kapsamında Footbally tarafından kullanıcıların bilgilendirilmesi
+        amacıyla hazırlanmıştır.
+      </p>
+
+      <h3>1. Veri Sorumlusu</h3>
+      <p>
+        Footbally, platform kapsamında toplanan kişisel veriler bakımından
+        veri sorumlusu sıfatına sahiptir.
+      </p>
+
+      <h3>2. Kişisel Verilerin Toplanma Yöntemi</h3>
+      <p>
+        Kişisel verileriniz; üyelik, giriş, destek ve iletişim formları
+        aracılığıyla elektronik ortamda toplanmaktadır.
+      </p>
+
+      <h3>3. Kişisel Verilerin Aktarılması</h3>
+      <p>
+        Kişisel verileriniz, açık rızanız olmaksızın üçüncü kişilere aktarılmaz.
+        Ancak yasal yükümlülükler kapsamında yetkili kurumlarla paylaşılabilir.
+      </p>
+
+      <h3>4. Saklama Süresi</h3>
+      <p>
+        Kişisel veriler, işleme amacının gerektirdiği süre boyunca
+        saklanmakta ve sürenin sonunda silinmekte, yok edilmekte veya anonim hale getirilmektedir.
+      </p>
+
+      <h3>5. Başvuru Hakları</h3>
+      <p>
+        KVKK’nın 11. maddesi kapsamında sahip olduğunuz haklara ilişkin taleplerinizi
+        <strong>support@footbally.com</strong> adresi üzerinden iletebilirsiniz.
+      </p>
+
+    </ng-container>
+
+  </div>
+
+  <button
+    class="primary-btn"
+    (click)="accept()"
+  >
+    Okudum, Anladım ve Kabul Ediyorum
+  </button>
+
+</div>

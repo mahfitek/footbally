@@ -1,0 +1,63 @@
+<section class="team-profile">
+  <h1>Takım Profili</h1>
+
+  <div class="profile-card">
+    <input
+      type="text"
+      placeholder="Takım Adı"
+      [(ngModel)]="profile.teamName"
+    />
+
+    <div class="row">
+      <input
+        type="text"
+        placeholder="Şehir"
+        [(ngModel)]="profile.city"
+      />
+      <input
+        type="text"
+        placeholder="İlçe"
+        [(ngModel)]="profile.district"
+      />
+    </div>
+
+    <input
+      type="text"
+      placeholder="Lig Seviyesi (Amatör / Bölgesel / Süper vs.)"
+      [(ngModel)]="profile.leagueLevel"
+    />
+
+    <h3>Aranan Pozisyonlar</h3>
+    <div class="positions">
+      <button
+        *ngFor="let pos of positions"
+        (click)="togglePosition(pos)"
+        [class.active]="profile.neededPositions.includes(pos)"
+      >
+        {{ pos }}
+      </button>
+    </div>
+
+    <div class="row">
+      <input
+        type="number"
+        placeholder="Min Bütçe"
+        [(ngModel)]="profile.budgetMin"
+      />
+      <input
+        type="number"
+        placeholder="Max Bütçe"
+        [(ngModel)]="profile.budgetMax"
+      />
+    </div>
+
+    <textarea
+      placeholder="Takım hakkında kısa açıklama"
+      [(ngModel)]="profile.description"
+    ></textarea>
+
+    <button class="save-btn" (click)="save()">
+      Profili Kaydet
+    </button>
+  </div>
+</section>

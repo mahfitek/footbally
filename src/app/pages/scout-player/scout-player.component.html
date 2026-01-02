@@ -1,0 +1,38 @@
+<section class="scout-player-view">
+
+  <app-player-hero-card
+    [fullName]="profile.fullName"
+    [position]="profile.positions[0]"
+    [rating]="82"
+    cardTier="rare-gold"
+    [isPremium]="true"
+    [stats]="profile.stats">
+  </app-player-hero-card>
+
+  <!-- SCOUT ACTION BAR -->
+  <app-scout-actions
+    (contactClick)="openContactModal()">
+  </app-scout-actions>
+
+  <app-player-rating
+    [isPremium]="true"
+    [stats]="profile.stats">
+  </app-player-rating>
+
+  <app-player-media
+    [isPremium]="true">
+  </app-player-media>
+
+  <app-player-meta
+    [meta]="profile.meta">
+  </app-player-meta>
+
+  <!-- CONTACT MODAL -->
+  <app-contact-modal
+    *ngIf="showContactModal"
+    [playerName]="profile.fullName"
+    phone="905xxxxxxxxx"
+    (close)="closeContactModal()">
+  </app-contact-modal>
+
+</section>

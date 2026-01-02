@@ -1,0 +1,145 @@
+/* =========================
+   BACKDROP
+========================= */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  animation: backdropFade 0.25s ease-out;
+}
+
+@keyframes backdropFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* =========================
+   MODAL CARD (PREMIUM)
+========================= */
+.modal-card {
+  background: radial-gradient(
+    circle at top,
+    #1b1f2a,
+    #0b0f1a
+  );
+  border-radius: 20px;
+  padding: 28px;
+  width: 90%;
+  max-width: 360px;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.9),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  animation: modalEnter 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes modalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================
+   HEADER
+========================= */
+.modal-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.modal-header .tag {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: #d4af37;
+  margin-bottom: 6px;
+}
+
+.modal-header h3 {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.player-name {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px);
+}
+
+.action-btn .icon {
+  font-size: 22px;
+}
+
+.action-btn .text strong {
+  display: block;
+  font-size: 15px;
+}
+
+.action-btn .text small {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* WHATSAPP */
+.action-btn.whatsapp {
+  background: linear-gradient(135deg, #25d366, #1aa34a);
+  color: #07140c;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
+}
+
+/* CALL */
+.action-btn.call {
+  background: linear-gradient(135deg, #2563eb, #1e40af);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+}
+
+/* =========================
+   CLOSE
+========================= */
+.close-btn {
+  margin-top: 18px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 13px;
+}

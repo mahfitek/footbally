@@ -1,0 +1,24 @@
+<div class="scout-actions-bar">
+
+  <button class="action primary" (click)="contactClick.emit()">
+    Oyuncuyla İletişime Geç
+  </button>
+
+ <button
+  class="action secondary"
+  [class.active]="notificationsEnabled"
+  [class.muted]="!notificationsEnabled"
+  (click)="toggleNotifications()">
+
+  <span class="bell-wrapper">
+    <span class="icon">🔔</span>
+    <span class="bell-slash"></span>
+    <span class="bell-wave"></span>
+  </span>
+
+  {{ notificationsEnabled ? 'Bildirimleri Aç' : 'Bildirimleri Kapat' }}
+</button>
+
+
+
+</div>

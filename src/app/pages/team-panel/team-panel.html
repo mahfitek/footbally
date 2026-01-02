@@ -1,0 +1,62 @@
+<section class="team-panel">
+  <h1>Takım Paneli</h1>
+
+  <div class="listing" *ngFor="let listing of listings">
+    <h2>{{ listing.title }}</h2>
+    <p class="position">Pozisyon: {{ listing.position }}</p>
+
+    <div class="applicants">
+      <div
+        class="applicant-card"
+        *ngFor="let a of listing.applicants"
+        (click)="openPlayer(a.playerId)"
+      >
+        <div class="top">
+          <strong>Oyuncu #{{ a.playerId }}</strong>
+          <span class="price">{{ a.offeredPrice }} ₺</span>
+        </div>
+
+        <div class="status" [ngClass]="a.status">
+          {{ a.status | uppercase }}
+        </div>
+
+        <div class="actions" (click)="$event.stopPropagation()">
+          <button
+            (click)="accept(a)"
+            [disabled]="a.status !== 'pending'"
+          >
+            Kabul Et
+          </button>
+
+          <button
+            (click)="pay(a)"
+            [disabled]="a.status !== 'accepted'"
+          >
+            Ödeme Yap
+          </button>
+
+          <button
+            (click)="completeMatch(a)"
+            [disabled]="a.status !== 'paid'"
+          >
+            Maçı Tamamla
+          </button>
+
+          <button
+            (click)="ratePlayer(a)"
+            [disabled]="a.status !== 'completed'"
+          >
+            Değerlendir
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLAYER PROFILE MODAL -->
+<app-player-profile-modal
+  *ngIf="selectedPlayer"
+  [profile]="selectedPlayer"
+  (close)="closePlayer()"
+></app-player-profile-modal>

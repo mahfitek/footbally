@@ -1,0 +1,98 @@
+.player-profile {
+  padding: 80px 60px;
+  color: #fff;
+}
+
+.player-profile h1 {
+  margin-bottom: 32px;
+}
+
+.profile-card {
+  max-width: 640px;
+  background: rgba(255,255,255,0.06);
+  padding: 32px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 14px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+.positions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.positions button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+}
+
+.positions button.active {
+  background: linear-gradient(
+    120deg,
+    #ffd700,
+    #ff8c00,
+    #7f5cff
+  );
+  color: #000;
+}
+
+.rating {
+  margin: 20px 0;
+  font-weight: 600;
+}
+
+.rating-note {
+  font-size: 12px;
+  opacity: 0.7;
+  margin-left: 8px;
+}
+
+.save-btn {
+  width: 100%;
+  padding: 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(
+    120deg,
+    #00d4ff,
+    #7f5cff,
+    #ffd700
+  );
+  background-size: 300% 300%;
+  animation: premiumShift 6s ease infinite;
+}
+
+@keyframes premiumShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
