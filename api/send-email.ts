@@ -7,7 +7,18 @@ export default async function handler(req: any, res: any) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { to, subject, html } = req.body;
+  let body = req.body;
+
+  // 🔴 KRİTİK: body string gelirse JSON parse et
+  if (typeof body === 'string') {
+    try {
+      body = JSON.parse(body);
+    } catch {
+      return res.status(400).json({ error: 'Invalid JSON body' });
+    }
+  }
+
+  const { to, subject, html } = body || {};
 
   if (!to || !subject || !html) {
     return res.status(400).json({
