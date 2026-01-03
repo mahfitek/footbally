@@ -1,6 +1,4 @@
-/* =========================
-   PAGE
-========================= */
+/* PAGE */
 .contact-page {
   min-height: 100vh;
   display: flex;
@@ -13,9 +11,7 @@
     linear-gradient(180deg, #05060a, #000);
 }
 
-/* =========================
-   CARD
-========================= */
+/* CARD */
 .contact-card {
   width: 100%;
   max-width: 420px;
@@ -37,23 +33,7 @@
   color: #fff;
 }
 
-/* =========================
-   TEXT
-========================= */
-.contact-card h2 {
-  font-size: 26px;
-  margin-bottom: 6px;
-}
-
-.contact-card p {
-  font-size: 14px;
-  opacity: 0.75;
-  margin-bottom: 24px;
-}
-
-/* =========================
-   INPUTS
-========================= */
+/* INPUTS */
 .contact-card input,
 .contact-card textarea {
   width: 100%;
@@ -67,10 +47,10 @@
 
 .contact-card input:focus,
 .contact-card textarea:focus {
+  outline: none;
   box-shadow:
     inset 0 0 0 1px #7f5cff,
     0 0 0 3px rgba(127,92,255,0.25);
-  outline: none;
 }
 
 .error {
@@ -79,9 +59,7 @@
   margin-bottom: 12px;
 }
 
-/* =========================
-   PRIMARY BUTTON (PREMIUM)
-========================= */
+/* BUTTON */
 .primary-btn {
   width: 100%;
   padding: 16px;
@@ -98,39 +76,38 @@
   animation: premiumShift 6s ease infinite;
 }
 
-.primary-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-/* =========================
-   MODAL
-========================= */
+/* MODAL */
 .modal-backdrop {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.75);
   backdrop-filter: blur(6px);
+
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 999;
+
+  z-index: 99999;
 }
 
 .success-modal {
   max-width: 360px;
-  padding: 32px 28px;
+  width: 90%;
+  padding: 32px;
   border-radius: 24px;
+
   background: linear-gradient(
     180deg,
     rgba(255,255,255,0.12),
     rgba(255,255,255,0.04)
   );
+
   backdrop-filter: blur(16px);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.85);
-  text-align: center;
   color: #fff;
-  animation: modalPop 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  text-align: center;
+
+  box-shadow: 0 40px 120px rgba(0,0,0,0.9);
+  animation: modalPop 0.4s cubic-bezier(.22,1,.36,1);
 }
 
 .success-icon {
@@ -145,14 +122,135 @@
   border: none;
   cursor: pointer;
   font-weight: 600;
+
   background: linear-gradient(120deg, #22c55e, #16a34a);
   color: #052e16;
 }
 
-/* =========================
-   ANIMATION
-========================= */
+/* ANIMS */
+@keyframes premiumShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 @keyframes modalPop {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.success-popup {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 16px 18px;
+  margin-bottom: 18px;
+  border-radius: 16px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(34,197,94,0.15),
+    rgba(34,197,94,0.05)
+  );
+
+  border: 1px solid rgba(34,197,94,0.35);
+  animation: successIn 0.35s ease;
+}
+
+.success-popup .icon {
+  font-size: 22px;
+}
+
+.success-popup h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.success-popup p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+@keyframes successIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* OVERLAY */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+/* MODAL BOX */
+.success-box {
+  width: 90%;
+  max-width: 420px;
+  padding: 32px;
+  border-radius: 24px;
+  background: linear-gradient(
+    180deg,
+    rgba(30,30,30,0.95),
+    rgba(15,15,15,0.95)
+  );
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.9);
+  animation: popIn 0.35s ease;
+}
+
+/* ICON */
+.success-box .icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 16px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #22c55e, #16a34a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #052e16;
+}
+
+/* TEXT */
+.success-box h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.success-box p {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 24px;
+}
+
+/* BUTTON */
+.success-box .confirm {
+  width: 100%;
+  padding: 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(120deg, #22c55e, #16a34a);
+  color: #052e16;
+}
+
+/* ANIM */
+@keyframes popIn {
   from {
     opacity: 0;
     transform: translateY(20px) scale(0.95);

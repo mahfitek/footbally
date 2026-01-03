@@ -1,84 +1,37 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-support',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './support.html',
   styleUrls: ['./support.css'],
 })
 export class SupportComponent {
-  showSuccessModal = false;
-  loading = false;
-  errorMessage = '';
+  showSuccess = false;
 
-  form = {
-    fullName: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-  };
+  onSubmit(event: Event) {
+    event.preventDefault();
 
-  canSubmit(): boolean {
-    return !!(
-      this.form.fullName &&
-      this.form.email &&
-      this.form.subject &&
-      this.form.message
-    );
-  }
+    // 🔥 1. Modal ANINDA açılır
+    this.showSuccess = true;
 
-  submitSupport() {
-    if (!this.canSubmit() || this.loading) return;
+    // 🔥 2. Formspree arka planda
+    const form = event.target as HTMLFormElement;
 
-    this.loading = true;
-    this.errorMessage = '';
-
-    fetch('https://formspree.io/f/meeoraar', {
+    fetch(form.action, {
       method: 'POST',
+      body: new FormData(form),
       headers: {
-        'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      body: JSON.stringify({
-        type: 'support',
-        fullName: this.form.fullName,
-        email: this.form.email,
-        phone: this.form.phone,
-        subject: this.form.subject,
-        message: this.form.message,
-      }),
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error('failed');
-        return res.json();
-      })
-      .then(() => {
-        this.showSuccessModal = true;
-        this.resetForm();
-      })
-      .catch(() => {
-        this.errorMessage = 'Destek mesajı gönderilemedi.';
-      })
-      .finally(() => {
-        this.loading = false;
-      });
+    }).finally(() => {
+      form.reset();
+    });
   }
 
-  closeModal() {
-    this.showSuccessModal = false;
-  }
-
-  private resetForm() {
-    this.form = {
-      fullName: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-    };
+  close() {
+    this.showSuccess = false;
   }
 }

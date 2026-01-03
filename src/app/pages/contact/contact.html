@@ -1,67 +1,70 @@
 <section class="contact-page">
 
-  <div class="contact-card">
+  <form
+    class="contact-card"
+    action="https://formspree.io/f/meeoraar"
+    method="POST"
+    (submit)="onSubmit($event)"
+  >
 
     <h2>İletişim</h2>
     <p>Bizimle hızlıca iletişime geçebilirsin.</p>
 
     <input
+      name="name"
       placeholder="Ad Soyad"
-      [(ngModel)]="form.fullName"
-      name="fullName"
+      required
     />
 
     <input
-      placeholder="E-posta"
-      type="email"
-      [(ngModel)]="form.email"
       name="email"
+      type="email"
+      placeholder="E-posta"
+      required
     />
 
     <input
-      placeholder="Telefon Numarası (opsiyonel)"
-      inputmode="tel"
-      [(ngModel)]="form.phone"
       name="phone"
+      placeholder="Telefon (opsiyonel)"
     />
 
     <input
-      placeholder="Konu"
-      [(ngModel)]="form.subject"
       name="subject"
+      placeholder="Konu"
+      required
     />
 
     <textarea
+      name="message"
       rows="4"
       placeholder="Mesajınız"
-      [(ngModel)]="form.message"
-      name="message"
+      required
     ></textarea>
 
-    <p class="error" *ngIf="errorMessage">
-      {{ errorMessage }}
-    </p>
+    <!-- Formspree ayırıcı -->
+    <input type="hidden" name="type" value="contact" />
 
-    <button
-      class="primary-btn"
-      (click)="submit()"
-    >
+    <button class="primary-btn" type="submit">
       Gönder
     </button>
 
-  </div>
-
-  <!-- SUCCESS MODAL -->
-  <div class="modal-backdrop" *ngIf="showSuccess">
-    <div class="success-modal">
-      <div class="success-icon">✅</div>
-      <h3>Başarıyla Gönderildi</h3>
-      <p>Mesajın bize ulaştı. En kısa sürede dönüş yapacağız.</p>
-
-      <button class="confirm-btn" (click)="closeModal()">
-        Tamam
-      </button>
-    </div>
-  </div>
+  </form>
 
 </section>
+
+<!-- ✅ SUCCESS MODAL (ANINDA AÇILIR) -->
+<div class="overlay" *ngIf="showSuccess">
+  <div class="success-box">
+    <div class="icon">✔</div>
+
+    <h3>Başarıyla Gönderildi</h3>
+    <p>
+      Mesajınız alınmıştır.  
+      En kısa sürede sizinle iletişime geçeceğiz.
+    </p>
+
+    <button class="confirm" (click)="close()">
+      Tamam
+    </button>
+  </div>
+</div>

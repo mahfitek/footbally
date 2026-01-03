@@ -1,69 +1,51 @@
 <section class="support-page">
 
-  <div class="support-card">
+  <form
+    class="support-card"
+    action="https://formspree.io/f/meeoraar"
+    method="POST"
+    (submit)="onSubmit($event)"
+  >
 
-    <h2>Destek</h2>
-    <p class="subtitle">
+    <h2 class="page-title">Destek</h2>
+    <p class="page-subtitle">
       Yaşadığın problemi bize anlat, en kısa sürede dönüş yapalım.
     </p>
 
-    <input
-      placeholder="Ad Soyad"
-      [(ngModel)]="form.fullName"
-    />
-
-    <input
-      placeholder="E-posta"
-      type="email"
-      [(ngModel)]="form.email"
-    />
-
-    <input
-      placeholder="Telefon Numarası"
-      inputmode="tel"
-      [(ngModel)]="form.phone"
-    />
-
-    <input
-      placeholder="Konu"
-      [(ngModel)]="form.subject"
-    />
+    <input name="name" placeholder="Ad Soyad" required />
+    <input name="email" type="email" placeholder="E-posta" required />
+    <input name="phone" placeholder="Telefon" />
+    <input name="subject" placeholder="Konu" required />
 
     <textarea
-      placeholder="Destek almak istediğiniz konuyu detaylı anlatın"
+      name="message"
       rows="5"
-      [(ngModel)]="form.message"
+      placeholder="Destek almak istediğiniz konuyu detaylı anlatın"
+      required
     ></textarea>
 
-    <button
-      class="primary-btn"
-      [disabled]="!canSubmit()"
-      (click)="submitSupport()"
-    >
+    <input type="hidden" name="type" value="support" />
+
+    <!-- 🔴 Loading YOK -->
+    <button class="primary-btn" type="submit">
       Gönder
     </button>
-  </div>
 
-  <!-- SUCCESS MODAL -->
-  <div
-    class="modal-backdrop"
-    *ngIf="showSuccessModal"
-    (click)="closeModal()"
-  ></div>
-
-  <div
-    class="success-modal"
-    *ngIf="showSuccessModal"
-  >
-    <h3>Talep Alındı✅</h3>
-    <p>
-      Destek talebiniz alınmıştır.  
-      En kısa zamanda size geri dönüş yapılacaktır.
-    </p>
-
-    <button class="primary-btn" (click)="closeModal()">
-      Tamam
-    </button>
-  </div>
+  </form>
 
 </section>
+
+<!-- SUCCESS MODAL -->
+<div class="overlay" *ngIf="showSuccess">
+  <div class="success-box light">
+    <div class="icon">✔</div>
+
+    <h3>Talep Alındı</h3>
+    <p>
+      Destek talebiniz başarıyla alınmıştır.
+      En kısa sürede size geri dönüş yapılacaktır.
+    </p>
+
+    <button class="confirm" (click)="close()">Tamam</button>
+  </div>
+</div>

@@ -1,176 +1,124 @@
-/* =========================
-   PAGE
-========================= */
-
 .support-page {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px 16px;
-
-  background: linear-gradient(
-    180deg,
-    #f6f7fb,
-    #eceff5
-  );
+  background: linear-gradient(180deg, #f6f7fb, #eceff5);
 }
-
-/* =========================
-   CARD
-========================= */
 
 .support-card {
   width: 100%;
   max-width: 520px;
-
-  padding: 36px 32px;
-  border-radius: 24px;
-
-  background: linear-gradient(
-    180deg,
-    #ffffff,
-    #f4f6fb
-  );
-
-  color: #111;
-
-  box-shadow: 0 30px 80px rgba(0,0,0,0.12);
+  padding: 40px 32px;
+  border-radius: 28px;
+  background: #ffffff;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.12);
 }
 
-.support-card h2 {
-  font-size: 26px;
+/* HEADER */
+.page-title {
   text-align: center;
-  margin-bottom: 6px;
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
   color: #111;
 }
 
-.subtitle {
+.page-subtitle {
   text-align: center;
   font-size: 14px;
   color: #555;
   margin-bottom: 28px;
 }
 
-/* =========================
-   INPUTS
-========================= */
-
+/* INPUTS */
 .support-card input,
 .support-card textarea {
   width: 100%;
   padding: 14px 16px;
   margin-bottom: 14px;
-
   border-radius: 14px;
   border: 1px solid #dcdfea;
-  outline: none;
-
   font-size: 14px;
-  color: #111;
-  background: #fff;
 }
 
-.support-card input::placeholder,
-.support-card textarea::placeholder {
-  color: #999;
-}
-
-.support-card input:focus,
-.support-card textarea:focus {
-  border-color: #7f5cff;
-  box-shadow: 0 0 0 3px rgba(127,92,255,0.15);
-}
-
-/* =========================
-   BUTTON
-========================= */
-
+/* BUTTON */
 .primary-btn {
   width: 100%;
   margin-top: 18px;
   padding: 16px;
-
   border-radius: 999px;
   border: none;
   cursor: pointer;
-
-  font-size: 15px;
   font-weight: 600;
   color: #000;
-
-  background: linear-gradient(
-    120deg,
-    #ffd700,
-    #ff8c00,
-    #7f5cff
-  );
-  background-size: 300% 300%;
-  animation: premiumShift 6s ease infinite;
+  background: linear-gradient(120deg, #ffd700, #ff8c00, #7f5cff);
 }
 
-.primary-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-/* =========================
-   MODAL
-========================= */
-
-.modal-backdrop {
+/* OVERLAY */
+.overlay {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.45);
-  z-index: 10;
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
 }
 
-.success-modal {
-  position: fixed;
-  inset: 0;
-  margin: auto;
-
+/* MODAL – LIGHT PREMIUM */
+.success-box.light {
   width: 90%;
   max-width: 420px;
-  height: fit-content;
-
-  padding: 32px;
+  padding: 36px;
   border-radius: 24px;
-
   background: #ffffff;
   color: #111;
-
-  z-index: 11;
   text-align: center;
-
-  box-shadow: 0 30px 80px rgba(0,0,0,0.25);
-  animation: modalIn 0.3s ease;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.25);
+  animation: popIn 0.3s ease;
 }
 
-.success-modal h3 {
-  font-size: 22px;
-  margin-bottom: 12px;
-  color: #111;
+.success-box .icon {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 16px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #22c55e, #16a34a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #fff;
 }
 
-.success-modal p {
+.success-box h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.success-box p {
   font-size: 14px;
   color: #555;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   line-height: 1.6;
 }
 
-/* =========================
-   ANIMS
-========================= */
-
-@keyframes premiumShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+.success-box .confirm {
+  width: 100%;
+  padding: 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(120deg, #22c55e, #16a34a);
+  color: #052e16;
 }
 
-@keyframes modalIn {
+/* ANIM */
+@keyframes popIn {
   from {
     opacity: 0;
     transform: translateY(20px) scale(0.96);
