@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { EmailService } from '../../services/email.service';
 
 @Component({
   selector: 'app-contact',
@@ -13,7 +12,6 @@ import { EmailService } from '../../services/email.service';
 export class ContactComponent {
   showSuccess = false;
   loading = false;
-  errorMessage = '';
 
   form = {
     fullName: '',
@@ -22,8 +20,6 @@ export class ContactComponent {
     subject: '',
     message: '',
   };
-
-  constructor(private emailService: EmailService) {}
 
   canSubmit(): boolean {
     return !!(
@@ -38,33 +34,22 @@ export class ContactComponent {
     if (!this.canSubmit() || this.loading) return;
 
     this.loading = true;
-    this.errorMessage = '';
 
-    const html = `
-      <h2>Yeni İletişim Formu</h2>
-      <p><strong>Ad Soyad:</strong> ${this.form.fullName}</p>
-      <p><strong>E-posta:</strong> ${this.form.email}</p>
-      <p><strong>Telefon:</strong> ${this.form.phone || '-'}</p>
-      <p><strong>Konu:</strong> ${this.form.subject}</p>
-      <hr />
-      <p>${this.form.message}</p>
-    `;
+    /**
+     * ⚠️ ŞU AN:
+     * - Mail gönderimi YOK
+     * - API YOK
+     * - Backend YOK
+     *
+     * Bir sonraki adımda:
+     * → Formspree / Namecheap üzerinden bağlayacağız
+     */
 
-    this.emailService.sendEmail({
-      to: 'info@getfootbally.com',
-      subject: `İletişim: ${this.form.subject}`,
-      html,
-    }).subscribe({
-      next: () => {
-        this.showSuccess = true;
-        this.loading = false;
-        this.resetForm();
-      },
-      error: () => {
-        this.errorMessage = 'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
-        this.loading = false;
-      },
-    });
+    setTimeout(() => {
+      this.showSuccess = true;
+      this.loading = false;
+      this.resetForm();
+    }, 500);
   }
 
   closeModal() {
