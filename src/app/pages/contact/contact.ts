@@ -32,51 +32,49 @@ export class ContactComponent {
   }
 
   submit() {
-    if (!this.canSubmit() || this.loading) return;
+  if (!this.canSubmit() || this.loading) return;
 
-    this.loading = true;
-    this.errorMessage = '';
+  this.loading = true;
+  this.errorMessage = '';
 
-    fetch('https://formspree.io/f/meeoraar', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify({
-        type: 'contact',
-        fullName: this.form.fullName,
-        email: this.form.email,
-        phone: this.form.phone,
-        subject: this.form.subject,
-        message: this.form.message,
-      }),
+  fetch('https://formspree.io/f/meeoraar', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      type: 'contact',
+      fullName: this.form.fullName,
+      email: this.form.email,
+      phone: this.form.phone,
+      subject: this.form.subject,
+      message: this.form.message,
+    }),
+  })
+    .then((res) => {
+      if (!res.ok) throw new Error();
+      return res.json();
     })
-      .then((res) => {
-        if (!res.ok) throw new Error();
-        return res.json();
-      })
-      .then(() => {
-        this.showSuccess = true;
+    .then(() => {
+      // 🔥 ÖNCE loading kapat
+      this.loading = false;
 
-        // 🔥 INLINE RESET (EN STABİL ÇÖZÜM)
-        this.form = {
-          fullName: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: '',
-        };
-      })
-      .catch(() => {
-        this.errorMessage = 'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
-      })
-      .finally(() => {
-        this.loading = false;
-      });
-  }
+      // 🔥 SONRA modal aç
+      this.showSuccess = true;
 
-  closeModal() {
-    this.showSuccess = false;
+      // 🔥 form reset
+      this.form = {
+        fullName: '',
+        email: '',
+        phone: '',
+        subject: '',
+        message: '',
+      };
+    })
+    .catch(() => {
+      this.loading = false;
+      this.errorMessage = 'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
+    });
   }
 }

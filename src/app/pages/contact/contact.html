@@ -38,29 +38,23 @@
     </p>
 
     <button
-  *ngIf="!showSuccess"
-  class="primary-btn"
-  [disabled]="!canSubmit() || loading"
-  (click)="submit()"
+  type="submit"
+  [disabled]="loading"
 >
   {{ loading ? 'Gönderiliyor...' : 'Gönder' }}
 </button>
 
 
+
   </div>
 
   <!-- SUCCESS MODAL -->
-  <div class="modal-backdrop" *ngIf="showSuccess">
-    <div class="success-modal">
-      <div class="success-icon">✅</div>
-      <p>
-        Mesajınız başarıyla alındı.<br />
-        En kısa sürede sizinle iletişime geçeceğiz.
-      </p>
-      <button class="confirm-btn" (click)="closeModal()">
-        Tamam
-      </button>
-    </div>
-  </div>
+  <div class="success-modal" *ngIf="showSuccess">
+  <h3>Başarıyla Gönderildi</h3>
+  <p>Mesajın bize ulaştı.</p>
+
+  <button (click)="closeModal()">Kapat</button>
+</div>
+
 
 </section>
