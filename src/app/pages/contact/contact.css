@@ -9,16 +9,12 @@
   padding: 40px 16px;
 
   background:
-    radial-gradient(
-      circle at top,
-      rgba(127,92,255,0.15),
-      rgba(0,0,0,0.9) 55%
-    ),
+    radial-gradient(circle at top, rgba(127,92,255,0.15), rgba(0,0,0,0.9) 55%),
     linear-gradient(180deg, #05060a, #000);
 }
 
 /* =========================
-   CARD (PREMIUM GLASS)
+   CARD
 ========================= */
 .contact-card {
   width: 100%;
@@ -33,8 +29,6 @@
   );
 
   backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-
   box-shadow:
     0 30px 80px rgba(0,0,0,0.8),
     inset 0 0 0 1px rgba(255,255,255,0.08);
@@ -49,14 +43,12 @@
 .contact-card h2 {
   font-size: 26px;
   margin-bottom: 6px;
-  color: #fff;
 }
 
 .contact-card p {
   font-size: 14px;
   opacity: 0.75;
   margin-bottom: 24px;
-  color: #fff;
 }
 
 /* =========================
@@ -67,21 +59,10 @@
   width: 100%;
   padding: 14px 16px;
   margin-bottom: 14px;
-
   border-radius: 14px;
   border: none;
-  outline: none;
-
   background: rgba(255,255,255,0.08);
   color: #fff;
-  font-size: 14px;
-
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1);
-}
-
-.contact-card input::placeholder,
-.contact-card textarea::placeholder {
-  color: rgba(255,255,255,0.55);
 }
 
 .contact-card input:focus,
@@ -89,16 +70,21 @@
   box-shadow:
     inset 0 0 0 1px #7f5cff,
     0 0 0 3px rgba(127,92,255,0.25);
+  outline: none;
+}
+
+.error {
+  color: #f87171;
+  font-size: 13px;
+  margin-bottom: 12px;
 }
 
 /* =========================
-   PRIMARY BUTTON
+   PRIMARY BUTTON (PREMIUM)
 ========================= */
 .primary-btn {
   width: 100%;
-  margin-top: 12px;
   padding: 16px;
-
   border-radius: 999px;
   border: none;
   cursor: pointer;
@@ -107,117 +93,60 @@
   font-weight: 600;
   color: #000;
 
-  background: linear-gradient(
-    120deg,
-    #ffd700,
-    #ff8c00,
-    #7f5cff
-  );
+  background: linear-gradient(120deg, #ffd700, #ff8c00, #7f5cff);
   background-size: 300% 300%;
   animation: premiumShift 6s ease infinite;
 }
 
 .primary-btn:disabled {
-  opacity: 0.4;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 /* =========================
-   MODAL BACKDROP
-========================= */
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.65);
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-}
-
-/* =========================
-   MODAL BACKDROP (PREMIUM)
+   MODAL
 ========================= */
 .modal-backdrop {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.75);
   backdrop-filter: blur(6px);
-
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
 }
 
-/* =========================
-   SUCCESS MODAL (SUPPORT STYLE)
-========================= */
 .success-modal {
-  width: 100%;
   max-width: 360px;
   padding: 32px 28px;
   border-radius: 24px;
-
   background: linear-gradient(
     180deg,
     rgba(255,255,255,0.12),
     rgba(255,255,255,0.04)
   );
-
   backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-
-  box-shadow:
-    0 30px 80px rgba(0,0,0,0.85),
-    inset 0 0 0 1px rgba(255,255,255,0.1);
-
+  box-shadow: 0 30px 80px rgba(0,0,0,0.85);
   text-align: center;
   color: #fff;
-
   animation: modalPop 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* ICON */
-.success-modal .success-icon {
-  font-size: 44px;
-  margin-bottom: 14px;
+.success-icon {
+  font-size: 42px;
+  margin-bottom: 12px;
 }
 
-/* TEXT */
-.success-modal p {
-  font-size: 14px;
-  line-height: 1.6;
-  opacity: 0.9;
-  margin-bottom: 22px;
-}
-
-/* CONFIRM BUTTON */
 .confirm-btn {
   width: 100%;
   padding: 14px;
-
   border-radius: 999px;
   border: none;
   cursor: pointer;
-
-  font-size: 14px;
   font-weight: 600;
+  background: linear-gradient(120deg, #22c55e, #16a34a);
   color: #052e16;
-
-  background: linear-gradient(
-    120deg,
-    #22c55e,
-    #16a34a
-  );
-
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.confirm-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px rgba(34,197,94,0.35);
 }
 
 /* =========================

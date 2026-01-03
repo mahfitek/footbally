@@ -1,6 +1,6 @@
 <section class="contact-page">
 
-  <div class="contact-card">
+  <form class="contact-card" (ngSubmit)="submit()" novalidate>
 
     <h2>İletişim</h2>
     <p>Bizimle hızlıca iletişime geçebilirsin.</p>
@@ -8,29 +8,38 @@
     <input
       placeholder="Ad Soyad"
       [(ngModel)]="form.fullName"
+      name="fullName"
+      required
     />
 
     <input
       placeholder="E-posta"
       type="email"
       [(ngModel)]="form.email"
+      name="email"
+      required
     />
 
     <input
       placeholder="Telefon Numarası (opsiyonel)"
       inputmode="tel"
       [(ngModel)]="form.phone"
+      name="phone"
     />
 
     <input
       placeholder="Konu"
       [(ngModel)]="form.subject"
+      name="subject"
+      required
     />
 
     <textarea
       rows="4"
       placeholder="Mesajınız"
       [(ngModel)]="form.message"
+      name="message"
+      required
     ></textarea>
 
     <p class="error" *ngIf="errorMessage">
@@ -38,23 +47,27 @@
     </p>
 
     <button
-  type="submit"
-  [disabled]="loading"
->
-  {{ loading ? 'Gönderiliyor...' : 'Gönder' }}
-</button>
+      type="submit"
+      class="primary-btn"
+      [disabled]="loading || !canSubmit()"
+    >
+      <span *ngIf="!loading">Gönder</span>
+      <span *ngIf="loading">Gönderiliyor...</span>
+    </button>
 
-
-
-  </div>
+  </form>
 
   <!-- SUCCESS MODAL -->
-  <div class="success-modal" *ngIf="showSuccess">
-  <h3>Başarıyla Gönderildi</h3>
-  <p>Mesajın bize ulaştı.</p>
+  <div class="modal-backdrop" *ngIf="showSuccess">
+    <div class="success-modal">
+      <div class="success-icon">✅</div>
+      <h3>Başarıyla Gönderildi</h3>
+      <p>Mesajın bize ulaştı. En kısa sürede dönüş yapacağız.</p>
 
-  <button (click)="closeModal()">Kapat</button>
-</div>
-
+      <button class="confirm-btn" (click)="closeModal()">
+        Tamam
+      </button>
+    </div>
+  </div>
 
 </section>
