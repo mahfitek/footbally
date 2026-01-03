@@ -11,8 +11,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class ContactComponent {
   loading = false;
-  showSuccessModal = false;
   errorMessage = '';
+  showSuccess = false; // 🔴 EKSİK OLAN BUYDU
 
   form = {
     fullName: '',
@@ -23,49 +23,56 @@ export class ContactComponent {
   };
 
   canSubmit(): boolean {
-    return (
-      !!this.form.fullName &&
-      !!this.form.email &&
-      !!this.form.subject &&
-      !!this.form.message
+    return !!(
+      this.form.fullName &&
+      this.form.email &&
+      this.form.subject &&
+      this.form.message
     );
   }
 
-  async submit() {
+  submit() {
     if (!this.canSubmit() || this.loading) return;
 
     this.loading = true;
     this.errorMessage = '';
 
-    try {
-      const res = await fetch('https://formspree.io/f/meeoraar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          type: 'contact',
-          ...this.form,
-        }),
+    fetch('https://formspree.io/f/meeoraar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        type: 'contact',
+        fullName: this.form.fullName,
+        email: this.form.email,
+        phone: this.form.phone,
+        subject: this.form.subject,
+        message: this.form.message,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('failed');
+        return res.json();
+      })
+      .then(() => {
+        this.showSuccess = true;
+        this.resetForm();
+      })
+      .catch(() => {
+        this.errorMessage = 'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
+      })
+      .finally(() => {
+        this.loading = false;
       });
-
-      if (!res.ok) throw new Error('failed');
-
-      this.showSuccessModal = true;
-      this.resetForm();
-    } catch {
-      this.errorMessage = 'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
-    } finally {
-      this.loading = false;
-    }
   }
 
   closeModal() {
-    this.showSuccessModal = false;
+    this.showSuccess = false;
   }
 
-  resetForm() {
+  private resetForm() {
     this.form = {
       fullName: '',
       email: '',
