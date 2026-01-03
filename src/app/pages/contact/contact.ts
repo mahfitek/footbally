@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -20,6 +20,8 @@ export class ContactComponent {
     subject: '',
     message: '',
   };
+
+  constructor(private zone: NgZone) {}
 
   canSubmit(): boolean {
     return !!(
@@ -48,11 +50,17 @@ export class ContactComponent {
     })
       .then((res) => {
         if (!res.ok) throw new Error('failed');
-        this.showSuccess = true;
-        this.resetForm();
+
+        // 🔥 Angular'a zorla UI güncellettiriyoruz
+        this.zone.run(() => {
+          this.showSuccess = true;
+          this.resetForm();
+        });
       })
       .catch(() => {
-        this.errorMessage = 'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
+        this.zone.run(() => {
+          this.errorMessage = 'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
+        });
       });
   }
 
