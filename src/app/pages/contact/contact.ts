@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 export class ContactComponent {
   showSuccess = false;
   loading = false;
+  errorMessage = '';
 
   form = {
     fullName: '',
@@ -30,26 +31,39 @@ export class ContactComponent {
     );
   }
 
-  submit() {
+  async submit() {
     if (!this.canSubmit() || this.loading) return;
 
     this.loading = true;
+    this.errorMessage = '';
 
-    /**
-     * ⚠️ ŞU AN:
-     * - Mail gönderimi YOK
-     * - API YOK
-     * - Backend YOK
-     *
-     * Bir sonraki adımda:
-     * → Formspree / Namecheap üzerinden bağlayacağız
-     */
+    try {
+      const response = await fetch('https://formspree.io/f/meeoraar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: this.form.fullName,
+          email: this.form.email,
+          phone: this.form.phone,
+          subject: this.form.subject,
+          message: this.form.message,
+        }),
+      });
 
-    setTimeout(() => {
+      if (!response.ok) {
+        throw new Error('Form gönderilemedi');
+      }
+
       this.showSuccess = true;
-      this.loading = false;
       this.resetForm();
-    }, 500);
+    } catch (err) {
+      this.errorMessage = 'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
+    } finally {
+      this.loading = false;
+    }
   }
 
   closeModal() {
