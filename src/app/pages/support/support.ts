@@ -7,18 +7,19 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './support.html',
-  styleUrls: ['./support.css']
+  styleUrls: ['./support.css'],
 })
 export class SupportComponent {
-
   showSuccessModal = false;
+  loading = false;
+  errorMessage = '';
 
   form = {
     fullName: '',
     email: '',
     phone: '',
     subject: '',
-    message: ''
+    message: '',
   };
 
   canSubmit(): boolean {
@@ -31,22 +32,53 @@ export class SupportComponent {
   }
 
   submitSupport() {
-    if (!this.canSubmit()) return;
+    if (!this.canSubmit() || this.loading) return;
 
-    // demo → backend sonra
-    this.showSuccessModal = true;
+    this.loading = true;
+    this.errorMessage = '';
 
-    // reset
+    fetch('https://formspree.io/f/meeoraar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        type: 'support',
+        fullName: this.form.fullName,
+        email: this.form.email,
+        phone: this.form.phone,
+        subject: this.form.subject,
+        message: this.form.message,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('failed');
+        return res.json();
+      })
+      .then(() => {
+        this.showSuccessModal = true;
+        this.resetForm();
+      })
+      .catch(() => {
+        this.errorMessage = 'Destek mesajı gönderilemedi.';
+      })
+      .finally(() => {
+        this.loading = false;
+      });
+  }
+
+  closeModal() {
+    this.showSuccessModal = false;
+  }
+
+  private resetForm() {
     this.form = {
       fullName: '',
       email: '',
       phone: '',
       subject: '',
-      message: ''
+      message: '',
     };
-  }
-
-  closeModal() {
-    this.showSuccessModal = false;
   }
 }

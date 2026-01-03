@@ -31,39 +31,41 @@ export class ContactComponent {
     );
   }
 
-  async submit() {
+  submit() {
     if (!this.canSubmit() || this.loading) return;
 
     this.loading = true;
     this.errorMessage = '';
 
-    try {
-      const response = await fetch('https://formspree.io/f/meeoraar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          name: this.form.fullName,
-          email: this.form.email,
-          phone: this.form.phone,
-          subject: this.form.subject,
-          message: this.form.message,
-        }),
+    fetch('https://formspree.io/f/meeoraar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        type: 'contact',
+        fullName: this.form.fullName,
+        email: this.form.email,
+        phone: this.form.phone,
+        subject: this.form.subject,
+        message: this.form.message,
+      }),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error('failed');
+        return res.json();
+      })
+      .then(() => {
+        this.showSuccess = true;
+        this.resetForm();
+      })
+      .catch(() => {
+        this.errorMessage = 'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
+      })
+      .finally(() => {
+        this.loading = false;
       });
-
-      if (!response.ok) {
-        throw new Error('Form gönderilemedi');
-      }
-
-      this.showSuccess = true;
-      this.resetForm();
-    } catch (err) {
-      this.errorMessage = 'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
-    } finally {
-      this.loading = false;
-    }
   }
 
   closeModal() {
