@@ -53,12 +53,20 @@ export class ContactComponent {
       }),
     })
       .then((res) => {
-        if (!res.ok) throw new Error('failed');
+        if (!res.ok) throw new Error();
         return res.json();
       })
       .then(() => {
         this.showSuccess = true;
-        this.resetForm();
+
+        // 🔥 INLINE RESET (EN STABİL ÇÖZÜM)
+        this.form = {
+          fullName: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: '',
+        };
       })
       .catch(() => {
         this.errorMessage = 'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
@@ -70,15 +78,5 @@ export class ContactComponent {
 
   closeModal() {
     this.showSuccess = false;
-  }
-
-  private resetForm() {
-    this.form = {
-      fullName: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-    };
   }
 }

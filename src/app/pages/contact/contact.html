@@ -38,12 +38,14 @@
     </p>
 
     <button
-      class="primary-btn"
-      [disabled]="!canSubmit() || loading"
-      (click)="submit()"
-    >
-      {{ loading ? 'Gönderiliyor…' : 'Gönder' }}
-    </button>
+  *ngIf="!showSuccess"
+  class="primary-btn"
+  [disabled]="!canSubmit() || loading"
+  (click)="submit()"
+>
+  {{ loading ? 'Gönderiliyor...' : 'Gönder' }}
+</button>
+
 
   </div>
 
