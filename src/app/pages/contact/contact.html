@@ -12,13 +12,12 @@
     <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
     <button
-      class="primary-btn"
-      (click)="submit()"
-      [disabled]="loading"
-    >
-      {{ loading ? 'Gönderiliyor...' : 'Gönder' }}
-    </button>
-  </div>
+  class="primary-btn"
+  (click)="submit()"
+>
+  Gönder
+</button>
+
 
   <!-- SUCCESS MODAL -->
   <div class="modal-backdrop" *ngIf="showSuccess">

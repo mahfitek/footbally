@@ -10,9 +10,8 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./contact.css'],
 })
 export class ContactComponent {
-  loading = false;
+  showSuccess = false;
   errorMessage = '';
-  showSuccess = false; // 🔴 EKSİK OLAN BUYDU
 
   form = {
     fullName: '',
@@ -32,9 +31,8 @@ export class ContactComponent {
   }
 
   submit() {
-    if (!this.canSubmit() || this.loading) return;
+    if (!this.canSubmit()) return;
 
-    this.loading = true;
     this.errorMessage = '';
 
     fetch('https://formspree.io/f/meeoraar', {
@@ -45,26 +43,16 @@ export class ContactComponent {
       },
       body: JSON.stringify({
         type: 'contact',
-        fullName: this.form.fullName,
-        email: this.form.email,
-        phone: this.form.phone,
-        subject: this.form.subject,
-        message: this.form.message,
+        ...this.form,
       }),
     })
       .then((res) => {
         if (!res.ok) throw new Error('failed');
-        return res.json();
-      })
-      .then(() => {
         this.showSuccess = true;
         this.resetForm();
       })
       .catch(() => {
         this.errorMessage = 'Mesaj gönderilemedi. Lütfen tekrar deneyin.';
-      })
-      .finally(() => {
-        this.loading = false;
       });
   }
 
