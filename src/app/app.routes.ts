@@ -103,6 +103,30 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
+  // MATCHES — CREATE (ÖNCE!)
+  {
+    path: 'matches/create',
+    loadComponent: () =>
+      import('./pages/matches/create-match/create-match.page')
+        .then(m => m.CreateMatchPage),
+  },
+
+  // MATCHES — LIST
+  {
+    path: 'matches',
+    loadComponent: () =>
+      import('./pages/matches/match-list/match-list.page')
+        .then(m => m.MatchListPage),
+  },
+
+  // MATCHES — DETAIL (EN SON)
+  {
+    path: 'matches/:id',
+    loadComponent: () =>
+      import('./pages/matches/match-detail/match-detail.page')
+        .then(m => m.MatchDetailPage),
+  },
+
   // FALLBACK (HER ZAMAN EN SON)
   {
     path: '**',

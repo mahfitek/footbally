@@ -1,0 +1,116 @@
+<section class="create-match-page">
+
+  <h1>Eksik Oyuncu Bul</h1>
+  <p class="subtitle">
+    Maç bilgilerini gir, uygun oyuncular başvuruda bulunsun.
+  </p>
+
+  <div class="layout">
+
+    <!-- FORM -->
+    <form class="form">
+
+      <input
+        type="text"
+        placeholder="Halı saha adı"
+        [(ngModel)]="form.location_name"
+        name="location"
+      />
+
+      <div class="row">
+        <input
+          type="text"
+          placeholder="Şehir"
+          [(ngModel)]="form.city"
+          name="city"
+        />
+        <input
+          type="text"
+          placeholder="İlçe"
+          [(ngModel)]="form.district"
+          name="district"
+        />
+      </div>
+
+      <div class="row">
+        <!-- 🔥 GEÇMİŞ TARİH ENGELİ -->
+        <input
+          type="date"
+          [min]="today"
+          [(ngModel)]="form.match_date"
+          name="date"
+        />
+        <input
+          type="time"
+          [(ngModel)]="form.match_time"
+          name="time"
+        />
+      </div>
+
+      <div class="row">
+        <input
+          type="number"
+          min="1"
+          max="5"
+          placeholder="Kaç oyuncu eksik?"
+          [(ngModel)]="form.required_players"
+          name="players"
+        />
+        <input
+          type="number"
+          min="0"
+          placeholder="Oyuncu başı ücret (₺)"
+          [(ngModel)]="form.price_per_player"
+          name="price"
+        />
+      </div>
+
+      <button
+        type="button"
+        class="primary-btn"
+        (click)="publish()"
+        [disabled]="!canPublish()"
+      >
+        İlanı Yayınla
+      </button>
+
+    </form>
+
+    <!-- LIVE PREVIEW -->
+    <div class="preview">
+      <div class="match-card">
+        <div class="location">
+          📍 {{ form.location_name || 'Halı saha adı' }}
+        </div>
+        <div class="meta">
+          {{ form.city || 'Şehir' }}
+          <span *ngIf="form.district"> / {{ form.district }}</span>
+        </div>
+        <div class="meta">
+          🕒 {{ form.match_time || '--:--' }}
+          • {{ form.match_date || 'Tarih' }}
+        </div>
+        <div class="meta">
+          👥 {{ form.required_players || 0 }} oyuncu aranıyor
+        </div>
+        <div class="price">
+          {{ form.price_per_player ? form.price_per_player + ' ₺' : 'Ücretsiz' }}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 🔥 SUCCESS MODAL -->
+<div class="modal-backdrop" *ngIf="showSuccess" (click)="closeModal()">
+  <div class="success-modal" (click)="$event.stopPropagation()">
+    <div class="icon">✅</div>
+    <h3>İlanınız yayınlandı</h3>
+    <p>
+      Maç ilanınız başarıyla oluşturuldu.  
+      Uygun oyuncular başvuruda bulunabilir.
+    </p>
+    <button class="primary-btn" (click)="closeModal()">Tamam</button>
+  </div>
+</div>

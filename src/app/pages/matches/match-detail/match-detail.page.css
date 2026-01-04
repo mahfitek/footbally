@@ -1,0 +1,52 @@
+.match-detail-page {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  color: #fff;
+}
+
+.card {
+  padding: 36px;
+  border-radius: 28px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.04)
+  );
+  box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+.meta {
+  opacity: 0.85;
+  margin-bottom: 8px;
+}
+
+.price {
+  margin: 16px 0 24px;
+  font-weight: 600;
+  color: #7f5cff;
+}
+
+.primary-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  color: #000;
+  background: linear-gradient(120deg, #ffd700, #ff8c00, #7f5cff);
+}
+
+.pending {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.08);
+  text-align: center;
+  font-size: 14px;
+}

@@ -8,7 +8,10 @@
   >
 
     <h2>İletişim</h2>
-    <p>Bizimle hızlıca iletişime geçebilirsin.</p>
+    <p>
+      Sorularınız mı var?  
+      Bizimle iletişime geçin, ekibimiz en kısa süre içinde size dönüş yapsın.
+    </p>
 
     <input
       name="name"
@@ -19,7 +22,7 @@
     <input
       name="email"
       type="email"
-      placeholder="E-posta"
+      placeholder="E-posta adresin"
       required
     />
 
@@ -37,12 +40,9 @@
     <textarea
       name="message"
       rows="4"
-      placeholder="Mesajınız"
+      placeholder="Mesajın"
       required
     ></textarea>
-
-    <!-- Formspree ayırıcı -->
-    <input type="hidden" name="type" value="contact" />
 
     <button class="primary-btn" type="submit">
       Gönder
@@ -52,15 +52,22 @@
 
 </section>
 
-<!-- ✅ SUCCESS MODAL (ANINDA AÇILIR) -->
-<div class="overlay" *ngIf="showSuccess">
-  <div class="success-box">
+<!-- SUCCESS MODAL -->
+<div
+  class="overlay"
+  *ngIf="showSuccess"
+  (click)="close()"
+>
+  <div
+    class="success-box"
+    (click)="$event.stopPropagation()"
+  >
     <div class="icon">✔</div>
 
-    <h3>Başarıyla Gönderildi</h3>
+    <h3>Mesajın bize ulaştı</h3>
     <p>
-      Mesajınız alınmıştır.  
-      En kısa sürede sizinle iletişime geçeceğiz.
+      Talebinizi aldık.  
+      Ekibimiz en kısa süre içinde sizinle iletişime geçecek.
     </p>
 
     <button class="confirm" (click)="close()">
@@ -68,3 +75,4 @@
     </button>
   </div>
 </div>
+

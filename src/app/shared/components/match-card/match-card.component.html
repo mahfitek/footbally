@@ -1,0 +1,30 @@
+<div class="match-card">
+
+  <div class="location">
+    📍 {{ match.location_name }}
+  </div>
+
+  <div class="meta">
+    {{ match.city }} / {{ match.district }}
+  </div>
+
+  <div class="meta">
+    🕒 {{ match.match_time }} • {{ match.match_date }}
+  </div>
+
+  <div class="meta">
+    👥 {{ match.required_players }} oyuncu aranıyor
+  </div>
+
+  <div class="price">
+    {{ match.price_per_player ? match.price_per_player + ' ₺' : 'Ücretsiz' }}
+  </div>
+
+  <a
+    class="detail-btn"
+    [routerLink]="['/matches', match.id]"
+  >
+    Detaya Git
+  </a>
+
+</div>

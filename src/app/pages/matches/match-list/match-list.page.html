@@ -1,0 +1,18 @@
+<section class="match-list-page">
+
+  <h1>Aktif Maçlar</h1>
+
+  <p class="subtitle">
+    Sana uygun maçları keşfet ve başvur.
+  </p>
+
+  <div class="list">
+
+    <app-match-card
+      *ngFor="let match of matches"
+      [match]="match">
+    </app-match-card>
+
+  </div>
+
+</section>

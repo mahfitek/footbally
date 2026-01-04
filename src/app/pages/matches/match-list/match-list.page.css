@@ -1,0 +1,56 @@
+.match-list-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 20px;
+  color: #fff;
+}
+
+.subtitle {
+  opacity: 0.7;
+  margin-bottom: 32px;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.match-card {
+  padding: 24px;
+  border-radius: 20px;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.12),
+    rgba(255,255,255,0.04)
+  );
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+}
+
+.location {
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.meta {
+  font-size: 14px;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.price {
+  margin: 10px 0;
+  font-weight: 600;
+  color: #7f5cff;
+}
+
+.detail-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: linear-gradient(120deg, #ffd700, #ff8c00, #7f5cff);
+  color: #000;
+  font-weight: 600;
+  text-decoration: none;
+}

@@ -1,0 +1,37 @@
+<section class="match-detail-page">
+
+  <div class="card">
+
+    <h1>{{ match.location_name }}</h1>
+
+    <div class="meta">
+      📍 {{ match.city }} / {{ match.district }}
+    </div>
+
+    <div class="meta">
+      🕒 {{ match.match_time }} • {{ match.match_date }}
+    </div>
+
+    <div class="meta">
+      👥 {{ match.required_players }} oyuncu aranıyor
+    </div>
+
+    <div class="price">
+      {{ match.price_per_player ? match.price_per_player + ' ₺' : 'Ücretsiz' }}
+    </div>
+
+    <!-- APPLY STATES -->
+    <button
+      *ngIf="!applied"
+      class="primary-btn"
+      (click)="apply()">
+      Başvur
+    </button>
+
+    <div *ngIf="applied" class="pending">
+      ⏳ Başvurun alındı, takım onayı bekleniyor
+    </div>
+
+  </div>
+
+</section>

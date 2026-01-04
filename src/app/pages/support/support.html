@@ -9,24 +9,41 @@
 
     <h2 class="page-title">Destek</h2>
     <p class="page-subtitle">
-      Yaşadığın problemi bize anlat, en kısa sürede dönüş yapalım.
+      Yaşadığınız problemi bize anlatın.  
+      Destek ekibimiz en kısa sürede inceleyip size dönüş yapacaktır.
     </p>
 
-    <input name="name" placeholder="Ad Soyad" required />
-    <input name="email" type="email" placeholder="E-posta" required />
-    <input name="phone" placeholder="Telefon" />
-    <input name="subject" placeholder="Konu" required />
+    <input
+      name="name"
+      placeholder="Ad Soyad"
+      required
+    />
+
+    <input
+      name="email"
+      type="email"
+      placeholder="E-posta adresin"
+      required
+    />
+
+    <input
+      name="phone"
+      placeholder="Telefon"
+    />
+
+    <input
+      name="subject"
+      placeholder="Konu"
+      required
+    />
 
     <textarea
       name="message"
       rows="5"
-      placeholder="Destek almak istediğiniz konuyu detaylı anlatın"
+      placeholder="Problemi detaylı şekilde anlatın"
       required
     ></textarea>
 
-    <input type="hidden" name="type" value="support" />
-
-    <!-- 🔴 Loading YOK -->
     <button class="primary-btn" type="submit">
       Gönder
     </button>
@@ -36,16 +53,26 @@
 </section>
 
 <!-- SUCCESS MODAL -->
-<div class="overlay" *ngIf="showSuccess">
-  <div class="success-box light">
+<div
+  class="overlay"
+  *ngIf="showSuccess"
+  (click)="close()"
+>
+  <div
+    class="success-box light"
+    (click)="$event.stopPropagation()"
+  >
     <div class="icon">✔</div>
 
-    <h3>Talep Alındı</h3>
+    <h3>Talebiniz alındı</h3>
     <p>
-      Destek talebiniz başarıyla alınmıştır.
-      En kısa sürede size geri dönüş yapılacaktır.
+      Destek talebiniz başarıyla oluşturuldu.  
+      Ekibimiz en kısa süre içinde sizinle iletişime geçecek.
     </p>
 
-    <button class="confirm" (click)="close()">Tamam</button>
+    <button class="confirm" (click)="close()">
+      Tamam
+    </button>
   </div>
 </div>
+
