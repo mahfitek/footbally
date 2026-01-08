@@ -1,5 +1,33 @@
 /* =========================
-   PREMIUM – GLOBAL
+   RESET – OVERRIDE KALKANI
+========================= */
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+section {
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/* =========================
+   HOST & GLOBAL
+========================= */
+:host {
+  display: block;
+  background: #0b0f1a;
+  color: #ffffff;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+section {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* =========================
+   GLOBAL SECTIONS
 ========================= */
 .premium-hero,
 .premium-values,
@@ -13,26 +41,18 @@
    HERO
 ========================= */
 .premium-hero {
-  background: radial-gradient(
-    circle at top,
-    #1b1f2a,
-    #0b0f1a
-  );
+  background: radial-gradient(circle at top, #1b1f2a, #0b0f1a);
 }
 
 .premium-hero h1 {
   font-size: 56px;
   letter-spacing: -0.6px;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
+  line-height: 1.15;
 }
 
 .premium-hero h1 span {
-  background: linear-gradient(
-    90deg,
-    #ffd700,
-    #ff8c00,
-    #7f5cff
-  );
+  background: linear-gradient(90deg, #ffd700, #ff8c00, #7f5cff);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -40,85 +60,82 @@
 .premium-subtitle {
   font-size: 20px;
   opacity: 0.85;
-  max-width: 640px;
+  max-width: 680px;
   margin: 0 auto;
+  line-height: 1.6;
 }
 
 /* =========================
    VALUES
 ========================= */
 .premium-values {
+  background: #0b0f1a;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 32px;
-  background: #0b0f1a;
+  gap: 36px;
 }
 
 .value-card {
-  padding: 36px 32px;
-  border-radius: 20px;
+  padding: 40px 36px;
+  border-radius: 22px;
 
   background: linear-gradient(
     180deg,
-    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.09),
     rgba(255,255,255,0.03)
   );
 
-  border: 1px solid rgba(255,255,255,0.12);
-  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(8px);
 
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .value-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.55);
 }
 
 .value-card h3 {
-  font-size: 20px;
-  margin-bottom: 12px;
+  font-size: 21px;
+  margin-bottom: 14px;
 }
 
 .value-card p {
   font-size: 15px;
   opacity: 0.85;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* =========================
    ROADMAP
 ========================= */
 .premium-roadmap {
-  background: linear-gradient(
-    180deg,
-    #0b0f1a,
-    #06080f
-  );
+  background: linear-gradient(180deg, #0b0f1a, #070912);
 }
 
 .premium-roadmap h2 {
   font-size: 40px;
-  margin-bottom: 48px;
+  margin-bottom: 52px;
 }
 
 .roadmap-list {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto;
   list-style: none;
   padding: 0;
 
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 26px;
 }
 
 .roadmap-list li {
-  padding: 20px 24px;
-  border-radius: 16px;
+  padding: 22px 26px;
+  border-radius: 18px;
 
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.12);
 
   display: flex;
   flex-direction: column;
@@ -127,94 +144,65 @@
 
 .roadmap-list li span {
   font-size: 14px;
-  opacity: 0.75;
+  opacity: 0.7;
 }
 
 .roadmap-list li.muted {
-  opacity: 0.5;
+  opacity: 0.45;
 }
 
 /* =========================
-   PREMIUM CTA – ULTIMATE
+   PREMIUM CTA
 ========================= */
+.premium-cta {
+  background: radial-gradient(circle at center, #151a2b, #0b0f1a);
+}
+
 .premium-cta-glow {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: 10px;
 
-  padding: 18px 54px;
+  padding: 20px 60px;
   border-radius: 999px;
   border: none;
   cursor: pointer;
 
   font-size: 16px;
   font-weight: 800;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 
   color: #000;
   overflow: hidden;
 
-  background: linear-gradient(
-    120deg,
-    #ffd700,
-    #ff8c00,
-    #7f5cff
-  );
+  background: linear-gradient(120deg, #ffd700, #ff8c00, #7f5cff);
   background-size: 300% 300%;
   animation: premiumShift 5s ease infinite;
 
   box-shadow:
-    0 16px 40px rgba(255, 215, 0, 0.45),
+    0 18px 44px rgba(255, 215, 0, 0.45),
     inset 0 0 0 1px rgba(255,255,255,0.35);
 
   transition:
     transform 0.25s ease,
-    box-shadow 0.25s ease,
-    opacity 0.25s ease;
+    box-shadow 0.25s ease;
 }
 
-/* Hover – yukarı kalk + glow */
 .premium-cta-glow:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow:
-    0 24px 60px rgba(255, 215, 0, 0.75),
+    0 28px 70px rgba(255, 215, 0, 0.75),
     inset 0 0 0 1px rgba(255,255,255,0.6);
 }
 
-/* Active */
 .premium-cta-glow:active {
   transform: translateY(-1px);
   opacity: 0.95;
 }
 
 /* =========================
-   ICON
-========================= */
-.premium-icon {
-  font-size: 18px;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
-}
-
-/* =========================
-   MINI PRO BADGE
-========================= */
-.premium-badge-mini {
-  margin-left: 6px;
-  padding: 4px 10px;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.8px;
-
-  border-radius: 999px;
-  background: rgba(0,0,0,0.25);
-  color: #fff;
-
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
-}
-
-/* =========================
-   LIGHT SWEEP EFFECT
+   CTA LIGHT SWEEP
 ========================= */
 .premium-cta-glow::after {
   content: '';
@@ -227,7 +215,7 @@
   background: linear-gradient(
     120deg,
     rgba(255,255,255,0),
-    rgba(255,255,255,0.6),
+    rgba(255,255,255,0.65),
     rgba(255,255,255,0)
   );
 
@@ -242,15 +230,25 @@
 }
 
 /* =========================
-   MOBILE POLISH
+   ICON & BADGE
 ========================= */
-@media (max-width: 600px) {
-  .premium-cta-glow {
-    padding: 18px 42px;
-    font-size: 15px;
-    width: 100%;
-    justify-content: center;
-  }
+.premium-icon {
+  font-size: 18px;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.25));
+}
+
+.premium-badge-mini {
+  margin-left: 8px;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+
+  border-radius: 999px;
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.25);
 }
 
 /* =========================
@@ -266,7 +264,611 @@
     font-size: 18px;
   }
 
-  .premium-cta h3 {
-    font-size: 26px;
+  .premium-cta-glow {
+    width: 100%;
+    justify-content: center;
+    padding: 18px 42px;
+    font-size: 15px;
   }
+}
+/* =========================
+   HERO – PREMIUM VITRIN
+========================= */
+.premium-hero {
+  padding: 140px 32px 160px;
+  background: radial-gradient(circle at top, #1b1f2a, #0b0f1a);
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.premium-hero h1 {
+  font-size: 56px;
+  line-height: 1.15;
+  letter-spacing: -0.6px;
+  margin-bottom: 20px;
+}
+
+.premium-hero h1 span {
+  background: linear-gradient(90deg, #ffd700, #ff8c00, #7f5cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.premium-subtitle {
+  font-size: 20px;
+  opacity: 0.85;
+  margin-bottom: 40px;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* Secondary button intentionally quiet */
+.hero-secondary {
+  background: transparent;
+  border: none;
+  color: #cfcfd6;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.hero-secondary:hover {
+  opacity: 1;
+}
+
+/* =========================
+   HERO CARDS (VITRIN)
+========================= */
+.hero-cards {
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 28px;
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-card {
+  padding: 36px 32px;
+  border-radius: 22px;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.03)
+  );
+
+  border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border 0.35s ease;
+}
+
+.hero-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 70px rgba(0,0,0,0.55);
+  border-color: rgba(255,255,255,0.25);
+}
+
+.hero-card.highlight {
+  background: linear-gradient(
+    180deg,
+    rgba(255,215,0,0.18),
+    rgba(255,255,255,0.04)
+  );
+  border-color: rgba(255,215,0,0.35);
+}
+
+.card-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+}
+
+.hero-card h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.hero-card p {
+  font-size: 15px;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+/* =========================
+   AGGRESSIVE MODE
+========================= */
+
+.hero-card h3 {
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+.hero-card.highlight h3 {
+  background: linear-gradient(90deg, #ffd700, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-card p {
+  color: #e5e7eb;
+}
+
+.hero-card.highlight {
+  box-shadow:
+    0 0 0 1px rgba(255,215,0,0.35),
+    0 30px 80px rgba(255, 215, 0, 0.35);
+}
+
+/* subtle shake on hover (psychological pressure) */
+.hero-card:hover {
+  transform: translateY(-10px) scale(1.015);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 600px) {
+  .premium-hero {
+    padding: 100px 24px 120px;
+  }
+
+  .premium-hero h1 {
+    font-size: 42px;
+  }
+
+  .premium-subtitle {
+    font-size: 18px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-cards {
+    margin-top: 60px;
+  }
+}
+/* =========================
+   PREMIUM TRUTH SECTION
+========================= */
+.premium-truth {
+  padding: 140px 32px;
+  background: linear-gradient(180deg, #0b0f1a, #060812);
+  text-align: center;
+}
+
+.truth-title {
+  font-size: 40px;
+  margin-bottom: 64px;
+  letter-spacing: -0.4px;
+}
+
+/* =========================
+   TRUTH CARDS GRID
+========================= */
+.truth-cards {
+  max-width: 1100px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 36px;
+}
+
+/* =========================
+   TRUTH CARD BASE
+========================= */
+.truth-card {
+  padding: 42px 36px;
+  border-radius: 24px;
+  text-align: left;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.03)
+  );
+
+  border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border 0.35s ease;
+}
+
+.truth-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  border-color: rgba(255,255,255,0.28);
+}
+
+/* =========================
+   ICON
+========================= */
+.truth-icon {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   HEADINGS & TEXT
+========================= */
+.truth-card h3 {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.truth-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+.truth-strong {
+  margin-top: 12px;
+  font-weight: 700;
+}
+
+.truth-muted {
+  margin-top: 14px;
+  font-size: 14px;
+  opacity: 0.65;
+}
+
+/* =========================
+   LIST
+========================= */
+.truth-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+}
+
+.truth-card ul li {
+  margin-bottom: 10px;
+  padding-left: 20px;
+  position: relative;
+  font-size: 15px;
+}
+
+.truth-card ul li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: #8b5cf6;
+}
+
+/* =========================
+   VARIANTS
+========================= */
+.truth-card.negative {
+  border-color: rgba(255,80,80,0.35);
+}
+
+.truth-card.negative h3 {
+  color: #ff6b6b;
+}
+
+.truth-card.positive {
+  border-color: rgba(255,215,0,0.35);
+}
+
+.truth-card.positive h3 {
+  background: linear-gradient(90deg, #ffd700, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 600px) {
+  .truth-title {
+    font-size: 32px;
+    margin-bottom: 48px;
+  }
+
+  .truth-card {
+    padding: 36px 28px;
+  }
+}
+/* =========================
+   PREMIUM BENEFITS
+========================= */
+.premium-benefits {
+  padding: 140px 32px;
+  background: linear-gradient(180deg, #060812, #0b0f1a);
+  text-align: center;
+}
+
+.benefits-title {
+  font-size: 40px;
+  margin-bottom: 20px;
+  letter-spacing: -0.4px;
+}
+
+.benefits-subtitle {
+  font-size: 18px;
+  opacity: 0.85;
+  margin-bottom: 72px;
+  line-height: 1.6;
+}
+
+/* =========================
+   GRID
+========================= */
+.benefits-grid {
+  max-width: 1100px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 36px;
+}
+
+/* =========================
+   CARD BASE
+========================= */
+.benefit-card {
+  padding: 42px 36px;
+  border-radius: 26px;
+  text-align: left;
+
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.03)
+  );
+
+  border: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(10px);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border 0.35s ease;
+}
+
+.benefit-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+  border-color: rgba(255,255,255,0.28);
+}
+
+/* =========================
+   ICON & TEXT
+========================= */
+.benefit-icon {
+  font-size: 28px;
+  margin-bottom: 18px;
+}
+
+.benefit-card h3 {
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+
+.benefit-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+/* =========================
+   NOTES
+========================= */
+.benefit-note {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* =========================
+   VARIANTS
+========================= */
+.benefit-card.highlight {
+  border-color: rgba(255,215,0,0.4);
+  box-shadow: 0 0 0 1px rgba(255,215,0,0.25);
+}
+
+.benefit-card.highlight h3 {
+  background: linear-gradient(90deg, #ffd700, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.benefit-card.ai {
+  border-color: rgba(127,92,255,0.35);
+}
+
+.benefit-card.ai h3 {
+  color: #c9b7ff;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 600px) {
+  .benefits-title {
+    font-size: 32px;
+  }
+
+  .benefits-subtitle {
+    font-size: 16px;
+    margin-bottom: 56px;
+  }
+
+  .benefit-card {
+    padding: 36px 28px;
+  }
+}
+.benefit-card h3 {
+  letter-spacing: -0.2px;
+}
+/* =========================
+   FINAL CTA
+========================= */
+.premium-final {
+  padding: 160px 32px 180px;
+  background: radial-gradient(
+    circle at center,
+    #151a2b,
+    #0b0f1a
+  );
+  text-align: center;
+}
+
+.final-content {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* =========================
+   HEADLINE
+========================= */
+.final-content h2 {
+  font-size: 44px;
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+  margin-bottom: 20px;
+}
+
+.final-content h2 span {
+  background: linear-gradient(90deg, #ffd700, #ff8c00, #7f5cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =========================
+   SUBTITLE
+========================= */
+.final-subtitle {
+  font-size: 18px;
+  opacity: 0.85;
+  margin-bottom: 48px;
+  line-height: 1.6;
+}
+
+/* =========================
+   PRICE
+========================= */
+.final-price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.price-main {
+  font-size: 56px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.price-sub {
+  font-size: 20px;
+  opacity: 0.75;
+}
+
+.price-note {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+.final-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.final-secondary {
+  background: transparent;
+  border: none;
+  color: #cfcfd6;
+  font-size: 14px;
+  cursor: pointer;
+  opacity: 0.75;
+}
+
+.final-secondary:hover {
+  opacity: 1;
+}
+
+/* =========================
+   TRUST NOTE
+========================= */
+.final-trust {
+  font-size: 13px;
+  opacity: 0.6;
+  line-height: 1.5;
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 600px) {
+  .premium-final {
+    padding: 120px 24px 140px;
+  }
+
+  .final-content h2 {
+    font-size: 34px;
+  }
+
+  .final-subtitle {
+    font-size: 16px;
+  }
+
+  .final-actions {
+    flex-direction: column;
+  }
+
+  .price-main {
+    font-size: 48px;
+  }
+}
+/* =========================
+   HERO FULL WIDTH OVERRIDE
+========================= */
+.premium-hero {
+  width: 100vw !important;
+  margin-left: calc(50% - 50vw) !important;
+  margin-right: calc(50% - 50vw) !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.hero-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.hero-cards {
+  max-width: 1200px;
+  margin: 96px auto 0;
+  padding: 0 32px;
 }

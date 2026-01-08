@@ -1,120 +1,152 @@
-.detail-page {
-  padding: 120px 20px;
-  background: #f8fafc;
+.team-detail {
+  padding: 24px;
+  color: #fff;
 }
 
-.detail-container {
-  max-width: 1100px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 40px;
-}
-
-/* SOL KISIM */
-.detail-main {
-  background: white;
-  padding: 40px;
-  border-radius: 24px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.1);
-}
+/* ================= HEADER ================= */
 
 .team-header {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 24px;
-}
-
-.team-logo {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: #0f172a;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-}
-
-.description {
-  font-size: 16px;
-  color: #555;
+  background: linear-gradient(135deg, #0b1020, #140a2e);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 10px 40px rgba(120, 80, 255, 0.15);
   margin-bottom: 32px;
 }
 
-.info-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+.team-info h2 {
+  margin: 0 0 6px;
+  font-size: 26px;
 }
 
-.info-grid strong {
-  display: block;
-  margin-bottom: 4px;
-}
-
-.price {
-  color: #16a34a;
+.premium-badge {
+  margin-left: 10px;
+  background: linear-gradient(90deg, #f5c97a, #b98cff);
+  color: #1a102f;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 12px;
   font-weight: 700;
 }
 
-/* SAĞ KISIM */
-.detail-side {
-  background: #0f172a;
+.muted {
+  opacity: 0.75;
+  margin-bottom: 4px;
+}
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.rating-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.rating-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #9f7bff, #ffb86c);
+}
+
+.team-stats {
+  display: flex;
+  gap: 18px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* ================= ADS ================= */
+
+.section-title {
+  margin: 10px 0 16px;
+  font-size: 20px;
+}
+
+.ads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.ad-card {
+  background: linear-gradient(160deg, #11162b, #1a1038);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+  border: 1px solid rgba(140,100,255,0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.ad-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 40px rgba(130,90,255,0.25);
+}
+
+.ad-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.pin {
+  color: #ff6b81;
+}
+
+.time {
+  font-size: 14px;
+}
+
+.ad-body {
+  margin: 12px 0 16px;
+}
+
+.field {
+  font-weight: 600;
+}
+
+.need {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+/* ================= BUTTON ================= */
+
+.apply-btn {
+  background: linear-gradient(90deg, #7b5cff, #b388ff);
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
   color: white;
-  padding: 36px;
-  border-radius: 24px;
-  height: fit-content;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
-}
-
-.detail-side h3 {
-  margin-bottom: 12px;
-}
-
-.detail-side p {
-  font-size: 14px;
-  margin-bottom: 24px;
-  color: #cbd5f5;
-}
-
-/* BUTONLAR */
-.btn {
-  padding: 14px 20px;
-  border-radius: 999px;
-  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  margin-bottom: 12px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: opacity .2s ease, transform .1s ease;
 }
 
-.btn.full {
-  width: 100%;
+.apply-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
-.btn.primary {
-  background: #16a34a;
-  color: white;
-  border: none;
+.apply-btn:disabled {
+  background: #2a2a3d;
+  color: #aaa;
+  cursor: default;
 }
 
-.btn.outline {
-  background: transparent;
-  border: 1px solid #475569;
-  color: #e5e7eb;
-}
+/* ================= NOT FOUND ================= */
 
-.btn:hover {
-  transform: scale(1.04);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  .detail-container {
-    grid-template-columns: 1fr;
-  }
+.not-found {
+  padding: 40px;
+  text-align: center;
+  opacity: 0.7;
 }

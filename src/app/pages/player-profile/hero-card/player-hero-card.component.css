@@ -1,5 +1,12 @@
+:host {
+  display: flex;
+  height: 100%;
+}
+
+/* ROOT CARD */
 .fifa-card {
-  width: 260px;
+  width: 100%;              /* ❗ 260px SİLİNDİ */
+  height: 100%;             /* 🔥 WRAPPER’I DOLDUR */
   padding: 14px;
   border-radius: 18px;
   color: #111;
@@ -7,6 +14,9 @@
   box-shadow: 0 22px 40px rgba(0,0,0,0.6);
   text-align: center;
   position: relative;
+
+  display: flex;            /* 🔥 FLEX LAYOUT */
+  flex-direction: column;   /* 🔥 DİKEY */
 }
 
 /* TIERS */
@@ -87,13 +97,21 @@
   opacity: 0.7;
 }
 
-/* FOOTER */
+/* 👉 BOŞLUĞU YOK EDEN KISIM */
+.stats,
+.player-image,
+.player-name {
+  flex-shrink: 0;
+}
+
+/* FOOTER HER ZAMAN EN ALTA */
 .card-footer {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: auto;   /* 🔥 ALTTA KİLİTLE */
   font-size: 12px;
 }
+
 .premium {
   font-weight: 800;
 }
@@ -104,6 +122,7 @@
   opacity: 0.6;
   margin-top: 6px;
 }
+
 /* TIER POLISH */
 .fifa-card[data-tier="bronze"] {
   box-shadow: 0 0 0 1px rgba(255,255,255,0.15),
@@ -125,4 +144,163 @@
     0 0 0 2px rgba(255,220,120,0.9),
     0 0 18px rgba(255,200,80,0.6),
     0 18px 42px rgba(0,0,0,0.7);
+}
+.overall.locked {
+  filter: blur(4px);
+  opacity: 0.6;
+}
+.player-image {
+  margin-top: 40px;
+  position: relative;
+}
+
+.player-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto;
+  display: block;
+}
+
+.photo-warning {
+  margin-top: 6px;
+  font-size: 11px;
+  opacity: 0.75;
+}
+.player-image {
+  margin-top: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255,255,255,0.5);
+  box-shadow: 0 0 12px rgba(0,0,0,0.4);
+}
+
+/* FOTO YOKKEN */
+.upload-btn {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 2px dashed rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #111;
+  cursor: pointer;
+  transition: 0.2s;
+  text-align: center;
+  padding: 8px;
+}
+
+.upload-btn:hover {
+  background: rgba(255,255,255,0.3);
+}
+.player-image {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.85);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.upload-btn,
+.change-photo-btn {
+  cursor: pointer;
+  font-size: 11px;
+  color: #7cc9ff;
+  margin-top: 6px;
+}
+
+.player-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.photo-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.save-photo-btn {
+  background: linear-gradient(90deg,#7b2cff,#4cc9f0);
+  border: none;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.player-image {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.photo-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255,255,255,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.85);
+  font-size: 12px;
+}
+
+.upload-btn,
+.change-photo-btn {
+  cursor: pointer;
+  font-size: 11px;
+  color: #7cc9ff;
+  margin-top: 6px;
+}
+
+.player-photo {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.photo-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.save-photo-btn {
+  background: linear-gradient(90deg,#7b2cff,#4cc9f0);
+  border: none;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  cursor: pointer;
 }

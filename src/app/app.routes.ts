@@ -103,15 +103,20 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
-  // MATCHES — CREATE (ÖNCE!)
+  // =========================
+  // MATCHES
+  // =========================
+
+  // CREATE MATCH  ✅ COMPONENT
   {
     path: 'matches/create',
     loadComponent: () =>
-      import('./pages/matches/create-match/create-match.page')
-        .then(m => m.CreateMatchPage),
+      import('./components/create-match/create-match.component')
+        .then(m => m.CreateMatchComponent),
+    canActivate: [authGuard]
   },
 
-  // MATCHES — LIST
+  // MATCH LIST
   {
     path: 'matches',
     loadComponent: () =>
@@ -119,7 +124,7 @@ export const routes: Routes = [
         .then(m => m.MatchListPage),
   },
 
-  // MATCHES — DETAIL (EN SON)
+  // MATCH DETAIL
   {
     path: 'matches/:id',
     loadComponent: () =>
@@ -127,7 +132,7 @@ export const routes: Routes = [
         .then(m => m.MatchDetailPage),
   },
 
-  // FALLBACK (HER ZAMAN EN SON)
+  // FALLBACK
   {
     path: '**',
     redirectTo: ''

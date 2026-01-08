@@ -1,63 +1,309 @@
+/* ================= BASE ================= */
+
 .team-profile {
   padding: 80px 60px;
   color: #fff;
 }
 
-.profile-card {
-  max-width: 650px;
-  background: rgba(255,255,255,0.05);
-  padding: 32px;
-  border-radius: 20px;
+.team-profile h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
 }
+
+.subtitle {
+  opacity: .7;
+  margin-bottom: 24px;
+}
+
+.team-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+}
+
+/* ================= CARDS ================= */
+
+.profile-card,
+.match-preview-card {
+  background: linear-gradient(180deg, rgba(20,24,45,.95), rgba(10,12,25,.98));
+  padding: 32px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+}
+
+.match-preview-card h3 {
+  margin-bottom: 14px;
+}
+
+/* ================= INPUTS ================= */
 
 input,
-textarea {
+textarea,
+select {
   width: 100%;
-  padding: 14px;
+  padding: 14px 16px;
   margin-bottom: 14px;
-  border-radius: 12px;
-  border: none;
-  background: rgba(255,255,255,0.08);
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
   color: #fff;
+  font-size: 14px;
 }
 
-.row {
+.select-row {
   display: flex;
   gap: 12px;
 }
 
-.positions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.positions button {
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  background: rgba(255,255,255,0.1);
-  color: #fff;
-}
-
-.positions button.active {
-  background: #22c55e;
-  color: #000;
-}
+/* ================= BUTTON ================= */
 
 .save-btn {
-  padding: 14px;
+  margin-top: 18px;
+  padding: 16px;
   width: 100%;
   border-radius: 999px;
   border: none;
   cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  color: #000;
+  background: linear-gradient(90deg,#7b2cff,#f5c77a);
+  box-shadow: 0 0 18px rgba(123,44,255,.45);
+}
+
+/* ================= FORMATION CARD LAYOUT ================= */
+
+.formation-card {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 20px;
+}
+
+/* sol panel */
+.formation-left {
+  display: flex;
+  flex-direction: column;
+}
+
+/* sağ panel */
+.formation-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================= BUTTONS ================= */
+
+.formation-formats,
+.formation-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.formation-formats button,
+.formation-list button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  cursor: pointer;
   font-weight: 600;
-  background: linear-gradient(
-    120deg,
-    #00d4ff,
-    #7f5cff,
-    #ffd700
+}
+
+.formation-formats button.active {
+  background: linear-gradient(135deg,#7b2cff,#4cc9f0);
+  color: #000;
+  border: none;
+}
+
+.formation-list button.active {
+  background: linear-gradient(135deg,#4cc9f0,#f5c77a);
+  color: #000;
+  border: none;
+}
+
+/* ================= PLAYER LIST ================= */
+
+.player-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.player-row span {
+  width: 40px;
+  font-weight: 700;
+  color: #7dd3fc;
+  font-size: 12px;
+}
+
+/* ================= FOOTBALL PITCH ================= */
+
+.pitch {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  height: 620px;                 /* 🔥 SABİT YÜKSEKLİK */
+  margin: 0 auto;
+
+  background: repeating-linear-gradient(
+    0deg,
+    #1f8f3a,
+    #1f8f3a 40px,
+    #1b7f34 40px,
+    #1b7f34 80px
   );
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.8);
+}
+
+/* saha çizgileri */
+.field-outline {
+  position: absolute;
+  inset: 10px;
+  border: 2px solid #fff;
+  border-radius: 12px;
+}
+
+.half-line {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  right: 10px;
+  height: 2px;
+  background: #fff;
+}
+
+.center-circle {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.center-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.penalty-area {
+  position: absolute;
+  width: 60%;
+  height: 26%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #fff;
+}
+
+.penalty-area.top { top: 10px; }
+.penalty-area.bottom { bottom: 10px; }
+
+.goal-area {
+  position: absolute;
+  width: 30%;
+  height: 14%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 2px solid #fff;
+}
+
+.goal-area.top { top: 10px; }
+.goal-area.bottom { bottom: 10px; }
+
+.penalty-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.penalty-dot.top { top: 22%; }
+.penalty-dot.bottom { bottom: 22%; }
+
+/* ================= PLAYER FINAL FIX ================= */
+
+/* saha kenarından taşmaması için iç boşluk */
+.pitch {
+  padding: 14px;
+  box-sizing: border-box;
+}
+
+/* oyuncu noktası — HER ZAMAN MERKEZDEN HESAPLA */
+.player-node {
+  position: absolute;
+  transform: translate(-50%, -50%);  /* ✅ X ve Y sabit */
+  text-align: center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* balon */
+.circle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg,#7b2cff,#4cc9f0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 12px;
+  color: #000;
+  box-shadow: 0 0 12px rgba(123,44,255,.8);
+  margin: 0 auto;
+}
+
+/* isim BALONU ETKİLEMEZ */
+.player-name {
+  position: absolute;
+  top: 42px;                 /* dairenin altına sabit */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 11px;
+  color: #fff;
+  opacity: .95;
+  max-width: 90px;
+  text-align: center;
+  line-height: 1.1;
+
+  white-space: normal;      /* ❌ ... yok */
+  overflow: visible;
+}
+/* ===== SELECT DROPDOWN FIX ===== */
+
+select {
+  color: #fff;
+  background-color: rgba(255,255,255,0.06);
+}
+
+/* Açılan liste */
+select option {
+  background: #0b1020;   /* koyu arka plan */
+  color: #ffffff;        /* beyaz yazı */
+}
+
+/* Windows select hover fix */
+select option:checked,
+select option:hover {
+  background: #7b2cff;
+  color: #fff;
 }

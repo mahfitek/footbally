@@ -1,0 +1,22 @@
+.ai-preview {
+  position: relative;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.04);
+}
+
+.ai-preview p {
+  filter: blur(4px);
+  opacity: 0.6;
+}
+
+.ai-lock {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  background: rgba(0,0,0,0.35);
+  border-radius: 12px;
+}

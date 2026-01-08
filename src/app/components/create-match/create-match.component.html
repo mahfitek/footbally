@@ -1,0 +1,120 @@
+<section class="create-match">
+
+  <h1>Maç İlanı Oluştur</h1>
+  <p class="subtitle">Maç bilgilerini gir, eksik oyuncular başvursun.</p>
+
+  <div class="card">
+
+    <div class="grid-2">
+      <input
+        type="date"
+        [(ngModel)]="match.date"
+        [min]="todayDate"
+        (change)="onDateChange()"
+      />
+
+      <input
+        type="time"
+        [(ngModel)]="match.time"
+        [min]="minTime"
+      />
+    </div>
+
+    <input
+      type="text"
+      placeholder="Halı saha adı / konum"
+      [(ngModel)]="match.location"
+    />
+
+    <div class="grid-2">
+      <select [(ngModel)]="match.city" (change)="onCityChange()">
+        <option value="">Şehir Seç</option>
+        <option *ngFor="let c of cities" [value]="c">{{ c }}</option>
+      </select>
+
+      <select [(ngModel)]="match.district" [disabled]="!match.city">
+        <option value="">İlçe Seç</option>
+        <option *ngFor="let d of districts" [value]="d">{{ d }}</option>
+      </select>
+    </div>
+
+    <div class="grid-2">
+      <select [(ngModel)]="match.fieldType">
+        <option value="">Saha Türü</option>
+        <option value="Açık">Açık</option>
+        <option value="Kapalı">Kapalı</option>
+      </select>
+
+      <select [(ngModel)]="match.format">
+        <option value="">Maç Formatı</option>
+        <option value="5v5">5v5</option>
+        <option value="7v7">7v7</option>
+        <option value="8v8">8v8</option>
+        <option value="11v11">11v11</option>
+      </select>
+    </div>
+
+    <div class="grid-2">
+      <input
+        type="number"
+        placeholder="Kaç oyuncu aranıyor?"
+        [(ngModel)]="match.playersNeeded"
+      />
+
+      <input
+        type="number"
+        placeholder="Kişi başı ücret (₺)"
+        [(ngModel)]="match.price"
+      />
+    </div>
+
+    <!-- TOGGLES -->
+    <div class="toggles">
+      <label class="toggle">
+        <input type="checkbox" [(ngModel)]="match.travelCovered" />
+        <span></span>
+        Yol masrafı karşılanır
+      </label>
+
+      <label class="toggle">
+        <input type="checkbox" [(ngModel)]="match.foodCovered" />
+        <span></span>
+        Yemek / içecek karşılanır
+      </label>
+    </div>
+
+    <h3>Aranan Pozisyonlar</h3>
+
+    <div class="positions">
+      <button
+        *ngFor="let pos of positions"
+        (click)="togglePosition(pos)"
+        [class.active]="match.neededPositions.includes(pos)"
+      >
+        {{ pos }}
+      </button>
+    </div>
+
+    <textarea
+      placeholder="İlan açıklaması (seviye, ortam, ekstra bilgiler vs.)"
+      [(ngModel)]="match.description"
+    ></textarea>
+
+    <button class="save-btn" (click)="createMatch()">
+      Maç İlanını Yayınla
+    </button>
+
+  </div>
+</section>
+
+<!-- SUCCESS MODAL -->
+<div class="success-modal-backdrop" *ngIf="showSuccessModal">
+  <div class="success-modal">
+    <h3>İlan Oluşturuldu ✅</h3>
+    <p>Maç ilanı başarıyla yayınlandı.</p>
+
+    <button (click)="closeModalAndGoProfile()">
+      Takım Profiline Dön
+    </button>
+  </div>
+</div>

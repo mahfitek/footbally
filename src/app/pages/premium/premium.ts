@@ -6,4 +6,16 @@ import { Component } from '@angular/core';
   templateUrl: './premium.html',
   styleUrls: ['./premium.css'],
 })
-export class PremiumComponent {}
+export class PremiumComponent {
+  goToBenefits(): void {
+    // avantajlar bölümüne scroll veya route
+    document
+      .querySelector('.premium-does')
+      ?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  continueFree(): void {
+    // free akışa geri dönüş (route veya history)
+    window.history.back();
+  }
+}

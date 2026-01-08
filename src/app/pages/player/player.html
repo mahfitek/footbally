@@ -1,6 +1,102 @@
-<app-empty-state
-  *ngIf="listings.length === 0"
-  title="Henüz oyuncu bulunamadı"
-  description="Takımlar ilan verdiğinde burada listelenecek."
-  actionText="Yenile"
-></app-empty-state>
+<section class="player-page">
+
+  <h2>Oyuncu Filtrele</h2>
+
+  <div class="filters">
+
+    <div class="row">
+      <select [(ngModel)]="filter.position" (change)="applyFilters()">
+        <option value="">Pozisyon</option>
+        <option>GK</option>
+        <option>DEF</option>
+        <option>MID</option>
+        <option>WING</option>
+        <option>ST</option>
+      </select>
+
+      <select [(ngModel)]="filter.city" (change)="onCityChange()">
+        <option value="">Şehir</option>
+        <option *ngFor="let c of cities">{{c}}</option>
+      </select>
+
+      <select [(ngModel)]="filter.district" (change)="applyFilters()">
+        <option value="">İlçe</option>
+        <option *ngFor="let d of districts">{{d}}</option>
+      </select>
+    </div>
+
+    <!-- PREMIUM FİLTRELER -->
+<div class="row premium">
+
+  <div class="premium-lock" *ngIf="!isTeamPremium">
+    🔒 Premium ile açılır
+  </div>
+
+  <ng-container *ngIf="isTeamPremium">
+
+    <label class="check">
+      <input type="checkbox" [(ngModel)]="filter.premiumOnly" (change)="applyFilters()" />
+      Sadece Premium Oyuncular
+    </label>
+
+    <select [(ngModel)]="filter.minScore" (change)="applyFilters()">
+      <option [ngValue]="0">Puan</option>
+      <option [ngValue]="4.0">4.0+</option>
+      <option [ngValue]="4.5">4.5+</option>
+      <option [ngValue]="4.8">4.8+</option>
+    </select>
+
+  </ng-container>
+
+</div>
+
+    <!-- SORT -->
+    <div class="row">
+      <select [(ngModel)]="filter.sort" (change)="applyFilters()">
+        <option value="lastActive">Son Aktif</option>
+        <option value="scoreDesc">Puan (Yüksekten→ Düşüğe)</option>
+        <option value="scoreAsc">Puan (Düşükten → Yükseğe)</option>
+        <option value="priceDesc">Fiyat (Yüksekten → Düşüğe)</option>  
+        <option value="priceAsc">Fiyat (Düşükten → Yükseğe)</option>
+        
+      </select>
+    </div>
+
+  </div>
+
+  <!-- PLAYER CARDS -->
+  <div class="player-grid">
+
+    <div class="player-card" *ngFor="let p of filteredPlayers">
+
+  <div class="card-glow"></div>
+
+  <div class="top">
+    <span class="name">{{p.name}}</span>
+    <span class="badge" *ngIf="p.isPremium">PRO</span>
+  </div>
+
+  <div class="rating">
+    ⭐ {{p.score.toFixed(1)}}
+  </div>
+
+  <div class="meta">
+    <span>{{p.position}}</span>
+    <span>{{p.city}}</span>
+  </div>
+
+  <div class="price">
+    <span *ngIf="p.price===0">Ücretsiz</span>
+    <span *ngIf="p.price>0">{{p.price}} ₺</span>
+  </div>
+
+  <button class="invite-btn" (click)="quickInvite(p)">
+    ⚡ Hızlı Davet
+  </button>
+
+</div>
+
+
+  </div>
+
+</section>

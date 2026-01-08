@@ -1,63 +1,184 @@
 <section class="team-profile">
+
   <h1>Takım Profili</h1>
+  <p class="subtitle">Takım bilgilerini doldur, sonra maç ilanı oluştur.</p>
 
-  <div class="profile-card">
-    <input
-      type="text"
-      placeholder="Takım Adı"
-      [(ngModel)]="profile.teamName"
-    />
+  <!-- ================= FORM ================= -->
+  <div class="team-layout" *ngIf="!hasTeamProfile">
 
-    <div class="row">
+    <div class="profile-card">
+
       <input
         type="text"
-        placeholder="Şehir"
-        [(ngModel)]="profile.city"
+        placeholder="Takım Adı"
+        [(ngModel)]="profile.teamName"
+        [class.error]="submitted && !profile.teamName"
       />
+
+      <div class="select-row">
+        <select
+          [(ngModel)]="profile.city"
+          (change)="onCityChange()"
+          [class.error]="submitted && !profile.city"
+        >
+          <option value="">Şehir Seç</option>
+          <option *ngFor="let c of cities" [value]="c">{{ c }}</option>
+        </select>
+
+        <select
+          [(ngModel)]="profile.district"
+          [class.error]="submitted && !profile.district"
+        >
+          <option value="">İlçe Seç</option>
+          <option *ngFor="let d of districts" [value]="d">{{ d }}</option>
+        </select>
+      </div>
+
       <input
         type="text"
-        placeholder="İlçe"
-        [(ngModel)]="profile.district"
+        placeholder="Takım Seviyesi (Amatör / Yarı Pro vs.)"
+        [(ngModel)]="profile.leagueLevel"
       />
-    </div>
 
-    <input
-      type="text"
-      placeholder="Lig Seviyesi (Amatör / Bölgesel / Süper vs.)"
-      [(ngModel)]="profile.leagueLevel"
-    />
+      <textarea
+        placeholder="Takım hakkında kısa açıklama"
+        [(ngModel)]="profile.description"
+      ></textarea>
 
-    <h3>Aranan Pozisyonlar</h3>
-    <div class="positions">
-      <button
-        *ngFor="let pos of positions"
-        (click)="togglePosition(pos)"
-        [class.active]="profile.neededPositions.includes(pos)"
-      >
-        {{ pos }}
+      <button class="save-btn" (click)="saveTeam()">
+        Takımı Oluştur
       </button>
+
     </div>
 
-    <div class="row">
-      <input
-        type="number"
-        placeholder="Min Bütçe"
-        [(ngModel)]="profile.budgetMin"
-      />
-      <input
-        type="number"
-        placeholder="Max Bütçe"
-        [(ngModel)]="profile.budgetMax"
-      />
-    </div>
-
-    <textarea
-      placeholder="Takım hakkında kısa açıklama"
-      [(ngModel)]="profile.description"
-    ></textarea>
-
-    <button class="save-btn" (click)="save()">
-      Profili Kaydet
-    </button>
   </div>
+
+  <!-- ================= TEAM VIEW ================= -->
+  <div class="team-layout" *ngIf="hasTeamProfile">
+
+    <!-- TEAM CARD -->
+    <div class="profile-card">
+
+      <h3>{{ profile.teamName }}</h3>
+      <p>{{ profile.city }} / {{ profile.district }}</p>
+      <p *ngIf="profile.leagueLevel"><b>Seviye:</b> {{ profile.leagueLevel }}</p>
+      <p *ngIf="profile.description">{{ profile.description }}</p>
+
+      <button class="save-btn" (click)="goToCreateMatch()">
+        Maç İlanı Oluştur
+      </button>
+
+    </div>
+
+    <!-- MATCH CARD -->
+    <div class="match-preview-card" *ngIf="hasMatch && matchPreview">
+
+      <h3>Son Maç İlanın</h3>
+
+      <p><b>Şehir:</b> {{ matchPreview.city }} / {{ matchPreview.district }}</p>
+      <p><b>Tarih:</b> {{ matchPreview.date }} — {{ matchPreview.time }}</p>
+      <p><b>Saha:</b> {{ matchPreview.fieldType }}</p>
+      <p><b>Format:</b> {{ matchPreview.format }}</p>
+      <p><b>Aranan Oyuncu:</b> {{ matchPreview.neededPlayers }}</p>
+
+      <p *ngIf="matchPreview.price && matchPreview.price > 0">
+        <b>Kişi Başı Ücret:</b> {{ matchPreview.price }} ₺
+      </p>
+
+      <span class="free-badge" *ngIf="!matchPreview.price || matchPreview.price === 0">
+        Ücretsiz
+      </span>
+
+      <p *ngIf="matchPreview.travelCovered">🚗 Yol masrafı karşılanır</p>
+      <p *ngIf="matchPreview.foodCovered">🍔 Yemek / içecek var</p>
+
+    </div>
+
+    <!-- ================= FORMATION CARD ================= -->
+    <div class="match-preview-card formation-card">
+
+      <div class="formation-left">
+
+        <h3>Takım Dizilişi</h3>
+
+        <!-- FORMAT SELECT -->
+        <div class="formation-formats">
+          <button
+            *ngFor="let f of formats"
+            (click)="selectedFormat = f; onFormatChange()"
+            [class.active]="selectedFormat === f"
+          >
+            {{ f }}
+          </button>
+        </div>
+
+        <!-- FORMATION BUTTONS -->
+        <div class="formation-list" *ngIf="availableFormations.length">
+          <button
+            *ngFor="let f of availableFormations"
+            (click)="selectFormation(f)"
+            [class.active]="selectedFormation?.name === f.name"
+          >
+            {{ f.name }}
+          </button>
+        </div>
+
+        <!-- PLAYER INPUT LIST -->
+        <div class="player-list" *ngIf="selectedFormation">
+
+          <div
+            class="player-row"
+            *ngFor="let pos of selectedFormation.positions; let i = index"
+          >
+            <span class="pos">{{ pos }}</span>
+
+            <input
+              type="text"
+              placeholder="Oyuncu adı"
+              [(ngModel)]="formationPlayers[i]"
+            />
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="formation-right">
+
+        <div class="pitch" *ngIf="selectedFormation">
+
+          <div class="field-outline"></div>
+          <div class="half-line"></div>
+
+          <div class="center-circle"></div>
+          <div class="center-dot"></div>
+
+          <div class="penalty-area top"></div>
+          <div class="goal-area top"></div>
+          <div class="penalty-dot top"></div>
+
+          <div class="penalty-area bottom"></div>
+          <div class="goal-area bottom"></div>
+          <div class="penalty-dot bottom"></div>
+
+          <div
+            class="player-node"
+            *ngFor="let p of pitchLayouts[selectedFormation.name]; let i = index"
+            [style.left.%]="p.x"
+            [style.top.%]="p.y"
+          >
+            <div class="circle">{{ selectedFormation.positions[i] }}</div>
+            <div class="player-name">
+              {{ formationPlayers[i] || 'Oyuncu' }}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div> <!-- formation-card -->
+
+  </div> <!-- team-layout (hasTeamProfile) -->
+
 </section>

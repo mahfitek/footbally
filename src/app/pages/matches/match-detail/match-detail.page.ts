@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { PremiumInfoBoxComponent } from 
+  '../../../shared/components/premium-lock/info-box/premium-info-box.component';
 
 @Component({
   selector: 'app-match-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, PremiumInfoBoxComponent],
   templateUrl: './match-detail.page.html',
   styleUrls: ['./match-detail.page.css'],
 })

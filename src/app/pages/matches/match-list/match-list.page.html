@@ -1,18 +1,39 @@
 <section class="match-list-page">
 
-  <h1>Aktif Maçlar</h1>
+  <div class="header">
+    <h1>Aktif Maçlar</h1>
+    <p class="subtitle">Sana uygun maçları keşfet ve başvur.</p>
+  </div>
 
-  <p class="subtitle">
-    Sana uygun maçları keşfet ve başvur.
+  <!-- FILTER BAR (UI only) -->
+  <div class="filters">
+    <div class="filter-pill active">Tümü</div>
+    <div class="filter-pill">Bugün</div>
+    <div class="filter-pill">Ücretsiz</div>
+    <div class="filter-pill">Yakın</div>
+  </div>
+<!-- EMPTY STATE -->
+<div
+  *ngIf="matches.length === 0"
+  class="empty-state">
+
+  <h2>Henüz aktif maç yok</h2>
+  <p>
+    İlk ilanı sen aç, oyuncuları hemen bul.
   </p>
 
-  <div class="list">
+  <a routerLink="/matches/create" class="primary-btn">
+    Maç İlanı Oluştur
+  </a>
 
+</div>
+
+  <!-- LIST -->
+  <div class="list">
     <app-match-card
       *ngFor="let match of matches"
       [match]="match">
     </app-match-card>
-
   </div>
 
 </section>

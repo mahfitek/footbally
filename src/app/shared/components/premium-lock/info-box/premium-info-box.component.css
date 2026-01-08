@@ -1,0 +1,14 @@
+.premium-info-box {
+  margin: 16px 0;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.premium-info-box span {
+  opacity: 0.6;
+  font-size: 12px;
+}

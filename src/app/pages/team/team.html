@@ -1,6 +1,107 @@
-<app-empty-state
-  *ngIf="listings.length === 0"
-  title="Henüz takım ilanı yok"
-  description="Oyuncular için açılan maçlar burada listelenecek."
-  actionText="İlan Oluştur"
-></app-empty-state>
+<h2>Takım Filtrele</h2>
+
+<div class="team-filters premium-filters">
+
+  <select [(ngModel)]="filters.city" (change)="applyFilters()">
+    <option value="">Şehir</option>
+    <option>İstanbul</option>
+    <option>İzmir</option>
+  </select>
+
+  <select [(ngModel)]="filters.level" (change)="applyFilters()">
+    <option value="">Seviye</option>
+    <option>Amatör</option>
+    <option>Orta</option>
+    <option>Yarı Pro</option>
+  </select>
+
+  <!-- PREMIUM FILTERS -->
+  <div class="premium-team-filters" [class.locked]="!isTeamPremium">
+
+    <label>
+      <input
+        type="checkbox"
+        [(ngModel)]="filters.onlyPremium"
+        (change)="applyFilters()"
+      />
+      Sadece Premium Takımlar
+    </label>
+
+    <select [(ngModel)]="filters.minRating" (change)="applyFilters()">
+      <option value="0">Puan</option>
+      <option value="4">4.0+</option>
+      <option value="4.5">4.5+</option>
+      <option value="5">5.0</option>
+    </select>
+
+    <div class="premium-lock" *ngIf="!isTeamPremium">
+      🔒 Premium ile açılır
+    </div>
+
+  </div>
+
+  <select [(ngModel)]="filters.sort" (change)="applyFilters()">
+    <option value="">Sıralama</option>
+    <option value="rating-desc">En yüksek puan</option>
+    <option value="active">Son aktif</option>
+  </select>
+
+</div>
+
+<!-- TEAM CARDS -->
+
+<div class="team-grid">
+
+  <div class="team-card" *ngFor="let t of filteredTeams">
+
+    <span *ngIf="t.isPremium" class="premium-badge">PRO</span>
+
+    <h3>{{ t.name }}</h3>
+
+    <p class="muted">{{ t.city }} / {{ t.district }}</p>
+    <p>Seviye: {{ t.level }}</p>
+
+    <!-- RATING -->
+    <div class="rating-row">
+      ⭐ {{ t.rating }}
+      <div class="rating-bar">
+        <span [style.width.%]="t.rating * 20"></span>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="team-stats">
+      <span>⚽ {{ t.matchesPlayed }} maç</span>
+      <span>🟢 {{ formatLastOnline(t.lastOnlineMin) }}</span>
+    </div>
+
+    <!-- OTHER ADS -->
+    <button
+  class="secondary-btn"
+  *ngIf="t.activeAds > 1"
+  (click)="goToTeamDetail(t.id)"
+>
+  Diğer ilanlara göz at ({{ t.activeAds }})
+</button>
+
+
+    <!-- QUICK APPLY -->
+    <button
+      class="invite-btn"
+      [disabled]="isApplied(t.id)"
+      (click)="applyToTeam(t)"
+    >
+      {{ isApplied(t.id) ? 'Başvuru Gönderildi' : 'Hızlı Başvuru' }}
+    </button>
+
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" *ngIf="toastVisible">
+  {{ toastMessage }}
+</div>
+
+<!-- EMPTY STATE -->
+<app-empty-state *ngIf="!filteredTeams.length"></app-empty-state>

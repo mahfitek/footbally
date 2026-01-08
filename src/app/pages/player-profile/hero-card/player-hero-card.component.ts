@@ -27,16 +27,45 @@ export class PlayerHeroCardComponent {
   @Input() referencePlayer?: string;
   @Input() isPremium = false;
 
-  /** Kulüp logosu varsa gelir, yoksa kulüpsüz gösterilir */
+  /** Backend'den gelirse */
+  @Input() profilePhotoUrl?: string;
+
+  /** DEMO upload (refresh sonrası silinir) */
+  tempPhotoPreviewUrl: string | null = null;
+  photoPreviewUrl: string | null = null;
+
+  /** Kulüp logosu */
   @Input() clubLogoUrl?: string;
 
   /** AI stat’ları */
   @Input() stats?: PlayerStats;
 
-  /** Roadmap */
   promoComingSoon = true;
 
   getClubLogo(): string {
     return this.clubLogoUrl || 'assets/images/kulupsuz.png';
+  }
+
+  onPhotoSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files || !input.files.length) return;
+
+    const file = input.files[0];
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.tempPhotoPreviewUrl = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  savePhoto() {
+    this.photoPreviewUrl = this.tempPhotoPreviewUrl;
+    this.tempPhotoPreviewUrl = null;
+  }
+
+  /** Template'te tek noktadan okumak için */
+  get activePhotoUrl(): string | null {
+    return this.photoPreviewUrl || this.profilePhotoUrl || null;
   }
 }

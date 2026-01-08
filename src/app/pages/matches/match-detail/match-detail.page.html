@@ -1,37 +1,71 @@
 <section class="match-detail-page">
 
-  <div class="card">
-
+  <!-- HEADER -->
+  <div class="header">
     <h1>{{ match.location_name }}</h1>
-
-    <div class="meta">
-      📍 {{ match.city }} / {{ match.district }}
-    </div>
-
-    <div class="meta">
-      🕒 {{ match.match_time }} • {{ match.match_date }}
-    </div>
-
-    <div class="meta">
-      👥 {{ match.required_players }} oyuncu aranıyor
-    </div>
-
-    <div class="price">
-      {{ match.price_per_player ? match.price_per_player + ' ₺' : 'Ücretsiz' }}
-    </div>
-
-    <!-- APPLY STATES -->
-    <button
-      *ngIf="!applied"
-      class="primary-btn"
-      (click)="apply()">
-      Başvur
-    </button>
-
-    <div *ngIf="applied" class="pending">
-      ⏳ Başvurun alındı, takım onayı bekleniyor
-    </div>
-
+    <p class="location">📍 {{ match.city }} / {{ match.district }}</p>
   </div>
+
+  <!-- META -->
+  <div class="meta-grid">
+    <div class="meta-box">🕒 {{ match.match_time }}</div>
+    <div class="meta-box">📅 {{ match.match_date }}</div>
+    <div class="meta-box">👥 {{ match.required_players }} Oyuncu</div>
+  </div>
+
+  <!-- PRICE -->
+  <div class="price">
+    {{ match.price_per_player ? match.price_per_player + ' ₺ / kişi' : 'Ücretsiz' }}
+  </div>
+
+  <!-- DETAILS -->
+  <div class="section">
+    <h3>Maç Detayları</h3>
+    <p>
+      Halı saha maçı için eksik oyuncu aranmaktadır.
+      Maç saatinden 15 dakika önce sahada olunması rica edilir.
+    </p>
+  </div>
+
+  <div class="section">
+    <h3>Kimler Aranıyor?</h3>
+    <ul>
+      <li>• Takım oyununa yatkın</li>
+      <li>• Maç disiplinine uygun</li>
+      <li>• Zamanında gelen</li>
+    </ul>
+  </div>
+
+  <!-- CTA -->
+  <button
+    *ngIf="!applied"
+    class="primary-btn"
+    (click)="apply()">
+    Başvur
+  </button>
+
+  <div class="premium-lock">
+  🔒 Premium ile daha fazla maçta öne çık
+</div>
+
+
+  <!-- PENDING -->
+  <div *ngIf="applied" class="pending">
+    ⏳ Başvurun alındı. Takım onayı bekleniyor.
+  </div>
+  
+  <div class="hint">
+  Profilini dolduran oyuncular daha hızlı seçilir.
+</div>
+
+<div class="premium-info-box">
+  <p>
+    Bu maçta çok sayıda başvuru var.<br />
+    <strong>Premium profiller karar anında daha görünür.</strong><br />
+    <span>Seçim maç sahibine aittir.</span>
+  </p>
+</div>
+<app-premium-info-box />
+
 
 </section>

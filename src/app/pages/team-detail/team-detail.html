@@ -1,29 +1,63 @@
-<button
-  *ngIf="!auth.isLoggedIn()"
-  class="btn btn-primary"
-  (click)="showLogin = true"
->
-  Başvur
-</button>
+<div *ngIf="team" class="team-detail">
 
-<button
-  *ngIf="auth.isLoggedIn()"
-  class="btn btn-primary"
-  (click)="apply()"
->
-  Başvur
-</button>
+  <!-- TEAM HEADER -->
+  <div class="team-header">
 
-<!-- LOGIN MODAL -->
-<app-login-modal
-  *ngIf="showLogin"
-  (close)="showLogin = false"
-></app-login-modal>
+    <div class="team-info">
+      <h2>
+        {{ team.name }}
+        <span *ngIf="team.isPremium" class="premium-badge">PRO</span>
+      </h2>
 
-<button
-  *ngIf="auth.isLoggedIn()"
-  class="btn btn-outline"
-  (click)="toggleFav()"
->
-  ⭐ Favori
-</button>
+      <p class="muted">{{ team.city }} / {{ team.district }}</p>
+      <p>Seviye: {{ team.level }}</p>
+
+      <div class="rating-row">
+        ⭐ {{ team.rating }}
+        <div class="rating-bar">
+          <span [style.width.%]="team.rating * 20"></span>
+        </div>
+      </div>
+
+      <div class="team-stats">
+        <span>⚽ {{ team.matchesPlayed }} maç</span>
+        <span>📢 {{ team.ads.length }} aktif ilan</span>
+      </div>
+    </div>
+
+  </div>
+
+  <h3 class="section-title">Aktif İlanlar</h3>
+
+  <!-- ADS GRID -->
+  <div class="ads-grid">
+
+    <div class="ad-card" *ngFor="let ad of team.ads">
+
+      <div class="ad-top">
+        <span class="pin">📍</span>
+        <span class="time">{{ ad.date }} • {{ ad.time }}</span>
+      </div>
+
+      <div class="ad-body">
+        <p class="field">{{ ad.field }}</p>
+        <p class="need">İhtiyaç: <strong>{{ ad.neededPosition }}</strong></p>
+      </div>
+
+      <button
+        class="apply-btn"
+        [disabled]="isAdApplied(ad.id)"
+        (click)="applyToAd(ad)"
+      >
+        {{ isAdApplied(ad.id) ? 'Başvuru Gönderildi' : 'Bu İlana Başvur' }}
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div *ngIf="!team" class="not-found">
+  Takım bulunamadı.
+</div>

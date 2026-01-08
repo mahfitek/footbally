@@ -1,30 +1,36 @@
-<div class="match-card">
+<div class="card">
 
-  <div class="location">
-    📍 {{ match.location_name }}
-  </div>
+  <!-- BADGE -->
+  <div class="badge">Yeni</div>
 
-  <div class="meta">
-    {{ match.city }} / {{ match.district }}
-  </div>
+<div class="premium-hint">
+  🔒 Premium ile öne çık
+</div>
+
+  <h3 class="title">{{ match.location_name }}</h3>
+  <p class="location">📍 {{ match.city }} / {{ match.district }}</p>
 
   <div class="meta">
     🕒 {{ match.match_time }} • {{ match.match_date }}
   </div>
 
-  <div class="meta">
+  <div class="players">
     👥 {{ match.required_players }} oyuncu aranıyor
   </div>
 
-  <div class="price">
+  <div
+    class="price"
+    [class.free]="!match.price_per_player">
     {{ match.price_per_player ? match.price_per_player + ' ₺' : 'Ücretsiz' }}
   </div>
 
   <a
     class="detail-btn"
-    [routerLink]="['/matches', match.id]"
-  >
+    [routerLink]="['/matches', match.id]">
     Detaya Git
   </a>
+<div class="premium-lock-badge">
+  🔒 Premium profiller üst sıralarda görünür
+</div>
 
 </div>

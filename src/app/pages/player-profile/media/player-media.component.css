@@ -70,3 +70,12 @@
 .media-item.locked small {
   font-size: 11px;
 }
+.premium-media-hint {
+  margin-top: 12px;
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.premium-media-hint span {
+  opacity: 0.6;
+}

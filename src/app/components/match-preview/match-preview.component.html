@@ -1,0 +1,38 @@
+<div class="match-card">
+
+  <h3>Maç İlanı</h3>
+
+  <div class="row">
+    📍 {{ match.city }} / {{ match.district }}
+  </div>
+
+  <div class="row">
+    🕒 {{ match.date }} — {{ match.time }}
+  </div>
+
+  <div class="row">
+    ⚽ {{ match.format }} · {{ match.fieldType }} saha
+  </div>
+
+  <div class="row">
+    👥 {{ match.playersNeeded }} oyuncu aranıyor
+  </div>
+
+  <div class="row price" *ngIf="match.price && match.price > 0">
+    💰 {{ match.price }} ₺ / kişi
+  </div>
+
+  <div class="row free" *ngIf="!match.price || match.price === 0">
+    🆓 Ücretsiz
+  </div>
+
+  <div class="badges">
+    <span *ngIf="match.travelCovered">🚗 Yol karşılanır</span>
+    <span *ngIf="match.foodCovered">🍔 Yemek / içecek</span>
+  </div>
+
+  <p class="desc" *ngIf="match.description">
+    {{ match.description }}
+  </p>
+
+</div>
