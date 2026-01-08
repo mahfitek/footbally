@@ -1,101 +1,55 @@
 <section class="player-page">
 
-  <h2>Oyuncu Filtrele</h2>
+  <div
+    style="
+      min-height:60vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:40px;
+    "
+  >
 
-  <div class="filters">
+    <div
+      style="
+        max-width:560px;
+        background:linear-gradient(160deg,#0f1328,#1a1038);
+        border-radius:20px;
+        padding:36px 28px;
+        box-shadow:0 12px 40px rgba(120,80,255,0.25);
+        border:1px solid rgba(140,100,255,0.25);
+      "
+    >
 
-    <div class="row">
-      <select [(ngModel)]="filter.position" (change)="applyFilters()">
-        <option value="">Pozisyon</option>
-        <option>GK</option>
-        <option>DEF</option>
-        <option>MID</option>
-        <option>WING</option>
-        <option>ST</option>
-      </select>
+      <h2 style="margin-bottom:12px;">⚽ Oyuncu Profilleri Yakında</h2>
 
-      <select [(ngModel)]="filter.city" (change)="onCityChange()">
-        <option value="">Şehir</option>
-        <option *ngFor="let c of cities">{{c}}</option>
-      </select>
+      <p style="opacity:.8; font-size:15px; line-height:1.5;">
+        Oyuncu profilleri, performans kartları ve AI analiz sistemi
+        çok yakında aktif olacak.
+      </p>
 
-      <select [(ngModel)]="filter.district" (change)="applyFilters()">
-        <option value="">İlçe</option>
-        <option *ngFor="let d of districts">{{d}}</option>
-      </select>
+      <p style="opacity:.6; font-size:14px; margin-top:10px;">
+        Şu anda platform vitrin modunda yayında.
+      </p>
+
+      <div
+        style="
+          margin-top:24px;
+          display:inline-block;
+          padding:8px 18px;
+          border-radius:999px;
+          background:linear-gradient(90deg,#7b2cff,#4cc9f0);
+          font-weight:700;
+          color:white;
+          font-size:13px;
+          box-shadow:0 0 14px rgba(123,44,255,.6);
+        "
+      >
+        🚀 Yakında Aktif
+      </div>
+
     </div>
-
-    <!-- PREMIUM FİLTRELER -->
-<div class="row premium">
-
-  <div class="premium-lock" *ngIf="!isTeamPremium">
-    🔒 Premium ile açılır
-  </div>
-
-  <ng-container *ngIf="isTeamPremium">
-
-    <label class="check">
-      <input type="checkbox" [(ngModel)]="filter.premiumOnly" (change)="applyFilters()" />
-      Sadece Premium Oyuncular
-    </label>
-
-    <select [(ngModel)]="filter.minScore" (change)="applyFilters()">
-      <option [ngValue]="0">Puan</option>
-      <option [ngValue]="4.0">4.0+</option>
-      <option [ngValue]="4.5">4.5+</option>
-      <option [ngValue]="4.8">4.8+</option>
-    </select>
-
-  </ng-container>
-
-</div>
-
-    <!-- SORT -->
-    <div class="row">
-      <select [(ngModel)]="filter.sort" (change)="applyFilters()">
-        <option value="lastActive">Son Aktif</option>
-        <option value="scoreDesc">Puan (Yüksekten→ Düşüğe)</option>
-        <option value="scoreAsc">Puan (Düşükten → Yükseğe)</option>
-        <option value="priceDesc">Fiyat (Yüksekten → Düşüğe)</option>  
-        <option value="priceAsc">Fiyat (Düşükten → Yükseğe)</option>
-        
-      </select>
-    </div>
-
-  </div>
-
-  <!-- PLAYER CARDS -->
-  <div class="player-grid">
-
-    <div class="player-card" *ngFor="let p of filteredPlayers">
-
-  <div class="card-glow"></div>
-
-  <div class="top">
-    <span class="name">{{p.name}}</span>
-    <span class="badge" *ngIf="p.isPremium">PRO</span>
-  </div>
-
-  <div class="rating">
-    ⭐ {{p.score.toFixed(1)}}
-  </div>
-
-  <div class="meta">
-    <span>{{p.position}}</span>
-    <span>{{p.city}}</span>
-  </div>
-
-  <div class="price">
-    <span *ngIf="p.price===0">Ücretsiz</span>
-    <span *ngIf="p.price>0">{{p.price}} ₺</span>
-  </div>
-
-  <button class="invite-btn" (click)="quickInvite(p)">
-    ⚡ Hızlı Davet
-  </button>
-
-</div>
-
 
   </div>
 

@@ -1,107 +1,56 @@
-<h2>Takım Filtrele</h2>
+<section class="team-page">
 
-<div class="team-filters premium-filters">
+  <div
+    style="
+      min-height:60vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:40px;
+    "
+  >
 
-  <select [(ngModel)]="filters.city" (change)="applyFilters()">
-    <option value="">Şehir</option>
-    <option>İstanbul</option>
-    <option>İzmir</option>
-  </select>
-
-  <select [(ngModel)]="filters.level" (change)="applyFilters()">
-    <option value="">Seviye</option>
-    <option>Amatör</option>
-    <option>Orta</option>
-    <option>Yarı Pro</option>
-  </select>
-
-  <!-- PREMIUM FILTERS -->
-  <div class="premium-team-filters" [class.locked]="!isTeamPremium">
-
-    <label>
-      <input
-        type="checkbox"
-        [(ngModel)]="filters.onlyPremium"
-        (change)="applyFilters()"
-      />
-      Sadece Premium Takımlar
-    </label>
-
-    <select [(ngModel)]="filters.minRating" (change)="applyFilters()">
-      <option value="0">Puan</option>
-      <option value="4">4.0+</option>
-      <option value="4.5">4.5+</option>
-      <option value="5">5.0</option>
-    </select>
-
-    <div class="premium-lock" *ngIf="!isTeamPremium">
-      🔒 Premium ile açılır
-    </div>
-
-  </div>
-
-  <select [(ngModel)]="filters.sort" (change)="applyFilters()">
-    <option value="">Sıralama</option>
-    <option value="rating-desc">En yüksek puan</option>
-    <option value="active">Son aktif</option>
-  </select>
-
-</div>
-
-<!-- TEAM CARDS -->
-
-<div class="team-grid">
-
-  <div class="team-card" *ngFor="let t of filteredTeams">
-
-    <span *ngIf="t.isPremium" class="premium-badge">PRO</span>
-
-    <h3>{{ t.name }}</h3>
-
-    <p class="muted">{{ t.city }} / {{ t.district }}</p>
-    <p>Seviye: {{ t.level }}</p>
-
-    <!-- RATING -->
-    <div class="rating-row">
-      ⭐ {{ t.rating }}
-      <div class="rating-bar">
-        <span [style.width.%]="t.rating * 20"></span>
-      </div>
-    </div>
-
-    <!-- STATS -->
-    <div class="team-stats">
-      <span>⚽ {{ t.matchesPlayed }} maç</span>
-      <span>🟢 {{ formatLastOnline(t.lastOnlineMin) }}</span>
-    </div>
-
-    <!-- OTHER ADS -->
-    <button
-  class="secondary-btn"
-  *ngIf="t.activeAds > 1"
-  (click)="goToTeamDetail(t.id)"
->
-  Diğer ilanlara göz at ({{ t.activeAds }})
-</button>
-
-
-    <!-- QUICK APPLY -->
-    <button
-      class="invite-btn"
-      [disabled]="isApplied(t.id)"
-      (click)="applyToTeam(t)"
+    <div
+      style="
+        max-width:560px;
+        background:linear-gradient(160deg,#0f1328,#1a1038);
+        border-radius:20px;
+        padding:36px 28px;
+        box-shadow:0 12px 40px rgba(120,80,255,0.25);
+        border:1px solid rgba(140,100,255,0.25);
+      "
     >
-      {{ isApplied(t.id) ? 'Başvuru Gönderildi' : 'Hızlı Başvuru' }}
-    </button>
+
+      <h2 style="margin-bottom:12px;">🏟️ Takım Profilleri Yakında</h2>
+
+      <p style="opacity:.8; font-size:15px; line-height:1.5;">
+        Takım profilleri, ilan açma ve oyuncu davet sistemi
+        çok yakında aktif olacak.
+      </p>
+
+      <p style="opacity:.6; font-size:14px; margin-top:10px;">
+        Şu anda platform vitrin modunda yayında.
+      </p>
+
+      <div
+        style="
+          margin-top:24px;
+          display:inline-block;
+          padding:8px 18px;
+          border-radius:999px;
+          background:linear-gradient(90deg,#f5c77a,#b98cff);
+          font-weight:800;
+          color:#1a102f;
+          font-size:13px;
+          box-shadow:0 0 14px rgba(185,140,255,.6);
+        "
+      >
+        🚀 Yakında Aktif
+      </div>
+
+    </div>
 
   </div>
 
-</div>
-
-<!-- TOAST -->
-<div class="toast" *ngIf="toastVisible">
-  {{ toastMessage }}
-</div>
-
-<!-- EMPTY STATE -->
-<app-empty-state *ngIf="!filteredTeams.length"></app-empty-state>
+</section>

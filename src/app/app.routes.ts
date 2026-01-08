@@ -7,7 +7,7 @@ import { PremiumComponent } from './pages/premium/premium';
 import { LoginComponent } from './pages/login/login';
 
 // PLAYER
-import { PlayerComponent } from './pages/player/player';
+import { PlayerComponent } from './pages/player/player'; // <-- OYUNCULAR VİTRİN
 import { PlayerDetailComponent } from './pages/player-detail/player-detail';
 import { PlayerProfileComponent } from './pages/player-profile/player-profile.component';
 import { PlayerPanelComponent } from './pages/player-panel/player-panel';
@@ -25,49 +25,40 @@ import { SupportComponent } from './pages/support/support';
 import { ContactComponent } from './pages/contact/contact';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent
-  },
+  { path: '', component: HomeComponent },
 
-  // LOGIN (HER ZAMAN AÇIK)
-  {
-    path: 'login',
-    component: LoginComponent
-  },
+  // LOGIN
+  { path: 'login', component: LoginComponent },
 
   // PREMIUM
-  {
-    path: 'premium',
-    component: PremiumComponent
-  },
+  { path: 'premium', component: PremiumComponent },
 
   // SUPPORT
-  {
-    path: 'support',
-    component: SupportComponent
-  },
+  { path: 'support', component: SupportComponent },
 
   // CONTACT
-  {
-    path: 'contact',
-    component: ContactComponent
-  },
+  { path: 'contact', component: ContactComponent },
 
-  // PLAYER
+  // ================= PLAYER =================
+
+  // OYUNCULAR LİSTESİ / VİTRİN
   {
     path: 'player',
     component: PlayerComponent
   },
+
   {
     path: 'player/:id',
     component: PlayerDetailComponent
   },
+
+  // PROFİL (İLERİDE GERÇEK KULLANIM)
   {
     path: 'player-profile',
     component: PlayerProfileComponent,
     canActivate: [authGuard]
   },
+
   {
     path: 'player-panel',
     component: PlayerPanelComponent,
@@ -83,31 +74,33 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
-  // TEAM
+  // ================= TEAM =================
+
+  // TAKIMLAR LİSTESİ / VİTRİN
   {
     path: 'team',
     component: TeamComponent
   },
+
   {
     path: 'team/:id',
     component: TeamDetailComponent
   },
+
   {
     path: 'team-profile',
     component: TeamProfileComponent,
     canActivate: [authGuard]
   },
+
   {
     path: 'team-panel',
     component: TeamPanelComponent,
     canActivate: [authGuard]
   },
 
-  // =========================
-  // MATCHES
-  // =========================
+  // ================= MATCHES =================
 
-  // CREATE MATCH  ✅ COMPONENT
   {
     path: 'matches/create',
     loadComponent: () =>
@@ -116,7 +109,6 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
 
-  // MATCH LIST
   {
     path: 'matches',
     loadComponent: () =>
@@ -124,7 +116,6 @@ export const routes: Routes = [
         .then(m => m.MatchListPage),
   },
 
-  // MATCH DETAIL
   {
     path: 'matches/:id',
     loadComponent: () =>
@@ -133,8 +124,5 @@ export const routes: Routes = [
   },
 
   // FALLBACK
-  {
-    path: '**',
-    redirectTo: ''
-  }
+  { path: '**', redirectTo: '' }
 ];
