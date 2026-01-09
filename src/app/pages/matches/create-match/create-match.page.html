@@ -7,8 +7,8 @@
 
   <div class="layout">
 
-    <!-- FORM -->
-    <form class="form">
+    <!-- FORM CARD -->
+    <form class="form-card">
 
       <input
         type="text"
@@ -17,7 +17,7 @@
         name="location"
       />
 
-      <div class="row">
+      <div class="grid-2">
         <input
           type="text"
           placeholder="Şehir"
@@ -32,8 +32,7 @@
         />
       </div>
 
-      <div class="row">
-        <!-- 🔥 GEÇMİŞ TARİH ENGELİ -->
+      <div class="grid-2">
         <input
           type="date"
           [min]="today"
@@ -47,11 +46,11 @@
         />
       </div>
 
-      <div class="row">
+      <div class="grid-2">
         <input
           type="number"
           min="1"
-          max="5"
+          max="10"
           placeholder="Kaç oyuncu eksik?"
           [(ngModel)]="form.required_players"
           name="players"
@@ -71,38 +70,46 @@
         (click)="publish()"
         [disabled]="!canPublish()"
       >
-        İlanı Yayınla
+        Maç İlanını Yayınla
       </button>
 
     </form>
 
-    <!-- LIVE PREVIEW -->
-    <div class="preview">
+    <!-- PREVIEW CARD -->
+    <div class="preview-card">
+
+      <h3>Canlı Önizleme</h3>
+
       <div class="match-card">
         <div class="location">
           📍 {{ form.location_name || 'Halı saha adı' }}
         </div>
+
         <div class="meta">
           {{ form.city || 'Şehir' }}
           <span *ngIf="form.district"> / {{ form.district }}</span>
         </div>
+
         <div class="meta">
           🕒 {{ form.match_time || '--:--' }}
           • {{ form.match_date || 'Tarih' }}
         </div>
+
         <div class="meta">
           👥 {{ form.required_players || 0 }} oyuncu aranıyor
         </div>
+
         <div class="price">
           {{ form.price_per_player ? form.price_per_player + ' ₺' : 'Ücretsiz' }}
         </div>
       </div>
+
     </div>
 
   </div>
 </section>
 
-<!-- 🔥 SUCCESS MODAL -->
+<!-- SUCCESS MODAL -->
 <div class="modal-backdrop" *ngIf="showSuccess" (click)="closeModal()">
   <div class="success-modal" (click)="$event.stopPropagation()">
     <div class="icon">✅</div>

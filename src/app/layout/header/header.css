@@ -28,7 +28,9 @@ body.scrolled .header {
   max-width: 1200px;
   margin: 0 auto;
   height: 72px;
-  padding: 0 32px;
+
+  /* 🔥 SOLA DAYANSIN */
+  padding: 0 24px;
 
   display: flex;
   align-items: center;
@@ -42,17 +44,34 @@ body.scrolled .header {
 .header-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+
+  /* 🔥 SOLA YAPIŞ */
+  margin-left: 0;
 }
 
+/* ===== LOGO ===== */
 .logo {
-  color: #fff;
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 800;
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
+
+  background: linear-gradient(90deg, #ffd700, #ffb703, #b98cff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* 🔥 SOFT GLOW */
+  filter: drop-shadow(0 0 6px rgba(255, 200, 100, 0.35));
+  transition: filter 0.25s ease, opacity 0.25s ease;
 }
+
+.logo:hover {
+  filter: drop-shadow(0 0 10px rgba(180, 140, 255, 0.6));
+  opacity: 1;
+}
+
 
 .logo:hover {
   opacity: 0.9;
@@ -65,7 +84,7 @@ body.scrolled .header {
   border-radius: 999px;
   background: linear-gradient(120deg, #ffd700, #ff8c00);
   color: #000;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* =========================
@@ -108,7 +127,10 @@ body.scrolled .header {
 .header-right {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
+
+  /* 🔥 SAĞA DAYANSIN */
+  margin-left: auto;
 }
 
 .header-premium {
@@ -116,7 +138,7 @@ body.scrolled .header {
   border-radius: 999px;
   text-decoration: none;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   color: #000;
   background: linear-gradient(120deg, #ffd700, #ff8c00, #7f5cff);
 }
@@ -127,6 +149,7 @@ body.scrolled .header {
   border: none;
   cursor: pointer;
   font-size: 14px;
+  font-weight: 600;
   color: #fff;
   background: linear-gradient(120deg, #7f5cff, #00d4ff);
 }
@@ -149,31 +172,26 @@ body.scrolled .header {
 }
 
 /* =========================
-   MOBILE MENU – SIDE DRAWER (HALF WIDTH)
+   MOBILE MENU – SIDE DRAWER
 ========================= */
 @media (max-width: 900px) {
 
-  /* Desktop elemanları kapat */
   .header-center,
   .header-right {
     display: none;
   }
 
-  /* Hamburger görünür */
   .hamburger-btn {
     display: block;
     z-index: 1001;
   }
 
-  /* SOLDAN AÇILAN DRAWER */
   .mobile-menu {
     position: fixed;
     top: 0;
     left: 0;
 
     height: 100vh;
-
-    /* 🔥 ENLEMESEL YARIM */
     width: 70%;
     max-width: 320px;
 
@@ -188,7 +206,6 @@ body.scrolled .header {
 
     z-index: 1000;
 
-    /* ANİMASYON */
     animation: slideInLeft 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
 
@@ -228,6 +245,7 @@ body.scrolled .header {
     opacity: 1;
   }
 }
+
 .menu-backdrop {
   position: fixed;
   inset: 0;

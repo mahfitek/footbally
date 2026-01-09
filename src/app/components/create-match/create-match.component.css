@@ -219,3 +219,111 @@ select option {
   font-weight: 700;
   cursor: pointer;
 }
+/* ========================= */
+/* 📱 MOBILE OPTIMIZATION */
+/* ========================= */
+
+@media (max-width: 600px) {
+
+  .create-match {
+    padding: 32px 14px 60px;
+  }
+
+  .create-match h1 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 18px;
+  }
+
+  .card {
+    padding: 20px 16px;
+    border-radius: 20px;
+    max-width: 100%;
+  }
+
+  /* grids tek kolon */
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 13px;
+    padding: 12px 14px;
+  }
+
+  textarea {
+    min-height: 90px;
+  }
+
+  /* toggles alt alta */
+  .toggles {
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .toggle span {
+    width: 34px;
+    height: 18px;
+  }
+
+  .toggle span::after {
+    width: 14px;
+    height: 14px;
+    top: 2px;
+    left: 2px;
+  }
+
+  .toggle input:checked + span::after {
+    transform: translateX(16px);
+  }
+
+  h3 {
+    font-size: 14px;
+    margin-top: 14px;
+  }
+
+  /* pozisyon butonları daha sıkı */
+  .positions {
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+
+  .positions button {
+    padding: 8px 14px;
+    font-size: 12px;
+  }
+
+  .save-btn {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+  /* modal */
+  .success-modal {
+    width: 90%;
+    padding: 22px;
+    border-radius: 16px;
+  }
+
+  .success-modal h3 {
+    font-size: 16px;
+  }
+
+  .success-modal p {
+    font-size: 13px;
+  }
+
+  .success-modal button {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+}

@@ -1,87 +1,14 @@
-<section class="player-profile">
-
-  <!-- ========================= -->
-  <!-- PROFİL OLUŞTURMA -->
-  <!-- ========================= -->
-  <div class="profile-create" *ngIf="!profileCompleted">
-
-    <div class="edit-card">
-      <h2>Oyuncu Profilini Oluştur</h2>
-      <p>Maçlara katılmak için profilini doldur.</p>
-
-      <input type="text" placeholder="Ad Soyad" [(ngModel)]="profile.fullName" />
-      <input type="number" placeholder="Yaş" [(ngModel)]="profile.age" />
-
-      <div class="row">
-        <input type="number" placeholder="Boy (cm)" [(ngModel)]="profile.heightCm" />
-        <input type="number" placeholder="Kilo (kg)" [(ngModel)]="profile.weightKg" />
-      </div>
-
-      <div class="select-wrapper">
-        <select [(ngModel)]="profile.city" (change)="onCityChange()">
-          <option value="">Şehir Seç</option>
-          <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
-        </select>
-      </div>
-
-      <div class="select-wrapper">
-        <select [(ngModel)]="profile.district" [disabled]="!profile.city">
-          <option value="">İlçe Seç</option>
-          <option *ngFor="let d of districts" [value]="d">{{ d }}</option>
-        </select>
-      </div>
-
-      <div class="select-wrapper">
-        <select [(ngModel)]="profile.preferredFoot">
-          <option value="">Güçlü Ayak</option>
-          <option *ngFor="let foot of footOptions" [value]="foot">{{ foot }}</option>
-        </select>
-      </div>
-
-      <h4>Mevkiler</h4>
-      <div class="positions">
-        <button *ngFor="let pos of positions"
-          (click)="togglePosition(pos)"
-          [class.active]="profile.positions.includes(pos)">
-          {{ pos }}
-        </button>
-      </div>
-
-      <textarea
-        placeholder="Oynadığın takımlar, akademiler, turnuvalar vs."
-        [(ngModel)]="profile.teamsPlayed">
-      </textarea>
-
-      <button
-        class="save-btn"
-        style="background:linear-gradient(90deg,#7b2cff,#f5c77a);border:none;color:black;font-weight:700;"
-        (click)="saveProfile()">
-        Profili Kaydet
-      </button>
-    </div>
-
-  </div>
-
- <!-- ========================= -->
+<!-- ========================= -->
 <!-- PROFİL -->
 <!-- ========================= -->
 <ng-container *ngIf="profileCompleted">
 
-  <!-- ===== ALL CARDS SAME GRID ===== -->
-  <div
-    style="
-      display:grid;
-      grid-template-columns:repeat(5,1fr);
-      gap:16px;
-      width:100%;
-      margin-bottom:48px;
-    ">
+  <div class="profile-grid">
 
-    <!-- ================= HERO CARD (SAME SIZE) ================= -->
+    <!-- ================= HERO CARD ================= -->
     <div
       class="hero-card-wrapper"
-      [ngClass]="isPremium ? 'gold' : 'silver'"
-      style="position:relative;">
+      [ngClass]="isPremium ? 'gold' : 'silver'">
 
       <app-player-hero-card
         [fullName]="profile.fullName"
@@ -92,40 +19,18 @@
         [isPremium]="isPremium">
       </app-player-hero-card>
 
-      <!-- PREMIUM BADGE + LOCK -->
+      <!-- PREMIUM LOCK -->
       <div
         *ngIf="!isPremium"
-        class="hero-premium-overlay"
-        style="
-          position:absolute;
-          inset:0;
-          border-radius:16px;
-          background:linear-gradient(180deg, rgba(10,12,40,0.25), rgba(10,12,40,0.85));
-          display:flex;
-          align-items:flex-end;
-          justify-content:center;
-          padding-bottom:14px;
-          pointer-events:none;
-        "
-      >
-        <div
-          style="
-            background:linear-gradient(90deg,#7b2cff,#4cc9f0);
-            padding:6px 14px;
-            border-radius:20px;
-            font-size:12px;
-            font-weight:700;
-            color:white;
-            box-shadow:0 0 12px rgba(123,44,255,0.6);
-          "
-        >
+        class="hero-premium-overlay">
+        <div class="hero-premium-badge">
           🔒 Rating Premium’da
         </div>
       </div>
 
     </div>
 
-    <!-- ================= 1. PLAYER INFO ================= -->
+    <!-- ================= PLAYER INFO ================= -->
     <div class="profile-card">
       <h2>Oyuncu Bilgileri</h2>
 
@@ -139,7 +44,7 @@
         <p><b>Takımlar:</b> {{ profile.teamsPlayed || '-' }}</p>
 
         <button
-          style="margin-top:8px;background:linear-gradient(90deg,#7b2cff,#4cc9f0);border:none;color:white;padding:6px 12px;border-radius:10px;"
+          class="mini-btn"
           (click)="startEditProfile()">
           Profili Düzenle
         </button>
@@ -187,76 +92,57 @@
         <textarea placeholder="Takımlar / akademiler" [(ngModel)]="profile.teamsPlayed"></textarea>
 
         <div style="display:flex; gap:8px;">
-          <button
-            style="background:linear-gradient(90deg,#f5c77a,#ffd166);border:none;padding:6px 12px;border-radius:10px;"
-            (click)="saveEditProfile()">Kaydet</button>
-
-          <button
-            style="background:#222;border:1px solid #444;padding:6px 12px;border-radius:10px;color:#aaa;"
-            (click)="cancelEditProfile()">Vazgeç</button>
+          <button class="mini-btn yellow" (click)="saveEditProfile()">Kaydet</button>
+          <button class="mini-btn dark" (click)="cancelEditProfile()">Vazgeç</button>
         </div>
 
       </ng-container>
     </div>
 
-    <!-- ================= 2. CV ================= -->
+    <!-- ================= CV ================= -->
     <div class="profile-card">
       <h2>Özgeçmiş</h2>
 
-      <p *ngIf="hasCv && !isEditingCv" style="opacity:.9;font-size:13px;">
-        {{ cvText }}
-      </p>
-
-      <p *ngIf="!hasCv && !isEditingCv" style="opacity:.6;">
-        Henüz özgeçmiş eklenmedi.
-      </p>
+      <p *ngIf="hasCv && !isEditingCv">{{ cvText }}</p>
+      <p *ngIf="!hasCv && !isEditingCv">Henüz özgeçmiş eklenmedi.</p>
 
       <button
         *ngIf="!isEditingCv"
-        style="margin-top:8px;background:linear-gradient(90deg,#7b2cff,#4cc9f0);border:none;color:white;padding:6px 12px;border-radius:10px;"
+        class="mini-btn"
         (click)="startEditCv()">
         {{ hasCv ? 'Düzenle' : 'Özgeçmiş Ekle' }}
       </button>
 
       <ng-container *ngIf="isEditingCv">
-        <textarea
-          [(ngModel)]="cvText"
-          placeholder="Kendinizden bahsedin (ne kadar detaylı yazarsanız o kadar öne çıkarsınız)">
-        </textarea>
+        <textarea [(ngModel)]="cvText"></textarea>
         <div style="display:flex; gap:8px;">
-          <button
-            style="background:linear-gradient(90deg,#f5c77a,#ffd166);border:none;padding:6px 12px;border-radius:10px;"
-            (click)="saveCv()">Kaydet</button>
-          <button
-            style="background:#222;border:1px solid #444;padding:6px 12px;border-radius:10px;color:#aaa;"
-            (click)="cancelCv()">Vazgeç</button>
+          <button class="mini-btn yellow" (click)="saveCv()">Kaydet</button>
+          <button class="mini-btn dark" (click)="cancelCv()">Vazgeç</button>
         </div>
       </ng-container>
     </div>
 
-    <!-- ================= 3. PHOTOS ================= -->
+    <!-- ================= PHOTOS ================= -->
     <div class="profile-card">
       <h2>Fotoğraflar</h2>
       <p *ngIf="!hasPhoto">Henüz fotoğraf eklenmedi.</p>
       <p *ngIf="hasPhoto">Fotoğraf yüklendi ✅</p>
-      <button
-        style="margin-top:8px;background:linear-gradient(90deg,#7b2cff,#4cc9f0);border:none;color:white;padding:6px 12px;border-radius:10px;"
-        (click)="addPhoto()">Fotoğraf Ekle</button>
+
+      <button class="mini-btn" (click)="addPhoto()">Fotoğraf Ekle</button>
     </div>
 
-    <!-- ================= 4. VIDEOS ================= -->
+    <!-- ================= VIDEOS ================= -->
     <div class="profile-card">
       <h2>Videolar</h2>
       <p *ngIf="!hasVideo">Henüz video eklenmedi.</p>
       <p *ngIf="hasVideo">Video yüklendi ✅</p>
-      <button
-        style="margin-top:8px;background:linear-gradient(90deg,#7b2cff,#4cc9f0);border:none;color:white;padding:6px 12px;border-radius:10px;"
-        (click)="addVideo()">Video Ekle</button>
+
+      <button class="mini-btn" (click)="addVideo()">Video Ekle</button>
     </div>
 
   </div>
 
-  <!-- ===== AI ANALYSIS (LOCKED IF NOT PREMIUM) ===== -->
+  <!-- ===== AI ANALYSIS ===== -->
 
   <div class="ai-lock-wrapper">
 
@@ -288,6 +174,3 @@
   </div>
 
 </ng-container>
-
-
-</section>

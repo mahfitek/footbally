@@ -4,40 +4,41 @@
     <!-- =====================
          SELECT
     ===================== -->
-    <!-- SELECT -->
-<ng-container *ngIf="mode === 'select'">
-  <div class="welcome-premium">
+    <ng-container *ngIf="mode === 'select'">
+      <div class="welcome-premium premium-onboarding">
 
-    <h2>Hoş Geldin</h2>
-    <p class="subtitle">Nasıl devam etmek istiyorsun?</p>
+        <span class="welcome-badge">🚀 Footbally Başlangıç</span>
 
-    <div class="role-cards">
+        <h2>Hoş Geldin</h2>
+        <p class="subtitle">Nasıl devam etmek istiyorsun?</p>
 
-      <button class="role-card" (click)="selectRole('player')">
-        <div class="role-icon">⚽</div>
-        <div class="role-text">
-          <strong>Oyuncuyum</strong>
-          <span>Kendini göster, keşfedil</span>
+        <div class="role-cards premium-tiles">
+
+          <button class="role-card premium-tile" (click)="selectRole('player')">
+            <div class="role-icon">⚽</div>
+            <div class="role-text">
+              <strong>Oyuncuyum</strong>
+              <span>Kendini göster, keşfedil</span>
+            </div>
+          </button>
+
+          <button class="role-card premium-tile" (click)="selectRole('team')">
+            <div class="role-icon">🏟️</div>
+            <div class="role-text">
+              <strong>Takımım Var</strong>
+              <span>Oyuncu bul, analiz et</span>
+            </div>
+          </button>
+
         </div>
-      </button>
 
-      <button class="role-card" (click)="selectRole('team')">
-        <div class="role-icon">🏟️</div>
-        <div class="role-text">
-          <strong>Takımım Var</strong>
-          <span>Oyuncu bul, analiz et</span>
-        </div>
-      </button>
+        <p class="switch-auth premium-switch">
+          Zaten üyeliğin var mı?
+          <span class="cta-link" (click)="goToLogin()">Giriş Yap</span>
+        </p>
 
-    </div>
-
-    <p class="switch-auth">
-      Zaten üyeliğin var mı?
-      <a (click)="goToLogin()">Giriş Yap</a>
-    </p>
-
-  </div>
-</ng-container>
+      </div>
+    </ng-container>
 
 
     <!-- =====================
@@ -52,7 +53,6 @@
       <input placeholder="E-posta" [(ngModel)]="register.email">
       <input placeholder="Telefon Numarası" [(ngModel)]="register.phone">
 
-      <!-- PASSWORD -->
       <div class="password-field">
         <input
           [type]="showPassword ? 'text' : 'password'"
@@ -72,59 +72,52 @@
       </div>
 
       <!-- GİZLİLİK -->
-    <div class="check-row required">
-  <span class="check-text">
-    Gizlilik Politikası’nı okudum ve kabul ediyorum.
-  </span>
+      <div class="check-row required">
+        <span class="check-text">
+          Gizlilik Politikası’nı okudum ve kabul ediyorum.
+        </span>
 
-  <button
-    type="button"
-    class="toggle-btn"
-    [class.active]="register.privacy"
-    (click)="openLegal('privacy')">
-  </button>
-</div>
-
-
-
+        <button
+          type="button"
+          class="toggle-btn"
+          [class.active]="register.privacy"
+          (click)="openLegal('privacy')">
+        </button>
+      </div>
 
       <!-- KVKK -->
       <div class="check-row required">
-  <span class="check-text">
-    KVKK metnini okudum ve kabul ediyorum.
-  </span>
+        <span class="check-text">
+          KVKK metnini okudum ve kabul ediyorum.
+        </span>
 
-  <button
-    type="button"
-    class="toggle-btn"
-    [class.active]="register.kvkk"
-    (click)="openLegal('terms')">
-  </button>
-</div>
+        <button
+          type="button"
+          class="toggle-btn"
+          [class.active]="register.kvkk"
+          (click)="openLegal('terms')">
+        </button>
+      </div>
 
+      <!-- SMS -->
+      <div class="check-row optional">
+        <span class="check-text">SMS almak istiyorum</span>
 
+        <label class="check-label">
+          <input type="checkbox" [(ngModel)]="register.sms">
+          <span class="toggle"></span>
+        </label>
+      </div>
 
+      <!-- MAIL -->
+      <div class="check-row optional">
+        <span class="check-text">E-posta almak istiyorum</span>
 
-     <!-- SMS -->
-<div class="check-row optional">
-  <span class="check-text">SMS almak istiyorum</span>
-
-  <label class="check-label">
-    <input type="checkbox" [(ngModel)]="register.sms">
-    <span class="toggle"></span>
-  </label>
-</div>
-
-<!-- MAIL -->
-<div class="check-row optional">
-  <span class="check-text">E-posta almak istiyorum</span>
-
-  <label class="check-label">
-    <input type="checkbox" [(ngModel)]="register.mail">
-    <span class="toggle"></span>
-  </label>
-</div>
-
+        <label class="check-label">
+          <input type="checkbox" [(ngModel)]="register.mail">
+          <span class="toggle"></span>
+        </label>
+      </div>
 
       <button class="primary-btn"
               [disabled]="!canRegister()"
@@ -139,64 +132,62 @@
 
     </ng-container>
 
+
     <!-- =====================
          LOGIN
     ===================== -->
-   <ng-container *ngIf="mode === 'login'">
-  <h2>Giriş Yap</h2>
+    <ng-container *ngIf="mode === 'login'">
 
-  <input
-    placeholder="E-posta"
-    [(ngModel)]="loginEmail"
-  >
+      <h2>Giriş Yap</h2>
 
-  <input
-    placeholder="Şifre"
-    type="password"
-    [(ngModel)]="loginPassword"
-  >
+      <input placeholder="E-posta" [(ngModel)]="loginEmail">
+      <input placeholder="Şifre" type="password" [(ngModel)]="loginPassword">
 
-  <button
-    class="primary-btn"
-    [disabled]="!canLogin()"
-    (click)="submitLogin()"
-  >
-    Giriş Yap
-  </button>
+      <button
+        class="primary-btn"
+        [disabled]="!canLogin()"
+        (click)="submitLogin()">
+        Giriş Yap
+      </button>
 
-  <p class="switch-auth">
-    Hesabın yok mu?
-    <span class="cta-link" (click)="goToRegister()">Üye Ol</span>
-  </p>
+      <p class="switch-auth">
+        Hesabın yok mu?
+        <span class="cta-link" (click)="goToRegister()">Üye Ol</span>
+      </p>
 
-  <p class="forgot-line">
-    Giriş yapamıyor musun?
-    <span class="cta-link" (click)="goToForgot()">Şifremi Unuttum</span>
-  </p>
-</ng-container>
+      <p class="forgot-line">
+        Giriş yapamıyor musun?
+        <span class="cta-link" (click)="goToForgot()">Şifremi Unuttum</span>
+      </p>
+
+    </ng-container>
+
 
     <!-- =====================
          FORGOT
     ===================== -->
     <ng-container *ngIf="mode === 'forgot'">
+
       <h2>Şifremi Unuttum</h2>
 
       <input placeholder="E-posta" [(ngModel)]="forgotEmail">
 
-      <button class="primary-btn"
-              (click)="submitForgotPassword()">
+      <button class="primary-btn" (click)="submitForgotPassword()">
         Link Gönder
       </button>
 
       <p class="switch-auth">
-        <a (click)="goToLogin()">Geri dön</a>
+        <button class="back-btn" (click)="goToLogin()">Geri Dön</button>
       </p>
+
     </ng-container>
+
 
     <!-- =====================
          FORGOT SUCCESS
     ===================== -->
     <ng-container *ngIf="mode === 'forgot-success'">
+
       <h2>Mail Gönderildi ✅</h2>
 
       <p>Şifre sıfırlama bağlantısı e-posta adresine gönderildi.</p>
@@ -204,13 +195,12 @@
       <button class="primary-btn" (click)="goToLogin()">
         Giriş Yap
       </button>
+
     </ng-container>
 
   </div>
 
-  <!-- =====================
-       LEGAL MODAL
-  ===================== -->
+  <!-- LEGAL MODAL -->
   <app-legal-modal
     *ngIf="showLegal"
     [type]="legalType"

@@ -493,3 +493,214 @@ textarea {
   height: 100% !important;
   flex: 1 1 auto !important;
 }
+/* ==================================================
+   PLAYER PROFILE — REAL MOBILE LAYOUT
+================================================== */
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 16px;
+  width: 100%;
+  margin-bottom: 48px;
+}
+
+/* ================= DESKTOP ================= */
+
+@media (min-width: 901px) {
+  .profile-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 900px) {
+
+  .player-profile {
+    padding: 14px 10px !important;
+  }
+
+  /* HERO FULL WIDTH */
+  .hero-card-wrapper {
+    grid-column: span 2;
+  }
+
+  /* GRID → 2 COLUMNS */
+  .profile-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* ALL CARDS SAME WIDTH */
+  .profile-card {
+    padding: 14px !important;
+    border-radius: 16px !important;
+    min-height: 160px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .profile-card h2 {
+    font-size: 13px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .profile-card p {
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+    margin-bottom: 6px !important;
+  }
+
+  .profile-card button {
+    margin-top: auto !important;
+    padding: 7px 10px !important;
+    font-size: 10px !important;
+    border-radius: 10px !important;
+  }
+
+  /* HERO CARD HEIGHT FIX */
+  .hero-card-wrapper,
+  .hero-card-wrapper app-player-hero-card,
+  .hero-card-wrapper app-player-hero-card > *,
+  .hero-card-wrapper .player-card {
+    min-height: 220px !important;
+    height: auto !important;
+  }
+}
+
+/* EXTRA SMALL */
+@media (max-width: 420px) {
+
+  .profile-card {
+    min-height: 140px !important;
+    padding: 12px !important;
+  }
+
+  .hero-card-wrapper,
+  .hero-card-wrapper .player-card {
+    min-height: 200px !important;
+  }
+}
+/* ========================= */
+/* PROFILE GRID LAYOUT */
+/* ========================= */
+
+.profile-grid {
+  display: grid;
+  gap: 14px;
+  width: 100%;
+}
+
+/* ========================= */
+/* DESKTOP */
+/* ========================= */
+
+@media (min-width: 901px) {
+  .profile-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .hero-card-wrapper {
+    grid-column: span 1;
+  }
+}
+
+/* ========================= */
+/* MOBILE + TABLET */
+/* ========================= */
+
+@media (max-width: 900px) {
+  .profile-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* HERO CARD FULL WIDTH */
+  .hero-card-wrapper {
+    grid-column: 1 / -1;
+  }
+
+  /* KARTLAR DAHA GENİŞ + DAHA KISA */
+  .profile-card {
+    min-height: 160px;
+    padding: 18px 16px;
+  }
+
+  .profile-card h2 {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+
+  .profile-card p {
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .profile-card button {
+    margin-top: auto;
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+/* ========================= */
+/* SMALL MOBILE */
+/* ========================= */
+
+@media (max-width: 480px) {
+  .profile-card {
+    min-height: 140px;
+    padding: 14px;
+  }
+
+  .profile-card h2 {
+    font-size: 14px;
+  }
+}
+/* ========================= */
+/* PREMIUM BUTTON STYLE */
+/* ========================= */
+
+.profile-card button {
+  background: linear-gradient(120deg, #ffd700, #ff8c00, #7f5cff);
+  color: #000 !important;
+  font-weight: 700;
+  border: none !important;
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 22px rgba(127,92,255,0.45),
+    inset 0 0 0 1px rgba(255,255,255,0.4);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    filter 0.15s ease;
+}
+
+.profile-card button:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 14px 34px rgba(127,92,255,0.65),
+    inset 0 0 0 1px rgba(255,255,255,0.6);
+  filter: brightness(1.05);
+}
+
+.profile-card button:active {
+  transform: translateY(0);
+  box-shadow:
+    0 6px 16px rgba(127,92,255,0.4);
+}
+
+/* ========================= */
+/* SMALL MOBILE BUTTON FIX */
+/* ========================= */
+
+@media (max-width: 600px) {
+  .profile-card button {
+    font-size: 12px;
+    padding: 8px 10px;
+  }
+}

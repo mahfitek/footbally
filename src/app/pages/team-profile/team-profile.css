@@ -307,3 +307,81 @@ select option:hover {
   background: #7b2cff;
   color: #fff;
 }
+/* =============================== */
+/* TEAM PROFILE — RESPONSIVE GRID */
+/* =============================== */
+
+/* Desktop zaten iyi — sadece mobilde kır */
+@media (max-width: 900px) {
+
+  .team-profile {
+    padding: 60px 20px;
+  }
+
+  .team-layout {
+    grid-template-columns: 1fr; /* 🔥 tek kolon */
+    gap: 20px;
+  }
+
+  .profile-card,
+  .match-preview-card {
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .select-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* ================= FORMATION CARD MOBILE ================= */
+
+  .formation-card {
+    grid-template-columns: 1fr; /* 🔥 saha alta */
+    gap: 18px;
+  }
+
+  .formation-right {
+    order: 2; /* saha alta */
+  }
+
+  .formation-left {
+    order: 1;
+  }
+
+  /* saha küçült */
+  .pitch {
+    height: 420px;
+    max-width: 100%;
+  }
+
+  .circle {
+    width: 30px;
+    height: 30px;
+    font-size: 11px;
+  }
+
+  .player-name {
+    font-size: 10px;
+    top: 36px;
+  }
+
+  /* butonlar wrap düzgün */
+  .formation-formats,
+  .formation-list {
+    justify-content: center;
+  }
+
+  .formation-formats button,
+  .formation-list button {
+    font-size: 12px;
+    padding: 7px 12px;
+  }
+
+  /* create team button */
+  .save-btn {
+    padding: 14px;
+    font-size: 14px;
+  }
+
+}
