@@ -1,117 +1,126 @@
-<!-- ========================= -->
-<!-- PROFİL -->
-<!-- ========================= -->
-<ng-container *ngIf="profileCompleted">
+<section class="player-profile">
 
-  <div class="profile-grid">
+  <!-- ========================= -->
+  <!-- PROFİL YOKSA -->
+  <!-- ========================= -->
+  <div *ngIf="!profileCompleted && !isEditingProfile" class="empty-profile">
+    <h2>Henüz Oyuncu Profilin Yok</h2>
+    <p>Maçlara başvurabilmek için önce profilini oluşturmalısın.</p>
+    <button class="save-btn" (click)="startCreateProfile()">Profili Oluştur</button>
+  </div>
 
-    <!-- ================= HERO CARD ================= -->
-    <div
-      class="hero-card-wrapper"
-      [ngClass]="isPremium ? 'gold' : 'silver'">
+  <!-- ========================= -->
+  <!-- PROFİL OLUŞTUR / DÜZENLE -->
+  <!-- ========================= -->
+  <div *ngIf="isEditingProfile" class="player-create">
 
-      <app-player-hero-card
-        [fullName]="profile.fullName"
-        [position]="profile.positions[0]"
-        [rating]="82"
-        [cardTier]="isPremium ? 'gold' : 'silver'"
-        referencePlayer="Mbappé"
-        [isPremium]="isPremium">
-      </app-player-hero-card>
+    <h1 class="create-title">Oyuncu Profilini Oluştur</h1>
 
-      <!-- PREMIUM LOCK -->
-      <div
-        *ngIf="!isPremium"
-        class="hero-premium-overlay">
-        <div class="hero-premium-badge">
-          🔒 Rating Premium’da
+    <div class="create-layout">
+
+      <!-- FORM CARD -->
+      <div class="form-card">
+
+        <div class="grid-2">
+          <input placeholder="Ad Soyad" [(ngModel)]="profile.fullName" />
+          <input type="number" placeholder="Yaş" [(ngModel)]="profile.age" />
         </div>
-      </div>
 
-    </div>
-
-    <!-- ================= PLAYER INFO ================= -->
-    <div class="profile-card">
-      <h2>Oyuncu Bilgileri</h2>
-
-      <ng-container *ngIf="!isEditingProfile">
-        <p><b>Ad:</b> {{ profile.fullName }}</p>
-        <p><b>Yaş:</b> {{ profile.age }}</p>
-        <p><b>Fizik:</b> {{ profile.heightCm }} / {{ profile.weightKg }}</p>
-        <p><b>Mevki:</b> {{ profile.positions.join(', ') }}</p>
-        <p><b>Ayak:</b> {{ profile.preferredFoot }}</p>
-        <p><b>Lokasyon:</b> {{ profile.city }} / {{ profile.district }}</p>
-        <p><b>Takımlar:</b> {{ profile.teamsPlayed || '-' }}</p>
-
-        <button
-          class="mini-btn"
-          (click)="startEditProfile()">
-          Profili Düzenle
-        </button>
-      </ng-container>
-
-      <ng-container *ngIf="isEditingProfile">
-
-        <input placeholder="Ad Soyad" [(ngModel)]="profile.fullName" />
-        <input type="number" placeholder="Yaş" [(ngModel)]="profile.age" />
-
-        <div class="row">
+        <div class="grid-2">
           <input type="number" placeholder="Boy (cm)" [(ngModel)]="profile.heightCm" />
           <input type="number" placeholder="Kilo (kg)" [(ngModel)]="profile.weightKg" />
         </div>
 
-        <div class="select-wrapper">
+        <div class="grid-2">
           <select [(ngModel)]="profile.city" (change)="onCityChange()">
             <option value="">Şehir Seç</option>
-            <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+            <option *ngFor="let c of cities" [value]="c">{{ c }}</option>
           </select>
-        </div>
 
-        <div class="select-wrapper">
-          <select [(ngModel)]="profile.district">
+          <select [(ngModel)]="profile.district" [disabled]="!profile.city">
             <option value="">İlçe Seç</option>
             <option *ngFor="let d of districts" [value]="d">{{ d }}</option>
           </select>
         </div>
 
-        <div class="select-wrapper">
-          <select [(ngModel)]="profile.preferredFoot">
-            <option value="">Güçlü Ayak</option>
-            <option *ngFor="let foot of footOptions" [value]="foot">{{ foot }}</option>
-          </select>
-        </div>
+        <select [(ngModel)]="profile.preferredFoot">
+          <option value="">Güçlü Ayak</option>
+          <option *ngFor="let f of footOptions" [value]="f">{{ f }}</option>
+        </select>
 
-        <div class="positions">
-          <button *ngFor="let pos of positions"
+        <textarea
+          placeholder="Takımlar / akademiler"
+          [(ngModel)]="profile.teamsPlayed">
+        </textarea>
+
+      </div>
+
+      <!-- SIDE CARD -->
+      <div class="side-card">
+
+        <h3>Pozisyonlar</h3>
+
+        <div class="positions-grid">
+          <button
+            *ngFor="let pos of positions"
             (click)="togglePosition(pos)"
             [class.active]="profile.positions.includes(pos)">
             {{ pos }}
           </button>
         </div>
 
-        <textarea placeholder="Takımlar / akademiler" [(ngModel)]="profile.teamsPlayed"></textarea>
+        <button class="save-btn" (click)="profileCompleted ? saveEditProfile() : saveProfile()">
+          Profili Kaydet
+        </button>
 
-        <div style="display:flex; gap:8px;">
-          <button class="mini-btn yellow" (click)="saveEditProfile()">Kaydet</button>
-          <button class="mini-btn dark" (click)="cancelEditProfile()">Vazgeç</button>
-        </div>
+        <button *ngIf="profileCompleted" class="mini-btn dark" (click)="cancelEditProfile()">
+          Vazgeç
+        </button>
 
-      </ng-container>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================= -->
+  <!-- PROFİL VARSA -->
+  <!-- ========================= -->
+  <div *ngIf="profileCompleted && !isEditingProfile" class="profile-grid">
+
+    <!-- HERO CARD -->
+    <div class="hero-card-wrapper">
+      <app-player-hero-card
+        [fullName]="profile.fullName"
+        [position]="profile.positions.length ? profile.positions[0] : '—'"
+        [rating]="82"
+        cardTier="silver"
+        referencePlayer="Mbappé"
+        [isPremium]="isPremium">
+      </app-player-hero-card>
     </div>
 
-    <!-- ================= CV ================= -->
+    <!-- PLAYER INFO -->
+    <div class="profile-card">
+      <h2>Oyuncu Bilgileri</h2>
+      <p><b>Ad:</b> {{ profile.fullName }}</p>
+      <p><b>Yaş:</b> {{ profile.age }}</p>
+      <p><b>Fizik:</b> {{ profile.heightCm }} / {{ profile.weightKg }}</p>
+      <p><b>Mevki:</b> {{ profile.positions.join(', ') }}</p>
+      <p><b>Ayak:</b> {{ profile.preferredFoot }}</p>
+      <p><b>Lokasyon:</b> {{ profile.city }} / {{ profile.district }}</p>
+      <p><b>Takımlar:</b> {{ profile.teamsPlayed || '-' }}</p>
+
+      <button class="mini-btn" (click)="startEditProfile()">Profili Düzenle</button>
+    </div>
+
+    <!-- CV -->
     <div class="profile-card">
       <h2>Özgeçmiş</h2>
 
       <p *ngIf="hasCv && !isEditingCv">{{ cvText }}</p>
       <p *ngIf="!hasCv && !isEditingCv">Henüz özgeçmiş eklenmedi.</p>
 
-      <button
-        *ngIf="!isEditingCv"
-        class="mini-btn"
-        (click)="startEditCv()">
-        {{ hasCv ? 'Düzenle' : 'Özgeçmiş Ekle' }}
-      </button>
+      <button *ngIf="!isEditingCv" class="mini-btn" (click)="startEditCv()">Düzenle</button>
 
       <ng-container *ngIf="isEditingCv">
         <textarea [(ngModel)]="cvText"></textarea>
@@ -122,55 +131,66 @@
       </ng-container>
     </div>
 
-    <!-- ================= PHOTOS ================= -->
-    <div class="profile-card">
-      <h2>Fotoğraflar</h2>
-      <p *ngIf="!hasPhoto">Henüz fotoğraf eklenmedi.</p>
-      <p *ngIf="hasPhoto">Fotoğraf yüklendi ✅</p>
+    <!-- PHOTOS -->
+    <div class="profile-card media-card">
+      <h2>Fotoğraflar ({{ photos.length }}/{{ isPremium ? '∞' : '3' }})</h2>
 
-      <button class="mini-btn" (click)="addPhoto()">Fotoğraf Ekle</button>
-    </div>
-
-    <!-- ================= VIDEOS ================= -->
-    <div class="profile-card">
-      <h2>Videolar</h2>
-      <p *ngIf="!hasVideo">Henüz video eklenmedi.</p>
-      <p *ngIf="hasVideo">Video yüklendi ✅</p>
-
-      <button class="mini-btn" (click)="addVideo()">Video Ekle</button>
-    </div>
-
-  </div>
-
-  <!-- ===== AI ANALYSIS ===== -->
-
-  <div class="ai-lock-wrapper">
-
-    <div class="ai-blur-content" [class.locked]="!isPremium">
-
-      <app-player-rating [isPremium]="isPremium"></app-player-rating>
-
-      <app-player-meta
-        [meta]="{
-          age: profile.age ?? undefined,
-          city: profile.city,
-          country: 'Türkiye'
-        }">
-      </app-player-meta>
-
-      <app-player-media [isPremium]="isPremium"></app-player-media>
-
-      <app-premium-ai-preview *ngIf="isPremium"></app-premium-ai-preview>
-
-    </div>
-
-    <div class="ai-lock-overlay" *ngIf="!isPremium">
-      <div class="lock-box">
-        🔒 <strong>AI Analizi Premium’da Açılır</strong>
-        <p>Detaylı performans puanları ve video analizi için Premium’a geç.</p>
+      <div class="media-upload-bar">
+        <input type="file" accept="image/*" (change)="onPhotoSelected($event)" />
       </div>
+
+      <div class="media-grid">
+        <div class="media-thumb" *ngFor="let p of photos">
+          <img [src]="p.url" />
+        </div>
+      </div>
+
+      <button class="save-btn">Kaydet</button>
+    </div>
+
+    <!-- VIDEOS -->
+    <div class="profile-card media-card">
+      <h2>Videolar ({{ videos.length }}/{{ isPremium ? '∞' : '1' }})</h2>
+
+      <div class="media-upload-bar">
+        <input type="file" accept="video/*" (change)="onVideoSelected($event)" />
+      </div>
+
+      <div class="media-grid">
+        <div class="media-thumb" *ngFor="let v of videos">
+          <video [src]="v.url" muted></video>
+        </div>
+      </div>
+
+      <button class="save-btn">Kaydet</button>
+    </div>
+
+  </div> <!-- profile-grid END -->
+
+  <!-- ========================= -->
+  <!-- AI ANALYSIS HIGHLIGHT -->
+  <!-- ========================= -->
+  <div class="ai-highlight-section">
+
+    <h2>AI Performans Analizi</h2>
+    <p>
+      Videoların ve istatistiklerin yapay zeka ile analiz edilir,
+      elit oyuncularla karşılaştırılırsın.
+    </p>
+
+    <!-- PREMIUM LOCK -->
+    <div *ngIf="!isPremium" class="ai-lock-card">
+      <div class="lock-icon">🔒</div>
+      <h3>AI Analiz Premium</h3>
+      <p>Oyuncu karşılaştırması ve rating için PRO’ya geç</p>
+      <button class="save-btn">Footbally PRO</button>
+    </div>
+
+    <!-- FUTURE: REAL AI RESULT -->
+    <div *ngIf="isPremium" class="ai-result-card">
+      <p>AI analiz sonuçları burada gösterilecek…</p>
     </div>
 
   </div>
 
-</ng-container>
+</section>

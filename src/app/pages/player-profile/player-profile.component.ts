@@ -4,11 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { PlayerHeroCardComponent } from './hero-card/player-hero-card.component';
-import { PlayerRatingComponent } from './rating/player-rating.component';
-import { PlayerMediaComponent } from './media/player-media.component';
-import { PlayerMetaComponent } from './meta/player-meta.component';
-import { PremiumAiPreviewComponent } from
-  '../../shared/components/premium-lock/ai-preview/premium-ai-preview.component';
 
 @Component({
   selector: 'app-player-profile',
@@ -17,38 +12,35 @@ import { PremiumAiPreviewComponent } from
     CommonModule,
     FormsModule,
     HttpClientModule,
-    PlayerHeroCardComponent,
-    PlayerRatingComponent,
-    PlayerMediaComponent,
-    PlayerMetaComponent,
-    PremiumAiPreviewComponent
+    PlayerHeroCardComponent
   ],
   templateUrl: './player-profile.component.html',
   styleUrls: ['./player-profile.component.css']
 })
 export class PlayerProfileComponent implements OnInit {
 
+  // ===== USER =====
   isPremium = false;
+
+  // ===== PROFILE STATE =====
   profileCompleted = false;
-
-  // ===== PROGRESS =====
-  profileProgress = 0;
-
-  hasCv = false;
-  hasPhoto = false;
-  hasVideo = false;
-
-  // ===== EDIT STATES =====
   isEditingProfile = false;
+
+  // ===== CV =====
+  hasCv = false;
   isEditingCv = false;
+  cvText = '';
+
+  // ===== MEDIA =====
+  photos: { file: File; url: string }[] = [];
+  videos: { file: File; url: string }[] = [];
+
+  MAX_PHOTOS_LITE = 3;
+  MAX_VIDEO_SIZE_MB = 50;
 
   editBackup: any = null;
 
-  cvText = '';
-
-  // ===== APPLICATIONS =====
-  applications: any[] = [];
-
+  // ===== PROFILE MODEL =====
   profile = {
     fullName: '',
     age: undefined as number | undefined,
@@ -70,7 +62,11 @@ export class PlayerProfileComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
+  // =========================
+  // INIT
+  // =========================
   ngOnInit(): void {
+
     this.http
       .get<Record<string, string[]>>('/assets/data/tr-locations.json')
       .subscribe(data => {
@@ -78,36 +74,41 @@ export class PlayerProfileComponent implements OnInit {
         this.cities = Object.keys(data);
       });
 
-    // ===== LOAD APPLICATIONS =====
-    const stored = localStorage.getItem('appliedAds');
-    const raw = stored ? JSON.parse(stored) : [];
+    const storedProfile = localStorage.getItem('playerProfile');
+    if (storedProfile) {
+      try {
+        const parsed = JSON.parse(storedProfile);
 
-    // eski kayıtlar sadece id olabilir → güvenli map
-    this.applications = raw.map((a: any) => {
-      if (typeof a === 'number') {
-        return {
-          adId: a,
-          teamName: 'Takım',
-          date: '-',
-          time: '-',
-          field: '—',
-          position: '—',
-          status: 'Beklemede'
+        this.profile = {
+          ...parsed.profile,
+          age: parsed.profile.age ?? undefined,
+          heightCm: parsed.profile.heightCm ?? undefined,
+          weightKg: parsed.profile.weightKg ?? undefined
         };
-      }
 
-      return {
-        ...a,
-        status: 'Beklemede'
-      };
-    });
+        this.cvText = parsed.cvText || '';
+        this.hasCv = parsed.hasCv || false;
+        this.photos = parsed.photos || [];
+        this.videos = parsed.videos || [];
+        this.profileCompleted = true;
+
+      } catch (e) {
+        console.warn('Profile parse error');
+      }
+    }
   }
 
+  // =========================
+  // LOCATION
+  // =========================
   onCityChange() {
     this.districts = this.locationMap[this.profile.city] || [];
     this.profile.district = '';
   }
 
+  // =========================
+  // POSITIONS
+  // =========================
   togglePosition(pos: string) {
     if (this.profile.positions.includes(pos)) {
       this.profile.positions = this.profile.positions.filter(p => p !== pos);
@@ -116,16 +117,15 @@ export class PlayerProfileComponent implements OnInit {
     }
   }
 
-  // ===== PROGRESS =====
-  calculateProgress() {
-    let progress = 60;
-    if (this.hasCv) progress = 80;
-    if (this.hasPhoto) progress = 90;
-    if (this.hasVideo) progress = 100;
-    this.profileProgress = progress;
+  // =========================
+  // CREATE PROFILE
+  // =========================
+  startCreateProfile() {
+    this.isEditingProfile = true;
   }
 
   saveProfile() {
+
     if (
       !this.profile.fullName ||
       !this.profile.age ||
@@ -135,28 +135,42 @@ export class PlayerProfileComponent implements OnInit {
       !this.profile.district ||
       !this.profile.preferredFoot ||
       this.profile.positions.length === 0
-    ) return;
+    ) {
+      alert('Lütfen tüm zorunlu alanları doldur');
+      return;
+    }
 
     this.profileCompleted = true;
-    this.calculateProgress();
+    this.isEditingProfile = false;
+    this.persistProfile();
   }
 
-  // ===== PROFILE EDIT =====
+  // =========================
+  // EDIT PROFILE
+  // =========================
   startEditProfile() {
     this.editBackup = JSON.parse(JSON.stringify(this.profile));
     this.isEditingProfile = true;
+    this.profileCompleted = false;
   }
 
   cancelEditProfile() {
-    this.profile = JSON.parse(JSON.stringify(this.editBackup));
+    if (this.editBackup) {
+      this.profile = JSON.parse(JSON.stringify(this.editBackup));
+    }
     this.isEditingProfile = false;
+    this.profileCompleted = true;
   }
 
   saveEditProfile() {
     this.isEditingProfile = false;
+    this.profileCompleted = true;
+    this.persistProfile();
   }
 
-  // ===== CV =====
+  // =========================
+  // CV
+  // =========================
   startEditCv() {
     this.isEditingCv = true;
   }
@@ -164,7 +178,7 @@ export class PlayerProfileComponent implements OnInit {
   saveCv() {
     if (this.cvText.trim().length > 0) {
       this.hasCv = true;
-      this.calculateProgress();
+      this.persistProfile();
     }
     this.isEditingCv = false;
   }
@@ -173,7 +187,66 @@ export class PlayerProfileComponent implements OnInit {
     this.isEditingCv = false;
   }
 
-  // ===== MEDIA TEMP =====
-  addPhoto() { this.hasPhoto = true; this.calculateProgress(); }
-  addVideo() { this.hasVideo = true; this.calculateProgress(); }
+  // =========================
+  // PHOTO UPLOAD
+  // =========================
+  onPhotoSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (!file) return;
+
+    if (!this.isPremium && this.photos.length >= this.MAX_PHOTOS_LITE) {
+      alert('Ücretsiz üyelikte en fazla 3 fotoğraf yükleyebilirsin.');
+      return;
+    }
+
+    const url = URL.createObjectURL(file);
+    this.photos.push({ file, url });
+  }
+
+  savePhotos() {
+    this.persistProfile();
+    alert('Fotoğraflar kaydedildi ✅');
+  }
+
+  // =========================
+  // VIDEO UPLOAD
+  // =========================
+  onVideoSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (!file) return;
+
+    const sizeMb = file.size / 1024 / 1024;
+
+    if (!this.isPremium && this.videos.length >= 1) {
+      alert('Ücretsiz üyelikte yalnızca 1 video yükleyebilirsin.');
+      return;
+    }
+
+    if (sizeMb > this.MAX_VIDEO_SIZE_MB) {
+      alert('Video boyutu 50MB üstü olamaz.');
+      return;
+    }
+
+    const url = URL.createObjectURL(file);
+    this.videos.push({ file, url });
+  }
+
+  saveVideos() {
+    this.persistProfile();
+    alert('Videolar kaydedildi ✅');
+  }
+
+  // =========================
+  // LOCAL STORAGE SAVE
+  // =========================
+  persistProfile() {
+    const payload = {
+      profile: this.profile,
+      hasCv: this.hasCv,
+      cvText: this.cvText,
+      photos: this.photos,
+      videos: this.videos
+    };
+    localStorage.setItem('playerProfile', JSON.stringify(payload));
+  }
 }
