@@ -7,7 +7,7 @@ import { PremiumComponent } from './pages/premium/premium';
 import { LoginComponent } from './pages/login/login';
 
 // PLAYER
-import { PlayerComponent } from './pages/player/player'; // <-- OYUNCULAR VİTRİN
+import { PlayerComponent } from './pages/player/player';
 import { PlayerDetailComponent } from './pages/player-detail/player-detail';
 import { PlayerProfileComponent } from './pages/player-profile/player-profile.component';
 import { PlayerPanelComponent } from './pages/player-panel/player-panel';
@@ -39,9 +39,26 @@ export const routes: Routes = [
   // CONTACT
   { path: 'contact', component: ContactComponent },
 
+  // ================= AI (USER) =================
+
+  {
+    path: 'ai/upload',
+    loadComponent: () =>
+      import('./pages/ai/ai-upload.component')
+        .then(m => m.AiUploadComponent),
+    canActivate: [authGuard]
+  },
+
+  {
+    path: 'ai/result',
+    loadComponent: () =>
+      import('./pages/ai/ai-result-user.component')
+        .then(m => m.AiResultUserComponent),
+    canActivate: [authGuard]
+  },
+
   // ================= PLAYER =================
 
-  // OYUNCULAR LİSTESİ / VİTRİN
   {
     path: 'player',
     component: PlayerComponent
@@ -52,7 +69,6 @@ export const routes: Routes = [
     component: PlayerDetailComponent
   },
 
-  // PROFİL (İLERİDE GERÇEK KULLANIM)
   {
     path: 'player-profile',
     component: PlayerProfileComponent,
@@ -76,7 +92,6 @@ export const routes: Routes = [
 
   // ================= TEAM =================
 
-  // TAKIMLAR LİSTESİ / VİTRİN
   {
     path: 'team',
     component: TeamComponent

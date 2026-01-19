@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 import { PlayerHeroCardComponent } from './hero-card/player-hero-card.component';
+
+import { Router } from 'express';
 
 @Component({
   selector: 'app-player-profile',
@@ -12,6 +15,7 @@ import { PlayerHeroCardComponent } from './hero-card/player-hero-card.component'
     CommonModule,
     FormsModule,
     HttpClientModule,
+    RouterModule,
     PlayerHeroCardComponent
   ],
   templateUrl: './player-profile.component.html',
@@ -20,7 +24,7 @@ import { PlayerHeroCardComponent } from './hero-card/player-hero-card.component'
 export class PlayerProfileComponent implements OnInit {
 
   // ===== USER =====
-  isPremium = false;
+  isPremium = true; // 🔥 PREMIUM MOCK AÇIK
 
   // ===== PROFILE STATE =====
   profileCompleted = false;
@@ -62,10 +66,10 @@ export class PlayerProfileComponent implements OnInit {
 
   constructor(private http: HttpClient) {}
 
-  // =========================
-  // INIT
-  // =========================
   ngOnInit(): void {
+
+    // 🔥 Premium override (ileride backend’den gelecek)
+    this.isPremium = true;
 
     this.http
       .get<Record<string, string[]>>('/assets/data/tr-locations.json')
@@ -194,11 +198,6 @@ export class PlayerProfileComponent implements OnInit {
     const file: File = event.target.files[0];
     if (!file) return;
 
-    if (!this.isPremium && this.photos.length >= this.MAX_PHOTOS_LITE) {
-      alert('Ücretsiz üyelikte en fazla 3 fotoğraf yükleyebilirsin.');
-      return;
-    }
-
     const url = URL.createObjectURL(file);
     this.photos.push({ file, url });
   }
@@ -216,11 +215,6 @@ export class PlayerProfileComponent implements OnInit {
     if (!file) return;
 
     const sizeMb = file.size / 1024 / 1024;
-
-    if (!this.isPremium && this.videos.length >= 1) {
-      alert('Ücretsiz üyelikte yalnızca 1 video yükleyebilirsin.');
-      return;
-    }
 
     if (sizeMb > this.MAX_VIDEO_SIZE_MB) {
       alert('Video boyutu 50MB üstü olamaz.');

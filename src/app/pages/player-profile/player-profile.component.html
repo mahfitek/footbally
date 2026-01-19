@@ -167,7 +167,7 @@
 
   </div> <!-- profile-grid END -->
 
-  <!-- ========================= -->
+    <!-- ========================= -->
   <!-- AI ANALYSIS HIGHLIGHT -->
   <!-- ========================= -->
   <div class="ai-highlight-section">
@@ -178,17 +178,15 @@
       elit oyuncularla karşılaştırılırsın.
     </p>
 
-    <!-- PREMIUM LOCK -->
-    <div *ngIf="!isPremium" class="ai-lock-card">
-      <div class="lock-icon">🔒</div>
-      <h3>AI Analiz Premium</h3>
-      <p>Oyuncu karşılaştırması ve rating için PRO’ya geç</p>
-      <button class="save-btn">Footbally PRO</button>
-    </div>
+    <!-- PREMIUM OPEN -->
+    <div class="ai-result-card">
+      <p>✅ Premium aktif</p>
+      <p>AI analiz ve oyuncu kartı özellikleri açık.</p>
 
-    <!-- FUTURE: REAL AI RESULT -->
-    <div *ngIf="isPremium" class="ai-result-card">
-      <p>AI analiz sonuçları burada gösterilecek…</p>
+      <button class="save-btn" routerLink="/ai/upload">
+  AI Analiz Başlat
+</button>
+
     </div>
 
   </div>

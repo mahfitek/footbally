@@ -1,0 +1,34 @@
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #050814;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-right: 1px solid #1a1f35;
+}
+
+.logo {
+  color: white;
+  margin-bottom: 24px;
+}
+
+a {
+  color: #9aa4c7;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+
+a:hover {
+  background: #11162c;
+  color: white;
+}
+
+a.active {
+  background: linear-gradient(90deg, #6d5dfc, #9b6bff);
+  color: white;
+  font-weight: 600;
+}
