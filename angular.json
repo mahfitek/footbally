@@ -9,7 +9,6 @@
   "projects": {
     "footbally-web": {
       "projectType": "application",
-      "schematics": {},
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -17,6 +16,7 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
+            "outputPath": "dist/footbally-web",
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "assets": [
@@ -37,16 +37,8 @@
           "configurations": {
             "production": {
               "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "20kB",
-                  "maximumError": "50kB"
-                }
+                { "type": "initial", "maximumWarning": "500kB", "maximumError": "1MB" },
+                { "type": "anyComponentStyle", "maximumWarning": "20kB", "maximumError": "50kB" }
               ],
               "outputHashing": "all"
             },
@@ -61,24 +53,16 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "footbally-web:build:production"
-            },
-            "development": {
-              "buildTarget": "footbally-web:build:development"
-            }
+            "production": { "buildTarget": "footbally-web:build:production" },
+            "development": { "buildTarget": "footbally-web:build:development" }
           },
           "defaultConfiguration": "development"
-        },
-        "test": {
-          "builder": "@angular/build:unit-test"
         }
       }
     },
 
     "admin-app": {
       "projectType": "application",
-      "schematics": {},
       "root": "projects/admin-app",
       "sourceRoot": "projects/admin-app/src",
       "prefix": "app",
@@ -86,34 +70,23 @@
         "build": {
           "builder": "@angular/build:application",
           "options": {
-  "browser": "projects/admin-app/src/main.ts",
-  "tsConfig": "projects/admin-app/tsconfig.app.json",
-  "assets": [
-    {
-      "glob": "**/*",
-      "input": "projects/admin-app/public",
-      "output": "public"
-    }
-  ],
-  "styles": [
-    "projects/admin-app/src/styles.css"
-  ]
-}
-,
-
+            "outputPath": "dist/admin-app",
+            "browser": "projects/admin-app/src/main.ts",
+            "tsConfig": "projects/admin-app/tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "projects/admin-app/public",
+                "output": "public"
+              }
+            ],
+            "styles": ["projects/admin-app/src/styles.css"]
+          },
           "configurations": {
             "production": {
               "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
-                }
+                { "type": "initial", "maximumWarning": "500kB", "maximumError": "1MB" },
+                { "type": "anyComponentStyle", "maximumWarning": "4kB", "maximumError": "8kB" }
               ],
               "outputHashing": "all"
             },
@@ -128,17 +101,10 @@
         "serve": {
           "builder": "@angular/build:dev-server",
           "configurations": {
-            "production": {
-              "buildTarget": "admin-app:build:production"
-            },
-            "development": {
-              "buildTarget": "admin-app:build:development"
-            }
+            "production": { "buildTarget": "admin-app:build:production" },
+            "development": { "buildTarget": "admin-app:build:development" }
           },
           "defaultConfiguration": "development"
-        },
-        "test": {
-          "builder": "@angular/build:unit-test"
         }
       }
     }
