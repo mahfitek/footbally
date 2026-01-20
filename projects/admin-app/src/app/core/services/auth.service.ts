@@ -8,7 +8,7 @@ export class AuthService {
 
   login(email: string, password: string): Observable<boolean> {
     // FAKE LOGIN
-    if (email === 'admin@footbally.com' && password === '123456') {
+    if (email === 'getfootbally2026' && password === 'Osmantemur.2912') {
       localStorage.setItem(this.TOKEN_KEY, 'FAKE_ADMIN_TOKEN');
       return of(true);
     }
